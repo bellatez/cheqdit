@@ -17,7 +17,7 @@ class CreateVehiclesTable extends Migration
             $table->id();
             $table->string('reg');
             $table->string('fleet_num');
-            $table->int('type');
+            $table->integer('type');
             $table->string('make');
             $table->string('colour');
             $table->string('condition');

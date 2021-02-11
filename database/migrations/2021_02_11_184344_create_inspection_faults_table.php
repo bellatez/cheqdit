@@ -15,6 +15,8 @@ class CreateInspectionFaultsTable extends Migration
     {
         Schema::create('inspection_faults', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('inspection_id');
+            $table->unsignedInteger('fault_id');
             $table->timestamps();
         });
     }

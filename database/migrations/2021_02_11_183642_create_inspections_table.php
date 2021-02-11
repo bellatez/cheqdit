@@ -18,7 +18,6 @@ class CreateInspectionsTable extends Migration
             $table->integer('form_id');
             $table->String('report_num');
             $table->String('vehicle_reg');
-            $table->String('report_num');
             $table->String('fleet_num');
             $table->String('vehicle');
             $table->String('reading_start');

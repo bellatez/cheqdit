@@ -15,6 +15,8 @@ class CreateFormFaultsTable extends Migration
     {
         Schema::create('form_faults', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('form_id');
+            $table->unsignedInteger('fault_id');
             $table->timestamps();
         });
     }

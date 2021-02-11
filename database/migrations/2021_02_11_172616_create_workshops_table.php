@@ -18,7 +18,9 @@ class CreateWorkshopsTable extends Migration
             $table->tinyInteger('user_id');
             $table->string('name');
             $table->string('website');
-            $table->string('address');
+            $table->string('address1');
+            $table->string('address2');
+            $table->string('address3');
             $table->string('postcode');
             $table->timestamps();
         });
