@@ -20,6 +20,16 @@ return [
             'profile' => 'r,u'
         ],
         'administrator' => [
+            'subadministrators' => 'c,r,u,d',
+            'drivers' => 'c,r,u,d',
+            'mechanics' => 'c,r,u,d',
+            'forms' => 'c,r,u,d',
+            'faults' => 'c,r,u,d',
+            'vehicles' => 'c,r,u,d',
+            'reports' => 'c,r,u,d',
+            'profile' => 'r,u'
+        ],
+        'subadministrator' => [
             'drivers' => 'c,r,u,d',
             'mechanics' => 'c,r,u,d',
             'forms' => 'c,r,u,d',

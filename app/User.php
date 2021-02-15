@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Models\Admin;
+use App\Models\Organisation;
 use App\Models\Workshop;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -25,6 +26,7 @@ class User extends Authenticatable
         'email', 
         'telephone',
         'is_active',
+        'organisation_id',
         'password',
         'type',
         'last_login_at', 
@@ -57,6 +59,11 @@ class User extends Authenticatable
     public function admin()
     {
         return $this->hasOne(Admin::class);
+    }
+
+    public function organisation()
+    {
+        return $this->belongsTo(Organisation::class);
     }
 
     public function isAdmin()

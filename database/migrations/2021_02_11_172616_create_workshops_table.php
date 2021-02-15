@@ -19,8 +19,8 @@ class CreateWorkshopsTable extends Migration
             $table->string('name');
             $table->string('website');
             $table->string('address1');
-            $table->string('address2');
-            $table->string('address3');
+            $table->string('address2')->nullable();
+            $table->string('address3')->nullable();
             $table->string('postcode');
             $table->timestamps();
         });
