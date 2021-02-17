@@ -43,5 +43,7 @@
     <script src="{{ asset('assets/js/jquery.slimscroll.js') }}"></script>
     <!-- End js -->
     <script src="{{ asset('js/app.js') }}"></script>
+
+    @yield('script')
 </body>
 </html>

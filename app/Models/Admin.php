@@ -9,8 +9,6 @@ class Admin extends Model
 {
     protected $fillable = [
     	'user_id',
-    	'telephone',
-    	'branch',
     ];
 
     public function user()

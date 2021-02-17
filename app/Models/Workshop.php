@@ -11,7 +11,9 @@ class Workshop extends Model
     	'user_id',
     	'website',
     	'name',
-    	'address',
+    	'address1',
+        'address2',
+        'address3',
     	'postcode'
     ];
 

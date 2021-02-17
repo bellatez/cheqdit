@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="auth-box register-box">
+    <div class="auth-box register-box" id="app">
         <!-- Start row -->
         <div class="row no-gutters align-items-center justify-content-center">
             <!-- Start col -->
@@ -24,21 +24,30 @@
                                     <a class="nav-link" id="workshop-tab" data-toggle="pill" href="#workshop" role="tab" aria-controls="workshop" aria-selected="false"><strong>Workshop</strong></a>
                                 </li>
                             </ul>
+                            @if($errors->any())
+                            <ul class="list-group">
+                                @foreach ($errors->all() as $error)
+                                    <li class="list-group-item text-danger">{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                            @endif
                             <div class="tab-content mt-4" id="pills-tabContent">
                                 <div class="tab-pane fade show active" id="user" role="tabpanel" aria-labelledby="user">
-                                        <form method="POST" action="{{ route('register') }}">
+                                        <form method="POST" action="{{ route('register') }}" class="needs-validation" novalidate>
                                             @csrf
-                                        <h5 class="text-dark">New User</h5>
+                                            <div v-if="user">
+                                                <h5 class="text-dark">New User</h5>
+                                            </div>
                                         <div class="row">
                                           <div class="col">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" name="first_name" id="username" placeholder="Enter First Name" required>
+                                                <input type="text" class="form-control" name="first_name" placeholder="Enter First Name" required>
                                             </div>
                                             <div class="form-group">
-                                                <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email" required>
+                                                <input type="email" class="form-control" name="email" placeholder="Enter Email" required>
                                             </div>
                                             <div class="form-group">
-                                                <select class="form-control" name="organisation_id" id="formControlSelect">
+                                                <select class="form-control" name="organisation_id">
                                                     <option selected disabled>Select your Organisation</option>
                                                     <option>1</option>
                                                     <option>2</option>
@@ -48,18 +57,18 @@
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <input type="password" class="form-control" id="password" placeholder="Enter Password here" required>
+                                                <input type="password" class="form-control"name="password" placeholder="Enter Password here" required>
                                             </div>
                                           </div>
                                           <div class="col">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" name="last_name" id="username" placeholder="Enter Last Name" required>
+                                                <input type="text" class="form-control" name="last_name" placeholder="Enter Last Name" required>
                                             </div>
                                             <div class="form-group">
-                                                <input type="tel" class="form-control" name="telephone" id="email" placeholder="Enter Phone Number" required>
+                                                <input type="tel" class="form-control" name="telephone" placeholder="Enter Phone Number" required>
                                             </div>
                                             <div class="form-group">
-                                                <select class="form-control" name="role_id" id="formControlSelect">
+                                                <select class="form-control" name="role_id">
                                                   <option selected disabled>Select your Role</option>
                                                     <option>1</option>
                                                     <option>2</option>
@@ -69,7 +78,7 @@
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <input type="password" class="form-control" id="re-password" placeholder="Re-Type Password" required>
+                                                <input type="password" class="form-control" name="password_confirmation" placeholder="Re-Type Password" required>
                                             </div>
                                           </div>
                                         </div>
@@ -77,7 +86,7 @@
                                         <div class="form-row mb-3">
                                             <div class="col-sm-12">
                                                 <div class="custom-control custom-checkbox text-left">
-                                                    <input type="checkbox" class="custom-control-input" id="terms">
+                                                    <input type="checkbox" class="custom-control-input">
                                                     <label class="custom-control-label font-14" for="terms">I Agree to Terms & Conditions of {{config('app.name')}}</label>
                                                 </div>                                
                                             </div>
@@ -92,10 +101,10 @@
                                         <div class="row">
                                           <div class="col">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" name="first_name" id="username" placeholder="Enter First Name" required>
+                                                <input type="text" class="form-control" name="first_name" placeholder="Enter First Name" required>
                                             </div>
                                             <div class="form-group">
-                                                <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email" required>
+                                                <input type="email" class="form-control" name="email" placeholder="Enter Email" required>
                                             </div>
                                             <div class="form-group">
                                                 <input type="text" class="form-control" name="website" placeholder="Enter Website" required>
@@ -107,15 +116,15 @@
                                                 <input type="text" class="form-control" id="address3" name="address3" placeholder="Enter Address Line 3" required>
                                             </div>
                                             <div class="form-group">
-                                                <input type="password" class="form-control" id="password" placeholder="Enter Password" required>
+                                                <input type="password" class="form-control" name="password"placeholder="Enter Password" required>
                                             </div>
                                           </div>
                                           <div class="col">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" name="last_name" id="username" placeholder="Enter Last Name" required>
+                                                <input type="text" class="form-control" name="last_name" placeholder="Enter Last Name" required>
                                             </div>
                                             <div class="form-group">
-                                                <input type="tel" class="form-control" name="telephone" id="email" placeholder="Enter Phone Number" required>
+                                                <input type="tel" class="form-control" name="telephone" placeholder="Enter Phone Number" required>
                                             </div>
                                             <div class="form-group">
                                                 <input type="text" class="form-control" id="name" name="name" placeholder="Enter Workshop name" required>
@@ -127,7 +136,7 @@
                                                 <input type="text" class="form-control" id="postcode" name="postcode" placeholder="Enter Post Code" required>
                                             </div>
                                             <div class="form-group">
-                                                <input type="password" class="form-control" id="re-password" placeholder="Enter Re-Type Password" required>
+                                                <input type="password" class="form-control" name="password_confirmation" placeholder="Enter Re-Type Password" required>
                                             </div>
                                           </div>
                                         </div>
@@ -136,7 +145,7 @@
                                        <div class="form-row mb-3">
                                            <div class="col-sm-12">
                                                <div class="custom-control custom-checkbox text-left">
-                                                   <input type="checkbox" class="custom-control-input" id="terms">
+                                                   <input type="checkbox" class="custom-control-input">
                                                    <label class="custom-control-label font-14" for="terms">I Agree to Terms & Conditions of {{config('app.name')}}</label>
                                                </div>                                
                                            </div>
@@ -156,4 +165,30 @@
         </div>
         <!-- End row -->
     </div>
+@endsection
+@section('script')
+<script type="text/javascript">
+new Vue({
+    el: '#app',
+    mounted(){
+        console.log('hello')
+    },
+    data (){
+        return {
+            fname:null,
+            user: true,
+            rules: {
+                nameRule: function(value){
+                    if (/^[a-zA-Z.]*$/.test(value)){
+                        return true;
+                    }
+                    else{
+                        return "{{__('alerts.form_validation.name_char')}}";
+                    }
+                },
+            }
+        }
+    }
+});
+</script>
 @endsection

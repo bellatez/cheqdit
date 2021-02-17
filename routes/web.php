@@ -11,6 +11,8 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
     return view('dashboard.index');
 });
@@ -347,6 +349,5 @@ Route::get('/user-register', function () {
 Route::get('/widgets', function () {
     return view('helpers.widgets');
 });
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

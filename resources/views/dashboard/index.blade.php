@@ -43,14 +43,14 @@ Dashboard
     <div class="row justify-content-center">
         <!-- Start col -->
         <div class="col-lg-3 col-xl-3">
-            <div class="card m-b-30">
+            <div class="card m-b-30 py-4">
                 <div class="card-body">
                     <div class="row justify-content-center">
                         <div class="col-12 text-center">
-                            <h5 class="card-title font-14">Inspection</h5>
-                            <h1>27</h1>
-                            <h5 class="card-title font-12">New Today</h5>
-                            <button class="btn btn-primary-rgba">VIEW ALL</button>
+                            <h5 class="card-title font-26">Inspection</h5>
+                            <h1 class="dashboard-nums">27</h1>
+                            <h5 class="card-title font-24">New Today</h5>
+                            <button class="btn btn-primary-rgba p-3">VIEW ALL</button>
                         </div>
                     </div>
                 </div>
@@ -59,14 +59,14 @@ Dashboard
         <!-- End col -->
         <!-- Start col -->
         <div class="col-lg-3 col-xl-3">
-            <div class="card m-b-30">
+            <div class="card m-b-30 py-4">
                 <div class="card-body">
                     <div class="row justify-content-center">
                         <div class="col-12 text-center">
-                            <h5 class="card-title font-14">Faults</h5>
-                            <h1>27</h1>
-                            <h5 class="card-title font-12">New Today</h5>
-                            <button class="btn btn-primary-rgba">VIEW ALL</button>
+                            <h5 class="card-title font-26">Faults</h5>
+                            <h1 class="dashboard-nums">27</h1>
+                            <h5 class="card-title font-24">New Today</h5>
+                            <button class="btn btn-primary-rgba p-3">VIEW ALL</button>
                         </div>
                     </div>
                 </div>
@@ -75,14 +75,14 @@ Dashboard
         <!-- End col -->
         <!-- Start col -->
         <div class="col-lg-3 col-xl-3">
-            <div class="card m-b-30">
+            <div class="card m-b-30 py-4">
                 <div class="card-body">
                     <div class="row justify-content-center">
                         <div class="col-12 text-center">
-                            <h5 class="card-title font-14">Faults Outstanding</h5>
-                            <h1>27</h1>
-                            <h5 class="card-title font-12">New Today</h5>
-                            <button class="btn btn-primary-rgba">VIEW ALL</button>
+                            <h5 class="card-title font-26">Faults Outstanding</h5>
+                            <h1 class="dashboard-nums">27</h1>
+                            <h5 class="card-title font-24">New Today</h5>
+                            <button class="btn btn-primary-rgba p-3">VIEW ALL</button>
                         </div>
                     </div>
                 </div>
@@ -93,14 +93,14 @@ Dashboard
     <div class="row justify-content-center">
         <!-- Start col -->
          <div class="col-lg-3 col-xl-3">
-            <div class="card m-b-30">
+            <div class="card m-b-30 py-4">
                 <div class="card-body">
                     <div class="row justify-content-center">
                         <div class="col-12 text-center">
-                            <h5 class="card-title font-14">My Vehicles</h5>
-                            <h1>45</h1>
-                            <h5 class="card-title font-12">New Today</h5>
-                            <button class="btn btn-primary-rgba">VIEW ALL</button>
+                            <h5 class="card-title font-26">My Vehicles</h5>
+                            <h1 class="dashboard-nums">45</h1>
+                            <h5 class="card-title font-24">New Today</h5>
+                            <button class="btn btn-primary-rgba p-3">VIEW ALL</button>
                         </div>
                     </div>
                 </div>
@@ -109,14 +109,14 @@ Dashboard
         <!-- End col -->
         <!-- Start col -->
          <div class="col-lg-3 col-xl-3">
-            <div class="card m-b-30">
+            <div class="card m-b-30 py-4">
                 <div class="card-body">
                     <div class="row justify-content-center">
                         <div class="col-12 text-center">
-                            <h5 class="card-title font-14">My Users</h5>
-                            <h1>09</h1>
-                            <h5 class="card-title font-12">New Today</h5>
-                            <button class="btn btn-primary-rgba">VIEW ALL</button>
+                            <h5 class="card-title font-26">My Users</h5>
+                            <h1 class="dashboard-nums">09</h1>
+                            <h5 class="card-title font-24">New Today</h5>
+                            <button class="btn btn-primary-rgba p-3">VIEW ALL</button>
                         </div>
                     </div>
                 </div>
@@ -125,12 +125,12 @@ Dashboard
         <!-- End col -->
         <!-- Start col -->
          <div class="col-lg-3 col-xl-3">
-            <div class="card m-b-30">
-                <div class="card-body">
+            <div class="card m-b-30 py-4">
+                <div class="card-body py-4">
                     <div class="row justify-content-center">
                         <div class="col-12 text-center">
-                            <h5 class="card-title font-14">Repair Costs</h5>
-                            <h3>35,627</h3>
+                            <h5 class="card-title font-26">Repair Costs</h5>
+                            <h3 class="dashboard-nums">35</h3>
                             <select class="form-control mb-1" id="formControlSelect">
                             <option selected>since start</option>
                             <option>2</option>
@@ -138,7 +138,7 @@ Dashboard
                             <option>4</option>
                             <option>5</option>
                         </select>
-                            <button class="btn btn-primary-rgba">VIEW ALL</button>
+                            <button class="btn btn-primary-rgba p-3">VIEW ALL</button>
                         </div>
                     </div>
                 </div>

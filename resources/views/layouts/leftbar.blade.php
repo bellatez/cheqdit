@@ -10,19 +10,19 @@
         <!-- Start Navigationbar -->
         <div class="navigationbar">
             <ul class="vertical-menu">
-                <h6 class="text-small ml-2 mt-3"><small>DASHBOARD</small></h6>
+                <h6 class="text-small leftbar-subs mt-3"><small>DASHBOARD</small></h6>
                 <li><a href="{{url('/')}}">My Dashboard</a></li>
                 <li><a href="{{url('/dashboard-ecommerce')}}">My Notifications</a></li>
                 <li><a href="{{url('/dashboard-hospital')}}">My Credits</a></li>
 
-                <h6 class="text-small ml-2 mt-3"><small>ORGANISATIONS</small></h6>
+                <h6 class="text-small leftbar-subs mt-3"><small>ORGANISATIONS</small></h6>
                 <li><a href="{{url('/')}}">View All</a></li>
                 <li><a href="{{url('/dashboard-ecommerce')}}">Add Organisation</a></li>
 
-                <h6 class="text-small ml-2 mt-3"><small>VEHICLE MANAGEMENT</small></h6>
+                <h6 class="text-small leftbar-subs mt-3"><small>VEHICLE MANAGEMENT</small></h6>
                 <li>
                     <a href="javaScript:void();">
-                      <img src="assets/images/svg-icon/dashboard.svg" class="img-fluid" alt="dashboard"><span>My Vehicles</span><i class="feather icon-chevron-right pull-right"></i>
+                      My Vehicles<i class="feather icon-chevron-right pull-right"></i>
                     </a>
                     <ul class="vertical-submenu">
                         <li><a href="{{url('/')}}">All Vehicles</a></li>
@@ -32,7 +32,7 @@
 
                  <li>
                     <a href="javaScript:void();">
-                      <img src="assets/images/svg-icon/dashboard.svg" class="img-fluid" alt="dashboard"><span>Workshop</span><i class="feather icon-chevron-right pull-right"></i>
+                      <span>Workshop<i class="feather icon-chevron-right pull-right"></i>
                     </a>
                     <ul class="vertical-submenu">
                         <li><a href="{{url('/')}}">All Workshops</a></li>
@@ -41,16 +41,16 @@
                 </li>
                  <li>
                     <a href="javaScript:void();">
-                      <img src="assets/images/svg-icon/dashboard.svg" class="img-fluid" alt="dashboard"><span>DVLA Search</span><i class="feather icon-chevron-right pull-right"></i>
+                      DVLA Search<i class="feather icon-chevron-right pull-right"></i>
                     </a>
                     <ul class="vertical-submenu">
                         <li><a href="{{url('/')}}">Vehicle search</a></li>
                     </ul>
                 </li>
-                <h6 class="ml-2 mt-3"><small>USER MANAGEMENT</small></h6>
+                <h6 class="ml-4 leftbar-subs mt-3"><small>USER MANAGEMENT</small></h6>
                 <li>
                     <a href="javaScript:void();">
-                        <img src="assets/images/svg-icon/basic.svg" class="img-fluid" alt="basic"><span>My Drivers</span><i class="feather icon-chevron-right pull-right"></i>
+                        My Drivers<i class="feather icon-chevron-right pull-right"></i>
                     </a>
                     <ul class="vertical-submenu">
                         <li><a href="{{url('/basic-ui-kits-alerts')}}">View All</a></li>
@@ -59,7 +59,7 @@
                 </li>
                 <li>
                     <a href="javaScript:void();">
-                        <img src="assets/images/svg-icon/advanced.svg" class="img-fluid" alt="advanced"><span>My Mechanics</span><i class="feather icon-chevron-right pull-right"></i>
+                        My Mechanics<i class="feather icon-chevron-right pull-right"></i>
                     </a>
                     <ul class="vertical-submenu">                                
                         <li><a href="{{url('/advanced-ui-kits-image-crop')}}">View all</a></li>  
@@ -68,17 +68,17 @@
                 </li>
                 <li>
                     <a href="javaScript:void();">
-                        <img src="assets/images/svg-icon/basic.svg" class="img-fluid" alt="basic"><span>Admin Team</span><i class="feather icon-chevron-right pull-right"></i>
+                        Admin Team<i class="feather icon-chevron-right pull-right"></i>
                     </a>
                     <ul class="vertical-submenu">
                         <li><a href="{{url('/basic-ui-kits-alerts')}}">View All</a></li>
                         <li><a href="{{url('/basic-ui-kits-badges')}}">Add Admin</a></li>
                     </ul>
                 </li>
-                <h6 class="text-small ml-2 mt-3"><small>CHECKS AND FORMS</small></h6>
+                <h6 class="text-small leftbar-subs mt-3"><small>CHECKS AND FORMS</small></h6>
                 <li>
                     <a href="javaScript:void();">
-                      <img src="assets/images/svg-icon/apps.svg" class="img-fluid" alt="apps"><span>Vehicle Inspection</span><i class="feather icon-chevron-right pull-right"></i>
+                      Vehicle Inspection<i class="feather icon-chevron-right pull-right"></i>
                     </a>
                     <ul class="vertical-submenu">
                         <li><a href="{{url('/apps-chat')}}">View All</a></li> 
@@ -90,7 +90,7 @@
                 </li>
                 <li>
                     <a href="javaScript:void();">
-                      <img src="assets/images/svg-icon/apps.svg" class="img-fluid" alt="apps"><span>Damage/Faults</span><i class="feather icon-chevron-right pull-right"></i>
+                      Damage/Faults<i class="feather icon-chevron-right pull-right"></i>
                     </a>
                     <ul class="vertical-submenu">
                         <li><a href="{{url('/apps-calender')}}">View All</a></li>
@@ -100,7 +100,7 @@
                 </li>
                 <li>
                     <a href="javaScript:void();">
-                      <img src="assets/images/svg-icon/apps.svg" class="img-fluid" alt="apps"><span>MOT/Service</span><i class="feather icon-chevron-right pull-right"></i>
+                      MOT/Service<i class="feather icon-chevron-right pull-right"></i>
                     </a>
                     <ul class="vertical-submenu">
                         <li><a href="{{url('/apps-calender')}}">View Upcoming</a></li>
@@ -111,7 +111,7 @@
                 </li>
                 <li>
                     <a href="javaScript:void();">
-                      <img src="assets/images/svg-icon/apps.svg" class="img-fluid" alt="apps"><span>Submit Form</span><i class="feather icon-chevron-right pull-right"></i>
+                      Submit Form<i class="feather icon-chevron-right pull-right"></i>
                     </a>
                     <ul class="vertical-submenu">
                         <li><a href="{{url('/apps-calender')}}">All Vehicles</a></li>
@@ -120,10 +120,10 @@
                     </ul>
                 </li>
 
-                <h6 class="text-small ml-2 mt-3"><small>REPORTING & REFERENCES</small></h6>         
+                <h6 class="text-small leftbar-subs mt-3"><small>REPORTING & REFERENCES</small></h6>         
                 <li>
                     <a href="javaScript:void();">
-                      <img src="assets/images/svg-icon/apps.svg" class="img-fluid" alt="apps"><span>Analysis</span><i class="feather icon-chevron-right pull-right"></i>
+                      Analysis<i class="feather icon-chevron-right pull-right"></i>
                     </a>
                     <ul class="vertical-submenu">
                         <li><a href="{{url('/apps-calender')}}">All</a></li>
@@ -131,19 +131,19 @@
                     </ul>
                 </li>
 
-                <h6 class="text-small ml-2 mt-3"><small>SUPPORT</small></h6>   
+                <h6 class="text-small leftbar-subs mt-3"><small>SUPPORT</small></h6>   
                 <li><a href="{{url('/apps-onboarding-screens')}}">Help Guides</a></li>
                 <li><a href="{{url('/apps-onboarding-screens')}}">My Weather</a></li>
                 <li><a href="{{url('/apps-onboarding-screens')}}">Videos</a></li>
                 <li><a href="{{url('/apps-onboarding-screens')}}">Best Practice</a></li>
                 <li>
                     <a href="javaScript:void();">
-                      <img src="assets/images/svg-icon/apps.svg" class="img-fluid" alt="apps"><span>Flag Issue</span>
+                      Flag Issue
                     </a>
                 </li>
                 <li>
                     <a href="javaScript:void();">
-                        <img src="assets/images/svg-icon/form_elements.svg" class="img-fluid" alt="form_elements"><span>FAQ</span>
+                        FAQ
                     </a>
                 </li>
             </ul>
