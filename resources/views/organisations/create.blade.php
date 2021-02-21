@@ -3,6 +3,9 @@ New Organisation
 @endsection 
 @extends('layouts.main')
 @section('style')
+@section('header-btn')
+  <a href="{{route('organisation.index')}}" class="btn btn-info-rgba"><i class="feather icon-plus mr-2"></i>View List</a>
+@endsection
 
 @endsection 
 @section('rightbar-content')

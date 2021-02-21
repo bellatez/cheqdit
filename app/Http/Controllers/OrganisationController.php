@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\OrganisationRequest;
+use App\Http\Requests\UserRequest;
 use App\Models\CompanySize;
 use App\Models\IndustryType;
 use App\Models\Organisation;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class OrganisationController extends Controller
 {
@@ -34,6 +37,11 @@ class OrganisationController extends Controller
         return view('organisations.create', compact('types', 'sizes', 'org'));
     }
 
+    public function createAdmin($org)
+    {
+        return view('organisations.user', compact('org'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -46,6 +54,23 @@ class OrganisationController extends Controller
         return redirect()->route('organisation.index')->with('success', 'Organisation added successfully');
     }
     /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeAdmin(UserRequest $request)
+    {
+        $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $code_chars = '0123456789';
+        $password = substr(str_shuffle($permitted_chars), 0, 8);
+
+        $user = User::create(array_merge($request->all(), ['password' => Hash::make($password)]));
+        $user->syncRoles([$request->role_id]);
+
+        return redirect()->route('organisation.index')->with('success', 'Admin Created successfully for the organisation');
+    }
+    /**
      * Display the specified resource.
      *
      * @param  \App\Models\Organisation  $organisation
@@ -53,7 +78,8 @@ class OrganisationController extends Controller
      */
     public function show(Organisation $organisation)
     {
-        return $organisation;
+        $admins = User::where('organisation_id', $organisation->id)->whereRoleIs(['administrator', 'subadministrator'])->get();
+        return view('organisations.show', compact('organisation', 'admins'));
     }
 
     /**

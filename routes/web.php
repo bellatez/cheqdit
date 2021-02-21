@@ -13,6 +13,8 @@
 
 Auth::routes();
 
+Route::resource('user', 'Users\UserController');
+
 Route::get('/', function () {
     return view('dashboard.index');
 });

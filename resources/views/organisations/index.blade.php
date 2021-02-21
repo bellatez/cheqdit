@@ -5,7 +5,7 @@ Organisations
 
 @section('header-btn')
   <a href="{{route('organisation.create')}}" class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i>New</a>
-  @endsection
+@endsection
 
 @section('rightbar-content')
 <!-- Start Contentbar -->    
@@ -50,7 +50,7 @@ Organisations
                                       <a class="dropdown-item" href="{{Route('organisation.show', $org)
                                       }}">View</a>
                                       <a class="dropdown-item" href="{{Route('organisation.edit', $org)}}">Edit</a>
-                                      <a class="dropdown-item" href="{{Route('organisation.edit', $org)}}">Disable</a>
+                                      <a class="dropdown-item" href="{{Route('organisation.user', $org)}}">Add Admin</a>
                                     </div>
                                   </div>
                                 </td>
