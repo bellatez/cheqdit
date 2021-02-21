@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\Organisation;
+use App\Models\Role;
 use App\Models\Workshop;
 use App\Providers\RouteServiceProvider;
 use App\User;
@@ -42,6 +44,19 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
+
+    /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showRegistrationForm()
+    {
+        $roles = Role::all();
+        $organisations = Organisation::all();
+        return view('auth.register', compact('roles', 'organisations'));
+    }
+
 
     /**
      * Get a validator for an incoming registration request.

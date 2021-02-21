@@ -30,5 +30,8 @@
         "vue-summernote": "^1.0.3",
         "vue2-dropzone": "3.5.9",
         "vuetify": "^1.5.14"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-free": "^5.15.2"
     }
 }

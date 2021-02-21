@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CompanySize;
+use App\Models\IndustryType;
 use App\Models\Organisation;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,7 @@ class OrganisationController extends Controller
      */
     public function index()
     {
-        //
+        return view('organisations.index');
     }
 
     /**
@@ -24,7 +26,10 @@ class OrganisationController extends Controller
      */
     public function create()
     {
-        //
+        $types = IndustryType::orderBy('name', 'asc')->get();
+        $sizes = CompanySize::orderBy('size', 'asc')->get();
+        $org = new Organisation();
+        return view('organisations.create', compact('types', 'sizes', 'org'));
     }
 
     /**
@@ -33,11 +38,11 @@ class OrganisationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OrganisationRequest $request)
     {
-        //
+        $org = Organisation::create($request->all());
+        return $org;
     }
-
     /**
      * Display the specified resource.
      *
@@ -55,9 +60,9 @@ class OrganisationController extends Controller
      * @param  \App\Models\Organisation  $organisation
      * @return \Illuminate\Http\Response
      */
-    public function edit(Organisation $organisation)
+    public function edit(Organisation $org)
     {
-        //
+        return view('organisation.create', compact('org'));
     }
 
     /**
@@ -67,9 +72,10 @@ class OrganisationController extends Controller
      * @param  \App\Models\Organisation  $organisation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Organisation $organisation)
+    public function update(OrganisationRequest $request, Organisation $organisation)
     {
-        //
+        $organisation->update($request->all());
+        return redirect()->route('organisation.index')->with('success', 'Organisation\'s information updated successfully');
     }
 
     /**
@@ -80,6 +86,7 @@ class OrganisationController extends Controller
      */
     public function destroy(Organisation $organisation)
     {
-        //
+        $organisation->delete();
+        return redirect()->route('organisation.index')->with('success', 'Organisation\'s information deleted successfully');
     }
 }

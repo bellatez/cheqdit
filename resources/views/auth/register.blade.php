@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="auth-box register-box" id="app">
+    <div class="auth-box register-box">
         <!-- Start row -->
         <div class="row no-gutters align-items-center justify-content-center">
             <!-- Start col -->
@@ -35,9 +35,7 @@
                                 <div class="tab-pane fade show active" id="user" role="tabpanel" aria-labelledby="user">
                                         <form method="POST" action="{{ route('register') }}" class="needs-validation" novalidate>
                                             @csrf
-                                            <div v-if="user">
-                                                <h5 class="text-dark">New User</h5>
-                                            </div>
+                                        <h5 class="text-dark">New User</h5>
                                         <div class="row">
                                           <div class="col">
                                             <div class="form-group">
@@ -49,15 +47,15 @@
                                             <div class="form-group">
                                                 <select class="form-control" name="organisation_id">
                                                     <option selected disabled>Select your Organisation</option>
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
+                                                    @foreach($organisations as $org)
+                                                        <option value="{{$org->id}}">
+                                                            {{$org->name}}
+                                                        </option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <input type="password" class="form-control"name="password" placeholder="Enter Password here" required>
+                                                <input type="password" class="form-control" name="password" placeholder="Enter Password here" required>
                                             </div>
                                           </div>
                                           <div class="col">
@@ -70,11 +68,11 @@
                                             <div class="form-group">
                                                 <select class="form-control" name="role_id">
                                                   <option selected disabled>Select your Role</option>
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
+                                                    @foreach($roles as $role)
+                                                        <option value="{{$role->id}}">
+                                                            {{$role->display_name}}
+                                                        </option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                             <div class="form-group">
@@ -165,30 +163,4 @@
         </div>
         <!-- End row -->
     </div>
-@endsection
-@section('script')
-<script type="text/javascript">
-new Vue({
-    el: '#app',
-    mounted(){
-        console.log('hello')
-    },
-    data (){
-        return {
-            fname:null,
-            user: true,
-            rules: {
-                nameRule: function(value){
-                    if (/^[a-zA-Z.]*$/.test(value)){
-                        return true;
-                    }
-                    else{
-                        return "{{__('alerts.form_validation.name_char')}}";
-                    }
-                },
-            }
-        }
-    }
-});
-</script>
 @endsection
