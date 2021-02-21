@@ -16,6 +16,8 @@ New Organisation
                 <div class="card-header">
                   @if($org->exists)
                     <h5 class="card-title">Edit organisation's details</h5>
+                  @else
+                    <h5 class="card-title">Fill in the organisation's details</h5>
                   @endif
                 </div>
                 <div class="card-body">

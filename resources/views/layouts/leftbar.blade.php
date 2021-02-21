@@ -16,8 +16,8 @@
                 <li><a href="{{url('/dashboard-hospital')}}">My Credits</a></li>
 
                 <h6 class="text-small leftbar-subs mt-3"><small>ORGANISATIONS</small></h6>
-                <li><a href="{{url('/')}}">View All</a></li>
-                <li><a href="{{url('/dashboard-ecommerce')}}">Add Organisation</a></li>
+                <li><a href="{{route('organisation.index')}}">View All</a></li>
+                <li><a href="{{route('organisation.create')}}">Add Organisation</a></li>
 
                 <h6 class="text-small leftbar-subs mt-3"><small>VEHICLE MANAGEMENT</small></h6>
                 <li>
