@@ -51,7 +51,7 @@ class OrganisationController extends Controller
     public function store(OrganisationRequest $request)
     {
         $org = Organisation::create($request->all());
-        return redirect()->route('organisation.index')->with('success', 'Organisation added successfully');
+        return redirect()->route('organisation.user', $org)->with('success', 'Organisation added successfully');
     }
     /**
      * Store a newly created resource in storage.
@@ -68,7 +68,7 @@ class OrganisationController extends Controller
         $user = User::create(array_merge($request->all(), ['password' => Hash::make($password)]));
         $user->syncRoles([$request->role_id]);
 
-        return redirect()->route('organisation.index')->with('success', 'Admin Created successfully for the organisation');
+        return redirect()->route('organisation.index')->with('success', 'Admin Created successfully for your new organisation');
     }
     /**
      * Display the specified resource.
