@@ -120,6 +120,13 @@
                     @yield('header-btn')
                 </div>                        
             </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center">
+                @if(session()->has('success'))
+                    <h5 class="alert alert-success">{{session()->get('success')}}</h5>
+                @endif
+            </div>
         </div>          
     </div>
     <!-- End Breadcrumbbar -->

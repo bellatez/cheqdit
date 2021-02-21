@@ -9,66 +9,84 @@ New Organisation
 <!-- Start Contentbar -->    
 <div class="contentbar">
     <!-- Start row -->
-    <div class="row">
-        
+    <div class="row no-gutters">
         <!-- Start col -->
         <div class="col-lg-12">
             <div class="card m-b-30">
                 <div class="card-header">
-                    <h5 class="card-title">Fill in details for new organisation</h5>
+                  @if($org->exists)
+                    <h5 class="card-title">Edit organisation's details</h5>
+                  @endif
                 </div>
                 <div class="card-body">
-                    <form v-on:submit.prevent='submit()' method="POST" action="{{ route('organisation.create') }}" v-model="formValid" ref="createForm">
+                  @if($errors->any())
+                  <ul class="list-group">
+                      @foreach ($errors->all() as $error)
+                          <li class="list-group-item text-danger">{{ $error }}</li>
+                      @endforeach
+                  </ul>
+                  @endif
+                    @if($org->exists)
+                        <form method="post" action="{{ route('organisation.update', $org) }}" autocomplete="off"  files="true" enctype="multipart/form-data">
+                        @method('PUT')
+                    @else
+                      <form method="POST" action="{{ route('organisation.store') }}">
+                    @endif
                       @csrf
                       <div class="form-row">
-                        <div class="col-md-12 mb-3">
-                          <input type="text" class="form-control" placeholder="Organisation Name" v-model="name" :rules="(v) => !!v || '{{__('name is required')}}'" value="{{ old('name') }}">
+                        <div class="col-md-12 form-group">
+                          <input type="text" class="form-control" placeholder="Organisation's Name" name="name" value="{{ old('name', $org->name) }}">
                         </div>
                       </div>
                       <div class="form-row">
-                        <div class="col-md-4 mb-3">
-                          <input type="text" class="form-control" placeholder="Organisation's Website" v-model="website" :rules="(v) => !!v || '{{__('Website is required')}}'" value="{{ old('website') }}">
+                        <div class="col-md-4 form-group">
+                          <input type="text" class="form-control" placeholder="Organisation's Website" name="website" value="{{ old('website', $org->website) }}">
                         </div>
-                        <div class="col-md-4 mb-3">
-                          <input type="text" class="form-control" id="validationServer02" placeholder="Enter phone number" v-model="phone" :rules="[(v) => !!v || '{{__('name is required')}}', rules.phoneRules]" value="{{ old('phone') }}">
+                        <div class="col-md-4 form-group">
+                          <input type="text" class="form-control" id="validationServer02" placeholder="Enter phone number" name="telephone" value="{{ old('telephone', $org->telephone) }}">
                         </div>
-                        <div class="col-md-4 mb-3">
-                          <div class="input-group">
-                            <input type="email" class="form-control" placeholder="Enter email" v-model="email" :rules="[(v) => !!v || '{{__('email is required')}}', rules.emailRule]" value="{{ old('email') }}">
-                          </div>
+                        <div class="col-md-4 form-group">
+                          <input type="email" class="form-control" placeholder="Enter email" name="email" value="{{ old('email', $org->email) }}">
                         </div>
                       </div><div class="form-row">
-                        <div class="col-md-4 mb-3">
-                          <input type="text" class="form-control" placeholder="Organisation Address line 1" v-model="address1" :rules="(v) => !!v || '{{__('Address line 1 is required')}}'" value="{{ old('address1') }}">
+                        <div class="col-md-4 form-group">
+                          <input type="text" class="form-control" placeholder="Organisation Address line 1" v-model="address1" name="address1" value="{{ old('address1', $org->address1) }}">
                         </div>
-                        <div class="col-md-4 mb-3">
-                          <input type="text" class="form-control" placeholder="Organisation Address line 2"
-                          value="{{ old('address2') }}">
+                        <div class="col-md-4 form-group">
+                          <input type="text" name="address2" class="form-control" placeholder="Organisation Address line 2"
+                          value="{{ old('address2', $org->address2) }}">
                         </div>
-                        <div class="col-md-4 mb-3">
-                          <input type="text" class="form-control" placeholder="Organisation Address line 3" value="{{ old('address3') }}">
+                        <div class="col-md-4 form-group">
+                          <input type="text" name="address3" class="form-control" placeholder="Organisation Address line 3" value="{{ old('address3', $org->address3) }}">
                         </div>
                       </div>
 
                       <div class="form-row">
-                        <div class="col-md-4 mb-3">
-                          <input type="text" class="form-control" placeholder="Organisation Postal code" v-model="name" :rules="[(v) => !!v || '{{__('Post code is required')}}', rules.postcodeRule]" value="{{ old('postcode') }}">
+                        <div class="col-md-4 form-group">
+                          <input type="text" class="form-control" placeholder="Organisation Postal code" name="postcode" value="{{ old('postcode', $org->postcode) }}">
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-4 form-group">
+                          <select class="form-control" name="industry_type">
+                              <option selected disabled>Select your Company Type</option>
+                              @foreach($types as $type)
+                                  <option value="{{$type->id}}" {{$type->id == $org->industry_type ? 'selected':''}}>
+                                      {{$type->name}}
+                                  </option>
+                              @endforeach
+                          </select>
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-4 form-group">
+                          <select class="form-control" name="company_size">
+                              <option selected disabled>Select your Organisation Size</option>
+                              @foreach($sizes as $size)
+                                  <option value="{{$size->id}}" {{$size->id == $org->company_size ? 'selected':''}}>
+                                      {{$size->size}}
+                                  </option>
+                              @endforeach
+                          </select>
                         </div>
-                      </div>
-                      
-                      <div class="form-group">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" >
-                          <label class="form-check-label">
-                            Agree to terms and conditions
-                          </label>
-                        </div>
-                      </div>
-                      <button class="btn btn-primary" type="submit" disabled>Submit</button>
+                      </div>                      
+                      <button type="submit" class="btn btn-primary text-white">Submit</button>
                     </form>
                 </div>
             </div>
@@ -79,62 +97,4 @@ New Organisation
     <!-- End row -->
 </div>
 <!-- End Contentbar -->
-@endsection 
-@section('script')
-
-<script type="text/javascript">
-
-  const vm = new Vue({
-    el: '#app',
-
-    mounted(){
-    },
-    data (){
-      return {
-        name:'',
-        address1:'',  
-        phone: '',
-        email: '',
-        address1: '',
-        postcode: '',
-        website: '',
-        type: '',
-        size: '',
-        formValid:false,
-        emailRule:[
-            (v) => !!v || "{{__('alerts.form_validation.email')}}",
-            function(value){
-                if (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
-                    .test(value)){
-                    return true;
-                }
-                else{
-                    return "{{__('alerts.form_validation.invalid_email')}}";
-                }
-            }
-        ],
-        rules: {
-            nameRule: function(value){
-                if (/^[a-zA-Z.]*$/.test(value)){
-                    return true;
-                }
-                else{
-                    return "{{__('alerts.form_validation.name_char')}}";
-                }
-            },
-            phoneRules: [
-              (v) => !!v || "Phone number is required",
-              (v) => (v && v.length >= 9) || "Phone number requires 9 digits",
-            ],
-        }
-      }
-    },
-    methods :{
-      submit(){
-        this.$refs.createForm.$el.submit();
-      },
-    }
-  });
-  
-</script>
 @endsection 

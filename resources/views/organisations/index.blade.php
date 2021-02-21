@@ -4,7 +4,7 @@ Organisations
 @extends('layouts.main')
 
 @section('header-btn')
-  <a href="#" class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i>New</a>
+  <a href="{{route('organisation.create')}}" class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i>New</a>
   @endsection
 
 @section('rightbar-content')
@@ -33,46 +33,29 @@ Organisations
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>2011/04/25</td>
-                                <td>$320,800</td>
+                              @foreach($orgs as $org)
+                              <tr>
+                                <td>{{$org->name}}</td>
+                                <td>{{$org->address1}}</td>
+                                <td>{{$org->postcode}}</td>
+                                <td>{{$org->telephone}}</td>
+                                <td>{{$org->industryType->name}}</td>
+                                <td>{{$org->companySize->size}}</td>
                                 <td class="text-right">
                                   <div class="dropdown">
                                     <a class="btn btn-sm btn-icon-only" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                       <i class="fas fa-ellipsis-v"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                      <a class="dropdown-item" href="#">Action</a>
-                                      <a class="dropdown-item" href="#">Another action</a>
-                                      <a class="dropdown-item" href="#">Something else here</a>
+                                      <a class="dropdown-item" href="{{Route('organisation.show', $org)
+                                      }}">View</a>
+                                      <a class="dropdown-item" href="{{Route('organisation.edit', $org)}}">Edit</a>
+                                      <a class="dropdown-item" href="{{Route('organisation.edit', $org)}}">Disable</a>
                                     </div>
                                   </div>
                                 </td>
-                            </tr>
-                            <tr>
-                                <td>Garrett Winters</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                                <td>63</td>
-                                <td>2011/07/25</td>
-                                <td>$170,750</td>
-                                <td class="text-right">
-                                  <div class="dropdown">
-                                    <a class="btn btn-sm btn-icon-only" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                      <i class="fas fa-ellipsis-v"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                      <a class="dropdown-item" href="#">Action</a>
-                                      <a class="dropdown-item" href="#">Another action</a>
-                                      <a class="dropdown-item" href="#">Something else here</a>
-                                    </div>
-                                  </div>
-                                </td>
-                            </tr>
+                              </tr>
+                              @endforeach
                             </tbody>
                         </table>
                     </div>

@@ -30875,7 +30875,7 @@ input:-internal-autofill-selected {
 }
 
 .form-control {
-  background-color: #ffffff;
+  background-color: #f2f2f4;
   font-size: 15px;
   color: #8A98AC;
   border: 1px solid rgba(0, 0, 0, 0.03);

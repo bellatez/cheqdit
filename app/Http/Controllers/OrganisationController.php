@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrganisationRequest;
 use App\Models\CompanySize;
 use App\Models\IndustryType;
 use App\Models\Organisation;
@@ -16,7 +17,8 @@ class OrganisationController extends Controller
      */
     public function index()
     {
-        return view('organisations.index');
+        $orgs = Organisation::all();
+        return view('organisations.index', compact('orgs'));
     }
 
     /**
@@ -41,7 +43,7 @@ class OrganisationController extends Controller
     public function store(OrganisationRequest $request)
     {
         $org = Organisation::create($request->all());
-        return $org;
+        return redirect()->route('organisation.index')->with('success', 'Organisation added successfully');
     }
     /**
      * Display the specified resource.
@@ -51,7 +53,7 @@ class OrganisationController extends Controller
      */
     public function show(Organisation $organisation)
     {
-        //
+        return $organisation;
     }
 
     /**
@@ -60,9 +62,12 @@ class OrganisationController extends Controller
      * @param  \App\Models\Organisation  $organisation
      * @return \Illuminate\Http\Response
      */
-    public function edit(Organisation $org)
+    public function edit(Organisation $organisation)
     {
-        return view('organisation.create', compact('org'));
+        $org = $organisation;
+        $types = IndustryType::orderBy('name', 'asc')->get();
+        $sizes = CompanySize::orderBy('size', 'asc')->get();
+        return view('organisations.create', compact('types', 'sizes', 'org'));
     }
 
     /**
