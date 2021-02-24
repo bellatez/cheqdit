@@ -11,8 +11,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(IndustryTypeSeeder::class);
-        $this->call(CompanySizeSeeder::class);
+        // $this->call(IndustryTypeSeeder::class);
+        // $this->call(CompanySizeSeeder::class);
         $this->call(LaratrustSeeder::class);
     }
 }
