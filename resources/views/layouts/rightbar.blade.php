@@ -78,7 +78,7 @@
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profilelink">
                                         <div class="dropdown-item">
                                             <div class="profilename">
-                                              <h5>John Doe</h5>
+                                              <h5>{{auth()->user()->first_name}} {{auth()->user()->last_name}}</h5>
                                             </div>
                                         </div>
                                         <div class="userbox">
@@ -87,7 +87,13 @@
                                                     <a href="#" class="profile-icon"><img src="{{asset('assets/images/svg-icon/user.svg')}}" class="img-fluid" alt="user">My Profile</a>
                                                 </li>
                                                 <li class="media dropdown-item">
-                                                    <a href="#" class="profile-icon"><i class="fas fa-logout"></i>Logout</a>
+                                                    <a class="profile-icon" href="{{ route('logout') }}"
+                                                       onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
+                                                        <i class="fas fa-logout"></i>Logout</a>
+                                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                        @csrf
+                                                    </form>
                                                 </li>
                                             </ul>
                                         </div>

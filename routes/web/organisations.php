@@ -1,4 +1,6 @@
 <?php
-	Route::get('organisation/admin/{id}', 'OrganisationController@createAdmin')->name('organisation.user');
-	Route::post('organisation/admin', 'OrganisationController@storeAdmin')->name('organisation.userstore');
-	Route::resource('organisation', 'OrganisationController');
+	Route::group(['middleware' => ['auth', 'verified', 'role:superadministrator']], function () {
+		Route::get('organisation/admin/{id}', 'OrganisationController@createAdmin')->name('organisation.user');
+		Route::post('organisation/admin', 'OrganisationController@storeAdmin')->name('organisation.userstore');
+		Route::resource('organisation', 'OrganisationController');
+	});

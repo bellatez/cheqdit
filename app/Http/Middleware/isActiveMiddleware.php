@@ -1,0 +1,25 @@
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+
+class isActiveMiddleware
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
+     */
+    public function handle($request, Closure $next)
+    {
+        if (auth()->check() && auth()->user()->isVerified() && !auth()->user()->is_active) {
+            auth()->logout();
+            $message = 'Your account has been blocked. Please contact administrator.';
+            return redirect()->route('login')->withMessage($message);
+        }
+        return $next($request);
+    }
+}

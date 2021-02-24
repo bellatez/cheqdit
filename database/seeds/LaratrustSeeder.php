@@ -67,7 +67,9 @@ class LaratrustSeeder extends Seeder
                     'email' => $key.'@cheqdit.com',
                     'telephone' => 3456778522456,
                     'type' => 1,
+                    'is_active' => 1,
                     'organisation_id' => 1,
+                    'email_verified_at' => Carbon\Carbon::now(),
                     'password' => bcrypt('password')
                 ]);
                 $user->attachRole($role);

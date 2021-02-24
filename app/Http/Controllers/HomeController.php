@@ -23,6 +23,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        if(auth()->user()->is_active){
+            return view('dashboard.index');
+        }else {
+            return view('home');
+        }
     }
 }

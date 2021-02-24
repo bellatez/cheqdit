@@ -11,13 +11,18 @@
 |
 */
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::resource('user', 'Users\UserController');
+Route::redirect('', 'home');
 
-Route::get('/', function () {
-    return view('dashboard.index');
+Route::group(['middleware' => ['auth', 'verified', 'role:superadministrator']], function () {});
+Route::group(['middleware' => ['auth', 'verified']], function () {
+    Route::get('user/request', 'Users\UserController@requestList')->name('user.request');
+    Route::post('userStatus', 'Users\UserController@userStatus')->name('user.status');
+    Route::resource('user', 'Users\UserController');
 });
+
+
 Route::get('/advanced-ui-kits-image-crop', function () {
     return view('helpers.advanced-ui-kits-image-crop');
 });

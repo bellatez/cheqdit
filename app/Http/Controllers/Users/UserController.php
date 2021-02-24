@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Users;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\User;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -18,6 +19,16 @@ class UserController extends Controller
     public function index()
     {
         //
+    }
+
+    public function requestList()
+    {
+        $users = User::with('roles')->where('is_active',0)
+                        ->where('type', 1)
+                        ->where('email_verified_at', null)
+                        ->where('organisation_id', Auth::user()->organisation_id)
+                        ->get();
+        return view('admins.request_list', compact('users'));
     }
 
     /**
@@ -40,6 +51,7 @@ class UserController extends Controller
     {
         $user = User::create(array_merge($request->all()));
         $user->syncRoles([$request->role_id]);
+        event(new \Illuminate\Auth\Events\Registered($user));
         return redirect()->route('user.index')->with('success', 'User Created Successfully');
     }
 

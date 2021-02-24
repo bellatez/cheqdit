@@ -11,6 +11,7 @@ use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -66,14 +67,37 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'first_name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'telephone' => ['required', 'string', 'max:255'],
-            'organisation_id' => ['required'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+        if($data['type'] === '1'){
+            return Validator::make($data, [
+                'first_name' => ['required', 'string', 'max:255'],
+                'last_name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'telephone' => ['required', 'string', 'max:255'],
+                'organisation_id' => ['required'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+                'terms' => 'required'
+            ], 
+            ['terms.required' => 'You must agree to the terms and conditions of the site']
+            );
+        }
+
+        if($data['type'] === '2'){
+            return Validator::make($data, [
+                'first_name' => ['required', 'string', 'max:255'],
+                'last_name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'telephone' => ['required', 'string', 'max:255'],
+                'organisation_id' => ['required'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+                'terms' => 'required',
+                'website' => 'required',
+                'name' => 'required',
+                'address1' => 'required',
+                'postcode' => 'required'
+            ], 
+            ['terms.required' => 'You must agree to the terms and conditions of the site']
+            );
+        }
     }
 
     /**
@@ -95,6 +119,7 @@ class RegisterController extends Controller
         ]);
 
         if($user->type == 1) {
+            $user->syncRoles([$data['role_id']]);
             $admin = Admin::create([
                 'user_id' => $user->id
             ]);
