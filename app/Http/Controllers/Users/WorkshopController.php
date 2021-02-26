@@ -69,7 +69,10 @@ class WorkshopController extends Controller
      */
     public function edit(Workshop $workshop)
     {
-        //
+        $work = $workshop;
+        // $types = IndustryType::orderBy('name', 'asc')->get();
+        // $sizes = CompanySize::orderBy('size', 'asc')->get();
+        return view('workshop.create', compact('work'));
     }
 
     /**
@@ -82,7 +85,8 @@ class WorkshopController extends Controller
     public function update(Request $request, Workshop $workshop)
     {
         $workshop->update($request->all());
-        return redirect()->route('workshop.index')->with('success', 'Organisation\'s information updated successfully');
+        Alert::alert('success', 'Workshop\'s information updated successfully');
+        return redirect()->route('workshop.index');
     }
 
     /**

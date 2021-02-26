@@ -1,20 +1,20 @@
-@section('title') 
-Organisation Details
-@endsection 
+@section('title')
+Workshop Details
+@endsection
 @extends('layouts.main')
 @section('header-btn')
-  <a href="{{route('organisation.edit', $organisation)}}" class="btn btn-success-rgba"><i class="feather icon-edit mr-2"></i>Edit</a>
+  <a href="{{route('workshop.edit', $work)}}" class="btn btn-success-rgba"><i class="feather icon-edit mr-2"></i>Edit</a>
 @endsection
 @section('rightbar-content')
-<!-- Start Contentbar -->    
-<div class="contentbar">                
+<!-- Start Contentbar -->
+<div class="contentbar">
     <!-- Start row -->
     <div class="row">
         <!-- Start col -->
         <div class="col-lg-5 col-xl-3">
             <div class="card m-b-30">
-                <div class="card-header">                                
-                    <h5 class="card-title mb-0">{{$organisation->name}}'s Details</h5>
+                <div class="card-header">
+                    <h5 class="card-title mb-0">{{$work->name}}'s Details</h5>
                 </div>
                 <div class="card-body">
                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -24,7 +24,7 @@ Organisation Details
                         <a class="nav-link mb-2" id="v-pills-wishlist-tab" data-toggle="pill" href="#v-pills-wishlist" role="tab" aria-controls="v-pills-wishlist" aria-selected="false"><i class="feather icon-heart mr-2"></i>Users</a>
                         <a class="nav-link mb-2" id="v-pills-wallet-tab" data-toggle="pill" href="#v-pills-chat" role="tab" aria-controls="v-pills-wallet" aria-selected="true"><i class="feather icon-credit-card mr-2"></i>Vehicles</a>
                         <a class="nav-link mb-2" id="v-pills-chat-tab" data-toggle="pill" href="#v-pills-wallet" role="tab" aria-controls="v-pills-chat" aria-selected="false"><i class="feather icon-message-circle mr-2"></i>Transactions</a>
-                        
+
                     </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@ Organisation Details
                 <!-- Dashboard Start -->
                 <div class="tab-pane fade show active" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab">
                     <div class="card m-b-30">
-                        <div class="card-header">                                
+                        <div class="card-header">
                             <h5 class="card-title mb-0">General Information</h5>
                         </div>
                         <div class="card-body">
@@ -44,8 +44,8 @@ Organisation Details
                                 <div class="profilename">
                                     <h3>{{$organisation->name}}</h3>
                                 </div>
-                                <p>Industry Type : <b>{{$organisation->industryType->name}}</b></p>
-                                <p>Company Size : <b>{{$organisation->companySize->size}}</b></p>
+                                {{-- <p>Workshp Name : <b>{{$organisation->industryType->name}}</b></p>
+                                <p>Workshop Owner : <b>{{$organisation->companySize->size}}</b></p> --}}
                             </div>
                         </div>
                     </div>
@@ -54,7 +54,7 @@ Organisation Details
                 <!-- My Orders Start -->
                 <div class="tab-pane fade" id="v-pills-order" role="tabpanel" aria-labelledby="v-pills-order-tab">
                     <div class="card m-b-30">
-                        <div class="card-header">                                
+                        <div class="card-header">
                             <h5 class="card-title mb-0">Contact Information</h5>
                         </div>
                         <div class="card-body">
@@ -66,27 +66,27 @@ Organisation Details
                                                 <tbody>
                                                     <tr>
                                                         <th scope="row">Telephone</th>
-                                                        <td>{{$organisation->telephone}}</td>
+                                                        <td>{{$work->tel}}</td>
                                                     </tr>
                                                     <tr>
                                                         <th scope="row">Website</th>
-                                                        <td>{{$organisation->website}}</td>
+                                                        <td>{{$work->website}}</td>
                                                     </tr>
                                                     <tr>
                                                         <th scope="row">Postal Code</th>
-                                                        <td>{{$organisation->postcode}}</td>
+                                                        <td>{{$work->postcode}}</td>
                                                     </tr>
                                                     <tr>
                                                         <th scope="row">Address Line 1</th>
-                                                        <td class="text-right">{{$organisation->address1}}</td>
+                                                        <td class="text-right">{{$work->address1}}</td>
                                                     </tr>
                                                     <tr>
                                                         <th scope="row">Address Line 2</th>
-                                                        <td class="text-right">{{$organisation->address2}}</td>
+                                                        <td class="text-right">{{$work->address2}}</td>
                                                     </tr>
                                                     <tr>
                                                         <th scope="row">Address Line 3</th>
-                                                        <td class="text-right">{{$organisation->address3}}</td>
+                                                        <td class="text-right">{{$work->address3}}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -101,7 +101,7 @@ Organisation Details
                 <!-- My Addresses Start -->
                 <div class="tab-pane fade" id="v-pills-addresses" role="tabpanel" aria-labelledby="v-pills-addresses-tab">
                     <div class="card m-b-30">
-                        <div class="card-header">                                
+                        <div class="card-header">
                             <h5 class="card-title mb-0">Administrators</h5>
                         </div>
                         <div class="card-body">
@@ -110,17 +110,17 @@ Organisation Details
                                     <table class="table table-borderless">
                                         <thead>
                                             <tr>
-                                                <th scope="col">Name</th>     
+                                                <th scope="col">Name</th>
                                                 <th scope="col">Email</th>
                                                 <th scope="col">Status</th>
                                                 <th scope="col">Active since</th>
-                                                <th scope="col"></th> 
+                                                <th scope="col"></th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach($admins as $admin)
+                                            {{-- @foreach($admins as $admin)
                                             <tr>
-                                                <th scope="row">{{$admin->first_name}} {{$admin->last_name}}</th>              
+                                                <th scope="row">{{$admin->first_name}} {{$admin->last_name}}</th>
                                                 <td>{{$admin->email}}</td>
                                                 <td><span class="badge badge-success-inverse">{{$admin->is_active?'Active': 'Inactive'}}</span></td>
                                                 <td>{{date('d-M-Y', strtotime($admin->created_at))}}</td>
@@ -137,11 +137,11 @@ Organisation Details
                                                   </div>
                                                 </td>
                                             </tr>
-                                            @endforeach
+                                            @endforeach --}}
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>                                        
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -149,7 +149,7 @@ Organisation Details
                 <!-- My Wishlist Start -->
                 <div class="tab-pane fade" id="v-pills-wishlist" role="tabpanel" aria-labelledby="v-pills-wishlist-tab">
                     <div class="card m-b-30">
-                        <div class="card-header">                                
+                        <div class="card-header">
                             <h5 class="card-title mb-0">Users</h5>
                         </div>
                         <div class="card-body">
@@ -180,7 +180,7 @@ Organisation Details
                 <!-- My Wallet Start -->
                 <div class="tab-pane fade" id="v-pills-wallet" role="tabpanel" aria-labelledby="v-pills-wallet-tab">
                     <div class="card m-b-30">
-                        <div class="card-header">                                
+                        <div class="card-header">
                             <h5 class="card-title mb-0">Vehicles</h5>
                         </div>
                         <div class="card-body">
@@ -198,11 +198,11 @@ Organisation Details
                                         <p class="mb-0"><button class="btn btn-success-rgba font-16"><i class="feather icon-plus mr-2"></i>Add Money</button></p>
                                     </div>
                                 </div>
-                            </div>                                        
+                            </div>
                         </div>
                     </div>
                     <div class="card m-b-30">
-                        <div class="card-header">                                
+                        <div class="card-header">
                             <div class="row align-items-center">
                                 <div class="col-8">
                                     <h5 class="card-title mb-0">Transactions</h5>
@@ -210,7 +210,7 @@ Organisation Details
                                 <div class="col-4">
                                     <ul class="list-inline-group text-right mb-0 pl-0">
                                         <li class="list-inline-item mr-0 font-12"><button type="button" class="btn btn-sm btn-primary-rgba px-2">Export</button></li>
-                                    </ul>                                        
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -220,17 +220,17 @@ Organisation Details
                                     <table class="table table-borderless">
                                         <thead>
                                             <tr>
-                                                <th scope="col">ID</th>     
+                                                <th scope="col">ID</th>
                                                 <th scope="col">Name</th>
                                                 <th scope="col">Withdraw</th>
                                                 <th scope="col">Deposit</th>
                                                 <th scope="col">Status</th>
-                                                <th scope="col">Comment</th> 
+                                                <th scope="col">Comment</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <th scope="row">1</th>              
+                                                <th scope="row">1</th>
                                                 <td>Apple Inc.</td>
                                                 <td>$1,85,000</td>
                                                 <td>-</td>
@@ -238,7 +238,7 @@ Organisation Details
                                                 <td>Transaction ID : 9875648951</td>
                                             </tr>
                                             <tr>
-                                                <th scope="row">2</th>                
+                                                <th scope="row">2</th>
                                                 <td>Dell</td>
                                                 <td>-</td>
                                                 <td>$2,05,000</td>
@@ -246,7 +246,7 @@ Organisation Details
                                                 <td>Bank Transaction ID : 2458615478</td>
                                             </tr>
                                             <tr>
-                                                <th scope="row">3</th>                
+                                                <th scope="row">3</th>
                                                 <td>HP Care</td>
                                                 <td>$5,000</td>
                                                 <td>-</td>
@@ -256,20 +256,20 @@ Organisation Details
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>                                        
+                            </div>
                         </div>
                     </div>
                 </div>
                 <!-- My Wallet End -->
-            </div>                        
+            </div>
         </div>
         <!-- End col -->
     </div>
-    <!-- End row -->                  
+    <!-- End row -->
 </div>
 <!-- End Contentbar -->
-@endsection 
+@endsection
 @section('script')
 <!-- eCommerce My Account Page js -->
 <script src="{{ asset('assets/js/custom/custom-ecommerce-myaccount.js') }}"></script>
-@endsection 
+@endsection
