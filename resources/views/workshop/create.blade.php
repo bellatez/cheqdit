@@ -17,7 +17,7 @@ New Workshop
         <div class="col-lg-12">
             <div class="card m-b-30">
                 <div class="card-header">
-                  @if($work->exists)
+                  @if($workshop->exists)
                     <h5 class="card-title">Edit Workshop's details</h5>
                   @else
                     <h5 class="card-title">Fill in the Workshop's details</h5>
@@ -31,8 +31,8 @@ New Workshop
                       @endforeach
                   </ul>
                   @endif
-                    @if($work->exists)
-                        <form method="post" action="{{ route('workshop.update', $work) }}" autocomplete="off"  files="true" enctype="multipart/form-data">
+                    @if($workshop->exists)
+                        <form method="post" action="{{ route('workshop.update', $workshop) }}" autocomplete="off"  files="true" enctype="multipart/form-data">
                         @method('PUT')
                     @else
                       <form method="POST" action="{{ route('workshop.store') }}">
@@ -40,7 +40,7 @@ New Workshop
                       @csrf
                       <div class="form-row">
                         <div class="col-md-12 form-group">
-                          <input type="text" class="form-control" placeholder="Workshop's Name" name="name" value="{{ old('name', $work->name) }}">
+                          <input type="text" class="form-control" placeholder="Workshop's Name" name="name" value="{{ old('name', $workshop->name) }}">
                           @error('name')
                           <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
@@ -50,7 +50,7 @@ New Workshop
                       </div>
                       <div class="form-row">
                           <div class="col-md-4 form-group">
-                              <input type="text" class="form-control" placeholder="Owner First Name" name="fname" value="{{ old('fname', $work->website) }}">
+                              <input type="text" class="form-control" placeholder="Owner First Name" name="fname" value="{{ old('fname', $workshop->website) }}">
                               @error('fname')
                               <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
@@ -58,7 +58,7 @@ New Workshop
                              @enderror
                             </div>
                             <div class="col-md-4 form-group">
-                                <input type="text" class="form-control" placeholder="Owner Last Name" name="lname" value="{{ old('lname', $work->website) }}">
+                                <input type="text" class="form-control" placeholder="Owner Last Name" name="lname" value="{{ old('lname', $workshop->website) }}">
                                 @error('lname')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -66,7 +66,7 @@ New Workshop
                                @enderror
                             </div>
                             <div class="col-md-4 form-group">
-                              <input type="text" class="form-control" placeholder="Workshop's Website" name="website" value="{{ old('website', $work->website) }}">
+                              <input type="text" class="form-control" placeholder="Workshop's Website" name="website" value="{{ old('website', $workshop->website) }}">
                               @error('website')
                               <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
@@ -75,7 +75,7 @@ New Workshop
                             </div>
                       </div><div class="form-row">
                         <div class="col-md-4 form-group">
-                          <input type="text" class="form-control" placeholder="Workshop Address line 1" v-model="address1" name="address1" value="{{ old('address1', $work->address1) }}">
+                          <input type="text" class="form-control" placeholder="Workshop Address line 1" v-model="address1" name="address1" value="{{ old('address1', $workshop->address1) }}">
                           @error('address1')
                           <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
@@ -84,7 +84,7 @@ New Workshop
                         </div>
                         <div class="col-md-4 form-group">
                           <input type="text" name="address2" class="form-control" placeholder="Workshop Address line 2"
-                          value="{{ old('address2', $work->address2) }}">
+                          value="{{ old('address2', $workshop->address2) }}">
                           @error('address2')
                           <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
@@ -92,7 +92,7 @@ New Workshop
                          @enderror
                         </div>
                         <div class="col-md-4 form-group">
-                          <input type="text" name="address3" class="form-control" placeholder="Workshop Address line 3" value="{{ old('address3', $work->address3) }}">
+                          <input type="text" name="address3" class="form-control" placeholder="Workshop Address line 3" value="{{ old('address3', $workshop->address3) }}">
                           @error('address3')
                           <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
@@ -103,7 +103,7 @@ New Workshop
 
                       <div class="form-row">
                         <div class="col-md-4 form-group">
-                          <input type="text" class="form-control" placeholder="Workshop Postal code" name="postcode" value="{{ old('postcode', $work->postcode) }}">
+                          <input type="text" class="form-control" placeholder="Workshop Postal code" name="postcode" value="{{ old('postcode', $workshop->postcode) }}">
                           @error('postcode')
                           <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
@@ -111,7 +111,7 @@ New Workshop
                          @enderror
                         </div>
                         <div class="col-md-4 form-group">
-                          <input type="text" class="form-control" placeholder="Workshop Phone Number" name="tel" value="{{ old('tel', $work->tel) }}">
+                          <input type="text" class="form-control" placeholder="Workshop Phone Number" name="tel" value="{{ old('tel', $workshop->tel) }}">
                           @error('tel')
                           <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
@@ -119,7 +119,7 @@ New Workshop
                          @enderror
                         </div>
                         <div class="col-md-4 form-group">
-                          <input type="email" class="form-control" placeholder="Workshop Email" name="email" value="{{ old('email', $work->email) }}">
+                          <input type="email" class="form-control" placeholder="Workshop Email" name="email" value="{{ old('email', $workshop->email) }}">
                           @error('email')
                           <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>

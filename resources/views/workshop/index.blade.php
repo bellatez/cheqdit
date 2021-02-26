@@ -24,33 +24,32 @@ Workshops
                             <thead>
                             <tr>
                                 <th>Name</th>
+                                <th>email</th>
                                 <th>Address</th>
                                 <th>Postcode</th>
                                 <th>Contact</th>
-                                <th>Type</th>
-                                <th>Size</th>
+                                <th>Organisation</th>
                                 <th></th>
                             </tr>
                             </thead>
                             <tbody>
-                              @foreach($works as $work)
+                              @foreach($workshops as $workshop)
                               <tr>
-                                <td>{{$work->name}}</td>
-                                <td>{{$work->address1}}</td>
-                                <td>{{$work->postcode}}</td>
-                                <td>{{$work->telephone}}</td>
-                                <td>{{$work->industryType->name}}</td>
-                                <td>{{$work->companySize->size}}</td>
+                                <td>{{$workshop->name}}</td>
+                                <td>{{$workshop->user->email}}</td>
+                                <td>{{$workshop->address1}}</td>
+                                <td>{{$workshop->postcode}}</td>
+                                <td>{{$workshop->user->telephone}}</td>
+                                <td>{{$workshop->user->organisation->name}}</td>
                                 <td class="text-right">
                                   <div class="dropdown">
                                     <a class="btn btn-sm btn-icon-only" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                       <i class="fas fa-ellipsis-v"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                      <a class="dropdown-item" href="{{Route('workanisation.show', $work)
+                                      <a class="dropdown-item" href="{{Route('workshop.show', $workshop)
                                       }}">View</a>
-                                      <a class="dropdown-item" href="{{Route('workanisation.edit', $work)}}">Edit</a>
-                                      <a class="dropdown-item" href="{{Route('workanisation.user', $work)}}">Add Admin</a>
+                                      <a class="dropdown-item" href="{{Route('workshop.edit', $workshop)}}">Edit</a>
                                     </div>
                                   </div>
                                 </td>

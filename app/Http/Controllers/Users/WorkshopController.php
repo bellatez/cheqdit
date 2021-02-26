@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\WorkshopRequest;
 use App\Models\Workshop;
-use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class WorkshopController extends Controller
 {
@@ -17,8 +18,9 @@ class WorkshopController extends Controller
      */
     public function index()
     {
-        $works = Workshop::all();
-        return view('workshop.index', compact('works'));
+        $workshops = Workshop::all();
+        // return $workshops;
+        return view('workshop.index', compact('workshops'));
     }
 
     /**
@@ -28,8 +30,8 @@ class WorkshopController extends Controller
      */
     public function create()
     {
-        $work = new Workshop();
-        return view('workshop.create', compact('work'));
+        $workshop = new Workshop();
+        return view('workshop.create', compact('workshop'));
     }
 
     /**
@@ -38,13 +40,14 @@ class WorkshopController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(WorkshopRequest $request)
     {
         try {
             Workshop::create($request->all());
             Alert::alert('success', 'Workshop added successfully');
             return redirect()->route('workshop.index');
-                } catch (\Throwable $th) {
+                } 
+                catch (\Throwable $th) {
                     alert()->error('Error','There are some errors in your entry ');
             return redirect()->route('workshop.create');
         }
@@ -69,10 +72,9 @@ class WorkshopController extends Controller
      */
     public function edit(Workshop $workshop)
     {
-        $work = $workshop;
         // $types = IndustryType::orderBy('name', 'asc')->get();
         // $sizes = CompanySize::orderBy('size', 'asc')->get();
-        return view('workshop.create', compact('work'));
+        return view('workshop.create', compact('workshop'));
     }
 
     /**
@@ -82,7 +84,7 @@ class WorkshopController extends Controller
      * @param  \App\Models\Workshop  $workshop
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Workshop $workshop)
+    public function update(WorkshopRequest $request, Workshop $workshop)
     {
         $workshop->update($request->all());
         Alert::alert('success', 'Workshop\'s information updated successfully');
