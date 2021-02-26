@@ -37,8 +37,8 @@
                           <span>Workshop<i class="feather icon-chevron-right pull-right"></i>
                         </a>
                         <ul class="vertical-submenu">
-                            <li><a href="{{url('/')}}">All Workshops</a></li>
-                            <li><a href="{{url('/dashboard-school')}}">Add workshop</a></li>
+                            <li><a href="{{url('/workshop')}}">All Workshops</a></li>
+                            <li><a href="{{url('/workshop/create')}}">Add Workshop</a></li>
                         </ul>
                     </li>
                      <li>
@@ -68,8 +68,8 @@
                         <a href="javaScript:void();">
                             My Mechanics<i class="feather icon-chevron-right pull-right"></i>
                         </a>
-                        <ul class="vertical-submenu">                                
-                            <li><a href="{{url('/advanced-ui-kits-image-crop')}}">View all</a></li>  
+                        <ul class="vertical-submenu">
+                            <li><a href="{{url('/advanced-ui-kits-image-crop')}}">View all</a></li>
                             <li><a href="{{url('/advanced-ui-kits-jquery-confirm')}}">Add Mechanic</a></li>
                         </ul>
                     </li>
@@ -90,7 +90,7 @@
                           Vehicle Inspection<i class="feather icon-chevron-right pull-right"></i>
                         </a>
                         <ul class="vertical-submenu">
-                            <li><a href="{{url('/apps-chat')}}">View All</a></li> 
+                            <li><a href="{{url('/apps-chat')}}">View All</a></li>
                             <li><a href="{{url('/apps-calender')}}">Last 30 Days</a></li>
                             <li><a href="{{url('/apps-calender')}}">Last 60 Days</a></li>
                             <li><a href="{{url('/apps-calender')}}">Add Inspection</a></li>
@@ -103,21 +103,21 @@
                         </a>
                         <ul class="vertical-submenu">
                             <li><a href="{{url('/apps-calender')}}">View Upcoming</a></li>
-                            <li><a href="{{url('/apps-chat')}}">View all History</a></li> 
+                            <li><a href="{{url('/apps-chat')}}">View all History</a></li>
                             <li><a href="{{url('/apps-kanban-board')}}">Add MOT</a></li>
                             <li><a href="{{url('/apps-onboarding-screens')}}">Add Service</a></li>
                         </ul>
                     </li>
                 @endif
                 @if(Auth::user()->hasRole('administrator|superadministrator'))
-                    <h6 class="text-small leftbar-subs mt-3"><small>REPORTING & REFERENCES</small></h6>         
+                    <h6 class="text-small leftbar-subs mt-3"><small>REPORTING & REFERENCES</small></h6>
                     <li>
                         <a href="javaScript:void();">
                           Analysis<i class="feather icon-chevron-right pull-right"></i>
                         </a>
                         <ul class="vertical-submenu">
                             <li><a href="{{url('/apps-calender')}}">All</a></li>
-                            <li><a href="{{url('/apps-chat')}}">Timestamps</a></li> 
+                            <li><a href="{{url('/apps-chat')}}">Timestamps</a></li>
                         </ul>
                     </li>
                 @endif
@@ -128,7 +128,7 @@
                         </a>
                         <ul class="vertical-submenu">
                             <li><a href="{{url('/apps-calender')}}">View All</a></li>
-                            <li><a href="{{url('/apps-chat')}}">My Forms</a></li> 
+                            <li><a href="{{url('/apps-chat')}}">My Forms</a></li>
                         </ul>
                     </li>
                 @endif
@@ -140,13 +140,13 @@
                         </a>
                         <ul class="vertical-submenu">
                             <li><a href="{{url('/apps-calender')}}">All Vehicles</a></li>
-                            <li><a href="{{url('/apps-chat')}}">Add Fault</a></li> 
-                            <li><a href="{{url('/apps-chat')}}">My History</a></li> 
+                            <li><a href="{{url('/apps-chat')}}">Add Fault</a></li>
+                            <li><a href="{{url('/apps-chat')}}">My History</a></li>
                             <li><a href="{{url('/apps-kanban-board')}}">Downloads</a></li>
                         </ul>
                     </li>
                 @endif
-                <h6 class="text-small leftbar-subs mt-3"><small>SUPPORT</small></h6> 
+                <h6 class="text-small leftbar-subs mt-3"><small>SUPPORT</small></h6>
                 @if(Auth::user()->hasRole('driver'))
                     <li><a href="{{url('/apps-onboarding-screens')}}">Help Guides</a></li>
                     <li><a href="{{url('/apps-onboarding-screens')}}">My Weather</a></li>

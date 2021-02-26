@@ -24,17 +24,19 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body class="vertical-layout">
+    @include('sweetalert::alert')
     <div id="app">
+        @include('sweetalert::alert')
         <!-- Start Containerbar -->
         <div id="containerbar" class="containerbar authenticate-bg">
             <!-- Start Container -->
             <main class="container">
                 @yield('content')
             </main>
-        </div>    
+        </div>
     </div>
 
-    <!-- Start JS -->        
+    <!-- Start JS -->
     <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/popper.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>

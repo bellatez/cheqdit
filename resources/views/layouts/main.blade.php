@@ -11,7 +11,7 @@
         <title> @yield('title') </title>
         <!-- Fevicon -->
         <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
-        <!-- Start CSS -->   
+        <!-- Start CSS -->
         @yield('style')
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -24,31 +24,32 @@
         <!-- End CSS -->
     </head>
     <body class="vertical-layout">
+        @include('sweetalert::alert')
         <div id="app">
             <div class="infobar-settings-sidebar-overlay"></div>
             <!-- End Infobar Setting Sidebar -->
             <!-- Start Containerbar -->
-            <div id="containerbar">     
+            <div id="containerbar">
                 <!-- Start Leftbar -->
                 @include('layouts.leftbar')
                 <!-- End Leftbar -->
                 <!-- Start Rightbar -->
-                @include('layouts.rightbar')          
+                @include('layouts.rightbar')
                 @yield('content')
-                <!-- End Rightbar --> 
+                <!-- End Rightbar -->
             </div>
         </div>
         <!-- End Containerbar -->
-        <!-- Start JS -->   
-         
+        <!-- Start JS -->
+
         <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
         <script src="{{ asset('assets/js/popper.min.js') }}"></script>
         <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('assets/js/modernizr.min.js') }}"></script>
         <script src="{{ asset('assets/js/detect.js') }}"></script>
         <script src="{{ asset('assets/js/jquery.slimscroll.js') }}"></script>
-        <script src="{{ asset('assets/js/vertical-menu.js') }}"></script> 
-        <script src="{{ asset('assets/plugins/switchery/switchery.min.js') }}"></script> 
+        <script src="{{ asset('assets/js/vertical-menu.js') }}"></script>
+        <script src="{{ asset('assets/plugins/switchery/switchery.min.js') }}"></script>
         <!-- Datatable js -->
         <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('assets/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
@@ -68,4 +69,4 @@
         <script src="{{ asset('assets/js/core.js') }}"></script>
         <!-- End JS -->
     </body>
-</html>    
+</html>

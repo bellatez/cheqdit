@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+namespace App\Http\Controllers\Users;
 
+use App\Http\Controllers\Controller;
 use App\Models\Workshop;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 
 class WorkshopController extends Controller
@@ -14,7 +17,8 @@ class WorkshopController extends Controller
      */
     public function index()
     {
-        //
+        $works = Workshop::all();
+        return view('workshop.index', compact('works'));
     }
 
     /**
@@ -24,7 +28,8 @@ class WorkshopController extends Controller
      */
     public function create()
     {
-        //
+        $work = new Workshop();
+        return view('workshop.create', compact('work'));
     }
 
     /**
@@ -35,7 +40,14 @@ class WorkshopController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            Workshop::create($request->all());
+            Alert::alert('success', 'Workshop added successfully');
+            return redirect()->route('workshop.index');
+                } catch (\Throwable $th) {
+                    alert()->error('Error','There are some errors in your entry ');
+            return redirect()->route('workshop.create');
+        }
     }
 
     /**
@@ -69,7 +81,8 @@ class WorkshopController extends Controller
      */
     public function update(Request $request, Workshop $workshop)
     {
-        //
+        $workshop->update($request->all());
+        return redirect()->route('workshop.index')->with('success', 'Organisation\'s information updated successfully');
     }
 
     /**
