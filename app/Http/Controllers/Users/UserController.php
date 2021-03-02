@@ -6,10 +6,13 @@ use App\Helpers\Generator;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Models\Admin;
+use App\Models\Organisation;
+use App\Models\Role;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
@@ -20,7 +23,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+        // return $workshops;
+
+        return view('users.index', compact('users'));
     }
 
     public function requestList()
@@ -40,7 +46,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admins.create');
+        $users = new User();
+        $organisations=Organisation::all();
+        $roles=Role::all();
+          return view('users.create',compact('users','organisations','roles'));
     }
 
     /**
@@ -62,6 +71,7 @@ class UserController extends Controller
         //send password to workshop
         $user->sendPasswordMail();
         return redirect()->route('user.index')->with('success', 'User Created Successfully');
+
     }
 
     /**
@@ -72,7 +82,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $users = User::find($id)->get();
+        return view('users.show',compact('users'));
     }
 
     /**
@@ -81,9 +92,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user )
     {
-        //
+        $users = User::find($user->id)->get();
+        return view('users.create',compact('users'));
+
+
     }
 
     /**

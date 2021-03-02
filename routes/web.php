@@ -21,6 +21,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::post('userStatus', 'Users\UserController@userStatus')->name('user.status');
     Route::resource('user', 'Users\UserController');
     Route::resource('workshop', 'Users\WorkshopController');
+    Route::resource('users', 'Users\UserController');
 
 });
 
