@@ -29738,7 +29738,7 @@ canvas {
 .apexcharts-xaxis text,
 .apexcharts-yaxis text {
   font-family: "Muli", sans-serif !important;
-  fill: #8A98AC;
+  fill: #f2542d;
 }
 
 .apexcharts-legend-text {
@@ -30197,6 +30197,38 @@ canvas {
 
 .dashboard-nums {
   font-size: 70px;
+  color: #3f3e3f;
+  margin-bottom: 0 !important;
+}
+
+.new-today {
+  color:  #9d9d9c;
+  margin-top: -5px;
+  margin-bottom: 25px;
+  font-weight: 300;
+}
+
+.dash-headline {
+  color: #221f20;
+}
+
+.dash-btn {
+  letter-spacing: 0.5px;
+}
+
+.dash-btn:hover {
+  background: #5DC9CA !important;
+  color: #fff;
+}
+
+.dash-field select {
+  margin-top: -5px;
+  margin-bottom: 15px;
+  padding: 0 !important;
+  width: 165px;
+  border-color: #9d9d9c;
+  font-size: 13px;
+  color: #9d9d9c;
 }
 
 .product-bar .product-head p {
