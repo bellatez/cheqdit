@@ -54,7 +54,7 @@ class UserController extends Controller
         // create a password for the workshop
         $password = Generator::password();
 
-        $user = User::create(array_merge($request->all(['password' => $password])));
+        $user = User::create(array_merge($request->validated(), ['password' => $password]);
         $user->syncRoles([$request->role_id]);
 
         Admin::create(['user_id' => $user->id]);

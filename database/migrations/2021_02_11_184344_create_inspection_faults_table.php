@@ -15,8 +15,8 @@ class CreateInspectionFaultsTable extends Migration
     {
         Schema::create('inspection_faults', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('inspection_id');
-            $table->unsignedInteger('fault_id');
+            $table->foreignId('inspection_id')->onDelete('cascade');
+            $table->foreignId('fault_id')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -23,9 +23,15 @@ class CreateOrganisationsTable extends Migration
             $table->string('email');
             $table->string('telephone');
             $table->string('website');
-            $table->unsignedInteger('industry_type');
-            $table->unsignedInteger('company_size');
             $table->string('billing_email')->nullable();
+            $table->foreignId('industry_type')
+                    ->nullable()
+                    ->constrained('industry_types')
+                    ->onDelete('null');
+            $table->foreignId('company_size')
+                    ->nullable()
+                    ->constrained('company_size')
+                    ->onDelete('null');
             $table->timestamps();
         });
     }

@@ -15,8 +15,14 @@ class CreateMechanicFaultsTable extends Migration
     {
         Schema::create('mechanic_faults', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('user_id');
-            $table->unsignedInteger('fault_id');
+            $table->foreignId('user_id')
+                    ->nullable()
+                    ->constrained()
+                    ->onDelete('set null');
+            $table->foreignId('fault_id')
+                    ->nullable()
+                    ->constrained()
+                    ->onDelete('set null');
             $table->timestamps();
         });
     }

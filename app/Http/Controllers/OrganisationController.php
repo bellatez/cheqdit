@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Generator;
 use App\Http\Requests\OrganisationRequest;
 use App\Http\Requests\UserRequest;
 use App\Models\CompanySize;
@@ -50,7 +51,7 @@ class OrganisationController extends Controller
      */
     public function store(OrganisationRequest $request)
     {
-        $org = Organisation::create($request->all());
+        $org = Organisation::create($request->validated());
         return redirect()->route('organisation.user', $org)->with('success', 'Organisation added successfully');
     }
     /**
@@ -61,11 +62,9 @@ class OrganisationController extends Controller
      */
     public function storeAdmin(UserRequest $request)
     {
-        $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $code_chars = '0123456789';
-        $password = substr(str_shuffle($permitted_chars), 0, 8);
+        $password = Generator::password();
 
-        $user = User::create(array_merge($request->all(), ['password' => Hash::make($password)]));
+        $user = User::create(array_merge($request->validated(), ['password' => Hash::make($password)]));
         $user->syncRoles([$request->role_id]);
 
         return redirect()->route('organisation.index')->with('success', 'Admin Created successfully for your new organisation');
@@ -105,7 +104,7 @@ class OrganisationController extends Controller
      */
     public function update(OrganisationRequest $request, Organisation $organisation)
     {
-        $organisation->update($request->all());
+        $organisation->update($request->validated());
         return redirect()->route('organisation.index')->with('success', 'Organisation\'s information updated successfully');
     }
 

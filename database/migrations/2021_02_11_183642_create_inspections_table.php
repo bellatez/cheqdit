@@ -15,7 +15,7 @@ class CreateInspectionsTable extends Migration
     {
         Schema::create('inspections', function (Blueprint $table) {
             $table->id();
-            $table->integer('form_id');
+            $table->foreignId('form_id')->nullable()->constrained()->onDelete('set null');
             $table->String('report_num');
             $table->String('vehicle_reg');
             $table->String('fleet_num');
