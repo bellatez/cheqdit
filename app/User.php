@@ -75,4 +75,16 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->type === 2;
     }
+
+    public function sendPasswordMail()
+    {
+        $details = [
+            'title' => 'New Account verification and activation',
+            'email' => $this->email,
+            'name' => $this->first_name,
+            'password' => $this->password,
+        ];
+
+        \Mail::to($this->email)->send(new \App\Mail\PasswordMail($details));
+    }
 }

@@ -20,12 +20,15 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('telephone');
             $table->integer('type')->comment('admin == 1, workshop == 2');
-            $table->integer('organisation_id');
             $table->boolean('is_active')->default(0);
             $table->string('password');
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamp('last_login_at')->nullable();
-            $table->string('last_login_ip', 25)->nullable();
+            $table->ipAddress('last_login_ip')->nullable();
+            $table->foreignId('organisation_id')
+                    ->nullable()
+                    ->constrained()
+                    ->onDelete('set null');
             $table->rememberToken();
             $table->timestamps();
         });

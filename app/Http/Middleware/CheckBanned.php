@@ -15,7 +15,7 @@ class CheckBanned
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->check() && auth()->user()->is_blocked) {
+        if (auth()->user()->is_blocked) {
             auth()->logout();
             $message = 'Your account has been blocked. Please contact administrator.';
             return redirect()->route('login')->withMessage($message);

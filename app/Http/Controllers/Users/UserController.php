@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Users;
 
+use App\Helpers\Generator;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
+use App\Models\Admin;
 use App\Models\Organisation;
 use App\Models\Role;
 use App\User;
@@ -58,11 +60,18 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        $user = User::create(array_merge($request->all()));
+        // create a password for the workshop
+        $password = Generator::password();
+
+        $user = User::create(array_merge($request->validated(), ['password' => $password]);
         $user->syncRoles([$request->role_id]);
-        event(new \Illuminate\Auth\Events\Registered($user));
-        Alert::alert('success', 'User added successfully');
-        return redirect()->route('user.index');
+
+        Admin::create(['user_id' => $user->id]);
+
+        //send password to workshop
+        $user->sendPasswordMail();
+        return redirect()->route('user.index')->with('success', 'User Created Successfully');
+
     }
 
     /**
@@ -98,9 +107,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, User $user)
     {
-        //
+        $user->update($request->all());
+
+        return redirect()->route('user.index')->with('success', 'User\'s information updated successfully');;
     }
 
     /**

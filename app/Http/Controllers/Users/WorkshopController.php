@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 namespace App\Http\Controllers\Users;
 
+use App\Helpers\Generator;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\WorkshopRequest;
 use App\Models\Workshop;
+use App\User;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -42,15 +44,18 @@ class WorkshopController extends Controller
      */
     public function store(WorkshopRequest $request)
     {
-        try {
-            Workshop::create($request->all());
-            Alert::alert('success', 'Workshop added successfully');
-            return redirect()->route('workshop.index');
-                } 
-                catch (\Throwable $th) {
-                    alert()->error('Error','There are some errors in your entry ');
-            return redirect()->route('workshop.create');
-        }
+        // create a password for the workshop
+        $password = Generator::password();
+
+        $user = User::create(array_merge($request->validated(), ['password' => $password]));
+
+        Workshop::create(
+            array_merge($request->validated(), ['user_id' => $user->id])
+        );
+        //send password to workshop
+        $user->sendPasswordMail();
+        
+        return redirect()->route('workshop.index')->with('success', 'New workshop created successfully and mail sent to workshop with Details');
     }
 
     /**
@@ -86,9 +91,12 @@ class WorkshopController extends Controller
      */
     public function update(WorkshopRequest $request, Workshop $workshop)
     {
+        $user = User::findorFail($workshop->user_id);
+
         $workshop->update($request->all());
-        Alert::alert('success', 'Workshop\'s information updated successfully');
-        return redirect()->route('workshop.index');
+        $user->update($request->all());
+
+        return redirect()->route('workshop.index')->with('success', 'Workshop\'s information updated successfully');;
     }
 
     /**
@@ -99,6 +107,6 @@ class WorkshopController extends Controller
      */
     public function destroy(Workshop $workshop)
     {
-        //
+        $workshop->delete();
     }
 }

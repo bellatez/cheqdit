@@ -1,6 +1,10 @@
 @section('title') 
 Dashboard
 @endsection 
+@section('header-btn')
+{{-- link should go to new faults --}}
+  <a href="#" class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i>New</a>
+@endsection
 @extends('layouts.main')
 @section('style')
 <!-- Apex css -->
@@ -47,10 +51,10 @@ Dashboard
                 <div class="card-body">
                     <div class="row justify-content-center">
                         <div class="col-12 text-center">
-                            <h5 class="card-title font-26">Inspection</h5>
+                            <h5 class="font-26 dash-headline">Inspection</h5>
                             <h1 class="dashboard-nums">27</h1>
-                            <h5 class="card-title font-24">New Today</h5>
-                            <button class="btn btn-primary-rgba p-3">VIEW ALL</button>
+                            <h5 class="font-20 new-today">New Today</h5>
+                            <button class="btn btn-primary-rgba py-3 px-5 dash-btn">VIEW ALL</button>
                         </div>
                     </div>
                 </div>
@@ -63,10 +67,10 @@ Dashboard
                 <div class="card-body">
                     <div class="row justify-content-center">
                         <div class="col-12 text-center">
-                            <h5 class="card-title font-26">Faults</h5>
+                            <h5 class="font-26 dash-headline">Faults</h5>
                             <h1 class="dashboard-nums">27</h1>
-                            <h5 class="card-title font-24">New Today</h5>
-                            <button class="btn btn-primary-rgba p-3">VIEW ALL</button>
+                            <h5 class="card-title font-20 new-today">New Today</h5>
+                            <button class="btn btn-primary-rgba py-3 px-5 dash-btn">VIEW ALL</button>
                         </div>
                     </div>
                 </div>
@@ -79,10 +83,10 @@ Dashboard
                 <div class="card-body">
                     <div class="row justify-content-center">
                         <div class="col-12 text-center">
-                            <h5 class="card-title font-26">Faults Outstanding</h5>
+                            <h5 class="font-26 dash-headline">Faults Outstanding</h5>
                             <h1 class="dashboard-nums">27</h1>
-                            <h5 class="card-title font-24">New Today</h5>
-                            <button class="btn btn-primary-rgba p-3">VIEW ALL</button>
+                            <h5 class="card-title font-20 new-today">New Today</h5>
+                            <button class="btn btn-primary-rgba py-3 px-5 dash-btn">VIEW ALL</button>
                         </div>
                     </div>
                 </div>
@@ -97,10 +101,10 @@ Dashboard
                 <div class="card-body">
                     <div class="row justify-content-center">
                         <div class="col-12 text-center">
-                            <h5 class="card-title font-26">My Vehicles</h5>
+                            <h5 class="font-26 dash-headline">My Vehicles</h5>
                             <h1 class="dashboard-nums">45</h1>
-                            <h5 class="card-title font-24">New Today</h5>
-                            <button class="btn btn-primary-rgba p-3">VIEW ALL</button>
+                            <h5 class="card-title font-20 new-today">New Today</h5>
+                            <button class="btn btn-primary-rgba py-3 px-5 dash-btn">VIEW ALL</button>
                         </div>
                     </div>
                 </div>
@@ -113,10 +117,10 @@ Dashboard
                 <div class="card-body">
                     <div class="row justify-content-center">
                         <div class="col-12 text-center">
-                            <h5 class="card-title font-26">My Users</h5>
+                            <h5 class="font-26 dash-headline">My Users</h5>
                             <h1 class="dashboard-nums">09</h1>
-                            <h5 class="card-title font-24">New Today</h5>
-                            <button class="btn btn-primary-rgba p-3">VIEW ALL</button>
+                            <h5 class="card-title font-20 new-today">New Today</h5>
+                            <button class="btn btn-primary-rgba py-3 px-5 dash-btn">VIEW ALL</button>
                         </div>
                     </div>
                 </div>
@@ -128,17 +132,17 @@ Dashboard
             <div class="card m-b-30 py-4">
                 <div class="card-body py-4">
                     <div class="row justify-content-center">
-                        <div class="col-12 text-center">
-                            <h5 class="card-title font-26">Repair Costs</h5>
+                        <div class="col-12 text-center dash-field">
+                            <h5 class="font-26 dash-headline">Repair Costs</h5>
                             <h3 class="dashboard-nums">35</h3>
-                            <select class="form-control mb-1" id="formControlSelect">
-                            <option selected>since start</option>
+                            <select id="formControlSelect">
+                            <option selected class="placeholder">since start</option>
                             <option>2</option>
                             <option>3</option>
                             <option>4</option>
                             <option>5</option>
                         </select>
-                            <button class="btn btn-primary-rgba p-3">VIEW ALL</button>
+                            <button class="btn btn-primary-rgba py-3 px-5 dash-btn">VIEW ALL</button>
                         </div>
                     </div>
                 </div>
@@ -155,7 +159,7 @@ Dashboard
                 <div class="card-header">                                
                     <div class="row align-items-center">
                         <div class="col-6 col-lg-9">
-                            <h5 class="card-title mb-0">Latest Inspections</h5>
+                            <h5 class="card-title mb-0 font-19">Latest Inspections</h5>
                         </div>
                     </div>
                 </div>
@@ -241,7 +245,7 @@ Dashboard
                 <div class="card-header">                                
                     <div class="row align-items-center">
                         <div class="col-9">
-                            <h5 class="card-title mb-0">Latest Faults</h5>
+                            <h5 class="card-title mb-0 font-19">Latest Faults</h5>
                         </div>
                         <div class="col-3">
                             <div class="dropdown">
