@@ -135,8 +135,8 @@ Dashboard
                         <div class="col-12 text-center dash-field">
                             <h5 class="font-26 dash-headline">Repair Costs</h5>
                             <h3 class="dashboard-nums">35</h3>
-                            <select id="formControlSelect">
-                                <option selected class="placeholder">since start</option>
+                            <select id="formControlSelect" style="color:#585758;">
+                                <option selected>since start</option>
                                 <option>2</option>
                                 <option>3</option>
                                 <option>4</option>
