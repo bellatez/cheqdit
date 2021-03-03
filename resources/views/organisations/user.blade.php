@@ -45,7 +45,7 @@ New Organisation Admin
                           <input type="email" class="form-control" placeholder="Enter email" name="email" value="{{ old('email') }}">
                         </div>
                       </div>
-                      <button type="submit" class="btn btn-primary text-white">Submit</button>
+                      <button type="submit" class="btn btn-primary-rgba btn-lg btn-block font-18">Submit</button>
                     </form>
                 </div>
             </div>

@@ -24,7 +24,7 @@ Dashboard
                 <div class="card-header">                                
                     <div class="row align-items-center">
                         <div class="col-9">
-                            <h5 class="card-title mb-0">Inspection & Faults</h5>
+                            <h5 class="card-title mb-0 font-19">Inspection & Faults</h5>
                         </div>
                         <div class="col-3">
                             <div class="dropdown">
@@ -136,12 +136,12 @@ Dashboard
                             <h5 class="font-26 dash-headline">Repair Costs</h5>
                             <h3 class="dashboard-nums">35</h3>
                             <select id="formControlSelect">
-                            <option selected class="placeholder">since start</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
+                                <option selected class="placeholder">since start</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select><br>
                             <button class="btn btn-primary-rgba py-3 px-5 dash-btn">VIEW ALL</button>
                         </div>
                     </div>

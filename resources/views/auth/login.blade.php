@@ -5,7 +5,7 @@
         <!-- Start row -->
         <div class="row no-gutters align-items-center justify-content-center">
             <!-- Start col -->
-            <div class="col-md-6 col-lg-5">
+            <div class="col-md-6 col-lg-7">
                 <!-- Start Auth Box -->
                 <div class="auth-box-right">
                     <div class="card">
@@ -17,7 +17,7 @@
                                 </div>                                        
                                 <h4 class="text-primary my-4">Log in !</h4>
                                 <div class="form-group">
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Enter email address" autofocus>
+                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Enter email address">
 
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -51,7 +51,7 @@
                                       </div>
                                     </div>
                                 </div>                          
-                              <button type="submit" class="btn btn-success btn-lg btn-block font-18">Log in</button>
+                              <button type="submit" class="btn btn-primary-rgba btn-lg btn-block font-18">Log in</button>
                             </form>
                             <p class="mb-0 mt-3">Don't have a account? <a href="{{Route('register')}}">Sign up</a></p>
                         </div>

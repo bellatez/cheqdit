@@ -5,7 +5,7 @@
     <!-- Start row -->
     <div class="row no-gutters align-items-center justify-content-center">
         <!-- Start col -->
-        <div class="col-md-9 col-lg-9">
+        <div class="col-md-9 col-lg-10">
             <!-- Start Auth Box -->
             <div class="auth-box-right">
                 <div class="card">
@@ -41,7 +41,7 @@
                                     @csrf
                                     <h5 class="text-dark">New User</h5>
                                     <div class="row">
-                                        <div class="col">
+                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <input type="text" class="form-control" name="first_name"
                                                     value="{{old('first_name')}}" placeholder="Enter First Name"
@@ -87,7 +87,7 @@
                                                 @endif
                                             </div>
                                         </div>
-                                        <div class="col">
+                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <input type="text" class="form-control" name="last_name"
                                                     value="{{old('last_name')}}" placeholder="Enter Last Name" required>
@@ -151,7 +151,7 @@
                                         </div>
                                     </div>
                                     <button type="submit"
-                                        class="btn btn-success btn-lg btn-block font-18">Register</button>
+                                        class="btn btn-primary-rgba btn-lg btn-block font-18">Register</button>
                                 </form>
                             </div>
                             <div class="tab-pane fade" id="workshop" role="tabpanel" aria-labelledby="workshop">
@@ -159,7 +159,7 @@
                                     @csrf
                                     <h5 class="text-dark">New Workshop</h5>
                                     <div class="row">
-                                        <div class="col">
+                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <input type="text" class="form-control" name="first_name"
                                                     value="{{old('first_name')}}" placeholder="Enter First Name"
@@ -213,7 +213,7 @@
                                                 @endif
                                             </div>
                                         </div>
-                                        <div class="col">
+                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <input type="text" class="form-control" name="last_name"
                                                     value="{{old('last_name')}}" placeholder="Enter Last Name" required>
@@ -275,20 +275,7 @@
 
                                     <input type="hidden" name="type" value="2">
                                     <div class="form-row mb-3">
-                                        <div class="col-6">
-                                            <div class="form-check text-left">
-                                                <input type="checkbox" name="terms" id="terms" value="agreed"
-                                                    class="form-check-input">
-                                                <label class="font-14" for="terms">I Agree to Terms & Conditions of
-                                                    {{config('app.name')}}</label>
-                                            </div>
-                                            @if ($errors->has('terms'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('terms') }}</strong>
-                                            </span>
-                                            @endif
-                                        </div>
-                                        <div class="col-6">
+                                        <div class="col-md-6">
                                             <select class="form-control" name="organisation_id">
                                                 <option selected disabled>Select your Organisation</option>
                                                 @foreach($organisations as $org)
@@ -304,9 +291,22 @@
                                             </span>
                                             @endif
                                         </div>
+                                        <div class="col-md-6">
+                                            <div class="form-check text-left">
+                                                <input type="checkbox" name="terms" id="terms" value="agreed"
+                                                    class="form-check-input">
+                                                <label class="font-14" for="terms">I Agree to Terms & Conditions of
+                                                    {{config('app.name')}}</label>
+                                            </div>
+                                            @if ($errors->has('terms'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('terms') }}</strong>
+                                            </span>
+                                            @endif
+                                        </div>
                                     </div>
                                     <button type="submit"
-                                        class="btn btn-info btn-lg btn-block font-18">Register</button>
+                                        class="btn btn-primary-rgba btn-lg btn-block font-18">Register</button>
                                 </form>
                             </div>
                         </div>

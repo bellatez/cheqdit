@@ -110,6 +110,17 @@
     </div>
     <!-- End Topbar -->
     <!-- Start Breadcrumbbar -->                    
+    <div class="row custom-alert">
+        <div class="col-12 text-center">
+            @if(session()->has('success'))
+                <h5 class="alert alert-success alert-dismissible fade show">{{session()->get('success')}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </h5>
+            @endif
+        </div>
+    </div>   
     <div class="breadcrumbbar">
         <div class="row align-items-center">
             <div class="col-md-2 col-lg-8">
@@ -127,13 +138,6 @@
                 </div>                        
             </div>
         </div>
-        <div class="row">
-            <div class="col-12 text-center">
-                @if(session()->has('success'))
-                    <h5 class="alert alert-success">{{session()->get('success')}}</h5>
-                @endif
-            </div>
-        </div>          
     </div>
     <!-- End Breadcrumbbar -->
     @yield('rightbar-content')

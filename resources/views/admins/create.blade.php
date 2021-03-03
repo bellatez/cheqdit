@@ -100,7 +100,7 @@ New Administrator
                             </div>
                         </div>
                     </div>
-                      <button type="submit" class="btn btn-primary text-white">Submit</button>
+                      <button type="submit" class="btn btn-primary-rgba btn-lg btn-block font-18">Submit</button>
                     </form>
                 </div>
             </div>

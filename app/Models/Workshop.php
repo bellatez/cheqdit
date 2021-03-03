@@ -17,7 +17,7 @@ class Workshop extends Model
     	'postcode'
     ];
 
-    // protected $with = ['user'];
+    protected $with = ['user'];
 
     public function user()
     {

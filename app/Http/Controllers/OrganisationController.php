@@ -74,7 +74,7 @@ class OrganisationController extends Controller
             ]));
         $user->syncRoles([2]);
 
-        return redirect()->route('organisations.index')->with('success', 'Admin Created successfully for your new organisation');
+        return redirect()->route('organisations.index')->with('success', 'Admin Successfully created');
     }
     /**
      * Display the specified resource.

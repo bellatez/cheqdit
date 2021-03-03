@@ -3,10 +3,10 @@ New User
 @endsection
 @extends('layouts.main')
 @section('style')
+
+@endsection
 @section('header-btn')
   <a href="{{route('users.index')}}" class="btn btn-info-rgba"><i class="feather icon-plus mr-2"></i>View List</a>
-@endsection
-
 @endsection
 @section('rightbar-content')
 <!-- Start Contentbar -->
@@ -153,7 +153,7 @@ New User
                     </div>
 
 
-                      <button type="submit" class="btn btn-primary text-white">Submit</button>
+                      <button type="submit" class="btn btn-primary-rgba btn-lg btn-block font-18">Submit</button>
                     </form>
                 </div>
             </div>

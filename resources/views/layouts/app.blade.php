@@ -20,8 +20,6 @@
     <link href="{{ asset('assets/css/icons.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/css/flag-icon.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" type="text/css">
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body class="vertical-layout">
     @include('sweetalert::alert')
@@ -44,8 +42,6 @@
     <script src="{{ asset('assets/js/detect.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.slimscroll.js') }}"></script>
     <!-- End js -->
-    <script src="{{ asset('js/app.js') }}"></script>
-
     @yield('script')
 </body>
 </html>

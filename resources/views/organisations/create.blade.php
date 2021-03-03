@@ -55,14 +55,14 @@ New Organisation
                         </div>
                       </div><div class="form-row">
                         <div class="col-md-4 form-group">
-                          <input type="text" class="form-control" placeholder="Organisation Address line 1" v-model="address1" name="address1" value="{{ old('address1', $org->address1) }}">
+                          <input type="text" class="form-control" placeholder="Address line 1" v-model="address1" name="address1" value="{{ old('address1', $org->address1) }}">
                         </div>
                         <div class="col-md-4 form-group">
-                          <input type="text" name="address2" class="form-control" placeholder="Organisation Address line 2"
+                          <input type="text" name="address2" class="form-control" placeholder="Address line 2"
                           value="{{ old('address2', $org->address2) }}">
                         </div>
                         <div class="col-md-4 form-group">
-                          <input type="text" name="address3" class="form-control" placeholder="Organisation Address line 3" value="{{ old('address3', $org->address3) }}">
+                          <input type="text" name="address3" class="form-control" placeholder="Address line 3" value="{{ old('address3', $org->address3) }}">
                         </div>
                       </div>
 
@@ -91,7 +91,7 @@ New Organisation
                           </select>
                         </div>
                       </div>                      
-                      <button type="submit" class="btn btn-primary text-white">Submit</button>
+                      <button type="submit" class="btn btn-primary-rgba btn-lg btn-block font-18">Submit</button>
                     </form>
                 </div>
             </div>
