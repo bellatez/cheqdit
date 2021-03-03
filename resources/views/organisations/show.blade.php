@@ -3,7 +3,7 @@ Organisation Details
 @endsection 
 @extends('layouts.main')
 @section('header-btn')
-  <a href="{{route('organisation.edit', $organisation)}}" class="btn btn-success-rgba"><i class="feather icon-edit mr-2"></i>Edit</a>
+  <a href="{{route('organisations.edit', $organisation)}}" class="btn btn-success-rgba"><i class="feather icon-edit mr-2"></i>Edit</a>
 @endsection
 @section('rightbar-content')
 <!-- Start Contentbar -->    

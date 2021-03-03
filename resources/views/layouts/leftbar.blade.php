@@ -13,7 +13,7 @@
                 <h6 class="text-small leftbar-subs mt-3"><small>DASHBOARD</small></h6>
                 <li><a class="font-16" href="{{url('/')}}"><i class="fa fa-dashboard"></i><span>My Dashboard</span></a></li>
                 @if(Auth::user()->hasRole('administrator|subadministrator'))
-                    <li><a class="font-16" href="{{url('/dashboard-ecommerce')}}"><i class="fa fa-nofitication"></i><span>My Notifications</span></a></li>
+                    <li><a class="font-16" href="{{url('/dashboard-ecommerce')}}"><i class="fas fa-notification"></i><span>My Notifications</span></a></li>
                     <li><a class="font-16" href="{{url('/dashboard-hospital')}}"><img src="assets/images/svg-icon/basic.svg" class="img-fluid" alt="basic"><span>My Credits</span></a></li>
                 @endif
                 @if(Auth::user()->hasRole('superadministrator'))
@@ -22,8 +22,8 @@
                           <span>Organisations</span><i class="feather icon-chevron-right pull-right"></i>
                         </a>
                         <ul class="vertical-submenu">
-                            <li><a class="font-16" href="{{route('organisation.index')}}">View All</a></li>
-                            <li><a class="font-16" href="{{route('organisation.create')}}">Add Organisation</a></li>
+                            <li><a class="font-16" href="{{route('organisations.index')}}">View All</a></li>
+                            <li><a class="font-16" href="{{route('organisations.create')}}">Add Organisation</a></li>
                         </ul>
                     </li>
                 @endif
@@ -43,8 +43,9 @@
                           <span>Workshop</span><i class="feather icon-chevron-right pull-right"></i>
                         </a>
                         <ul class="vertical-submenu">
-                            <li><a class="font-16" href="{{url('/workshop')}}">All Workshops</a></li>
-                            <li><a class="font-16" href="{{url('/workshop/create')}}">Add Workshop</a></li>
+                            <li><a class="font-16" href="{{Route('workshops.request')}}">Pending Request</a></li>
+                            <li><a class="font-16" href="{{Route('workshops.index')}}">All Workshops</a></li>
+                            <li><a class="font-16" href="{{Route('workshops.create')}}">Add Workshop</a></li>
                         </ul>
                     </li>
                      <li>
@@ -59,7 +60,7 @@
                 @if(Auth::user()->hasRole('administrator|superadministrator'))
                     <h6 class="ml-4 leftbar-subs mt-3"><small>USER MANAGEMENT</small></h6>
                     <li>
-                        <a href="{{Route('user.request')}}">Pending Request</a>
+                        <a href="{{Route('users.request')}}">Pending Request</a>
                     </li>
                     <li>
                         <a href="javaScript:void();" class="font-16">

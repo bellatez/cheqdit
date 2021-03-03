@@ -28,10 +28,11 @@ class WorkshopRequest extends FormRequest
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'telephone' => ['required', 'string', 'max:255'],
-            'organisation_id' => 'required',
             'website' => 'required',
             'name' => 'required',
             'address1' => 'required',
+            'address2' => 'string',
+            'address3' => 'string',
             'postcode' => 'required'
         ];
     }

@@ -28,9 +28,7 @@ class UserRequest extends FormRequest
             'last_name' => 'required',
             'email' => 'required|email',
             'telephone' => 'required',
-            'organisation_id' => 'required',
-            'type' => 'integer',
-            'is_active' => 'integer'
+            'organisation_id' => 'integer',
         ];
     }
 }

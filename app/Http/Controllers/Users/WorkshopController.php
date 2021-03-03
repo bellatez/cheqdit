@@ -8,7 +8,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\WorkshopRequest;
 use App\Models\Workshop;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class WorkshopController extends Controller
@@ -23,6 +25,17 @@ class WorkshopController extends Controller
         $workshops = Workshop::all();
         // return $workshops;
         return view('workshop.index', compact('workshops'));
+    }
+
+    public function requestList()
+    {
+        $workshops = Workshop::whereHas('user', function($query){
+            $query->where('is_active',0)
+            ->where('type', 2)
+            ->where('email_verified_at', null)
+            ->where('organisation_id', auth()->user()->organisation_id);
+        })->get();
+        return view('workshop.request_list', compact('workshops'));       
     }
 
     /**
@@ -47,12 +60,19 @@ class WorkshopController extends Controller
         // create a password for the workshop
         $password = Generator::password();
 
-        $user = User::create(array_merge($request->validated(), ['password' => $password]));
+        $user = User::create(array_merge($request->validated(), 
+            [
+                'password' => Hash::make($password), 
+                'is_active' => 1, 
+                'type' => 2, 
+                'email_verified_at' => now(),
+                'organisation_id' => auth()->user()->organisation->id
+            ]
+        ));
 
-        $user->workshop()->create($request->validated())
-        );
+        $user->workshop()->create($request->validated());
         //send password to workshop
-        $user->sendPasswordMail();
+        // $user->sendPasswordMail();
         
         return redirect()->route('workshop.index')->with('success', 'New workshop created successfully and mail sent to workshop with Details');
     }

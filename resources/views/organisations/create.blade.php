@@ -4,7 +4,7 @@ New Organisation
 @extends('layouts.main')
 @section('style')
 @section('header-btn')
-  <a href="{{route('organisation.index')}}" class="btn btn-info-rgba"><i class="feather icon-plus mr-2"></i>View List</a>
+  <a href="{{route('organisations.index')}}" class="btn btn-info-rgba"><i class="feather icon-plus mr-2"></i>View List</a>
 @endsection
 
 @endsection 
@@ -32,10 +32,10 @@ New Organisation
                   </ul>
                   @endif
                     @if($org->exists)
-                        <form method="post" action="{{ route('organisation.update', $org) }}" autocomplete="off"  files="true" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('organisations.update', $org) }}" autocomplete="off"  files="true" enctype="multipart/form-data">
                         @method('PUT')
                     @else
-                      <form method="POST" action="{{ route('organisation.store') }}">
+                      <form method="POST" action="{{ route('organisations.store') }}">
                     @endif
                       @csrf
                       <div class="form-row">

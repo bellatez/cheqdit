@@ -4,7 +4,7 @@ New Organisation Admin
 @extends('layouts.main')
 @section('style')
 @section('header-btn')
-  <a href="{{route('organisation.index')}}" class="btn btn-info-rgba"><i class="feather icon-plus mr-2"></i>View List</a>
+  <a href="{{route('organisations.index')}}" class="btn btn-info-rgba"><i class="feather icon-plus mr-2"></i>View List</a>
 @endsection
 
 @endsection 
@@ -27,7 +27,7 @@ New Organisation Admin
                       @endforeach
                   </ul>
                   @endif
-                  <form method="POST" action="{{ route('organisation.userstore') }}">
+                  <form method="POST" action="{{ route('organisations.user_store', $org) }}">
                       @csrf
                       <div class="form-row">
                         <div class="col-6 form-group">
@@ -45,11 +45,6 @@ New Organisation Admin
                           <input type="email" class="form-control" placeholder="Enter email" name="email" value="{{ old('email') }}">
                         </div>
                       </div>
-                      <input type="hidden" name="type" value="1">
-                      <input type="hidden" name="organisation_id" value="{{$org}}">
-                      <input type="hidden" name="is_active" value="1">
-                      <input type="hidden" name="role_id" value="2">
-                                        
                       <button type="submit" class="btn btn-primary text-white">Submit</button>
                     </form>
                 </div>

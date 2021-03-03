@@ -4,7 +4,7 @@ Workshops
 @extends('layouts.main')
 
 @section('header-btn')
-  <a href="{{route('workshop.create')}}" class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i>New</a>
+  <a href="{{route('workshops.create')}}" class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i>New</a>
 @endsection
 
 @section('rightbar-content')
@@ -47,9 +47,9 @@ Workshops
                                       <i class="fas fa-ellipsis-v"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                      <a class="dropdown-item" href="{{Route('workshop.show', $workshop)
+                                      <a class="dropdown-item" href="{{Route('workshops.show', $workshop)
                                       }}">View</a>
-                                      <a class="dropdown-item" href="{{Route('workshop.edit', $workshop)}}">Edit</a>
+                                      <a class="dropdown-item" href="{{Route('workshops.edit', $workshop)}}">Edit</a>
                                     </div>
                                   </div>
                                 </td>

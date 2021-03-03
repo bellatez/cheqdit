@@ -4,7 +4,7 @@ Organisations
 @extends('layouts.main')
 
 @section('header-btn')
-  <a href="{{route('organisation.create')}}" class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i>New</a>
+  <a href="{{route('organisations.create')}}" class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i>New</a>
 @endsection
 
 @section('rightbar-content')
@@ -47,10 +47,10 @@ Organisations
                                       <i class="fas fa-ellipsis-v"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                      <a class="dropdown-item" href="{{Route('organisation.show', $org)
+                                      <a class="dropdown-item" href="{{Route('organisations.show', $org)
                                       }}">View</a>
-                                      <a class="dropdown-item" href="{{Route('organisation.edit', $org)}}">Edit</a>
-                                      <a class="dropdown-item" href="{{Route('organisation.user', $org)}}">Add Admin</a>
+                                      <a class="dropdown-item" href="{{Route('organisations.edit', $org)}}">Edit</a>
+                                      <a class="dropdown-item" href="{{Route('organisations.user', $org)}}">Add Admin</a>
                                     </div>
                                   </div>
                                 </td>

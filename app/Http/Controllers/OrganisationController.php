@@ -52,7 +52,7 @@ class OrganisationController extends Controller
     public function store(OrganisationRequest $request)
     {
         $org = Organisation::create($request->validated());
-        return redirect()->route('organisation.user', $org)->with('success', 'Organisation added successfully');
+        return redirect()->route('organisations.user', $org)->with('success', 'Organisation added successfully');
     }
     /**
      * Store a newly created resource in storage.
@@ -60,14 +60,21 @@ class OrganisationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeAdmin(UserRequest $request)
+    public function storeAdmin(UserRequest $request, $org)
     {
         $password = Generator::password();
 
-        $user = User::create(array_merge($request->validated(), ['password' => Hash::make($password)]));
-        $user->syncRoles([$request->role_id]);
+        $user = User::create(array_merge($request->validated(),
+            [
+                'password' => Hash::make($password), 
+                'is_active' => 1, 
+                'type' => 1, 
+                'email_verified_at' => now(),
+                'organisation_id' => $org
+            ]));
+        $user->syncRoles([2]);
 
-        return redirect()->route('organisation.index')->with('success', 'Admin Created successfully for your new organisation');
+        return redirect()->route('organisations.index')->with('success', 'Admin Created successfully for your new organisation');
     }
     /**
      * Display the specified resource.
@@ -105,7 +112,7 @@ class OrganisationController extends Controller
     public function update(OrganisationRequest $request, Organisation $organisation)
     {
         $organisation->update($request->validated());
-        return redirect()->route('organisation.index')->with('success', 'Organisation\'s information updated successfully');
+        return redirect()->route('organisations.index')->with('success', 'Organisation\'s information updated successfully');
     }
 
     /**
@@ -117,6 +124,6 @@ class OrganisationController extends Controller
     public function destroy(Organisation $organisation)
     {
         $organisation->delete();
-        return redirect()->route('organisation.index')->with('success', 'Organisation\'s information deleted successfully');
+        return redirect()->route('organisations.index')->with('success', 'Organisation\'s information deleted successfully');
     }
 }

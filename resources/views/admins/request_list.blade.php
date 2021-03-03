@@ -4,7 +4,7 @@ User Requests
 @extends('layouts.main')
 
 @section('header-btn')
-  <a href="{{route('user.create')}}" class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i>New</a>
+  <a href="{{route('users.create')}}" class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i>New</a>
 @endsection
 
 @section('rightbar-content')
@@ -40,14 +40,14 @@ User Requests
                                   <td>{{$role->display_name}}</td>
                                 @endforeach
                                 <td>
-                                  <form action="{{ route('user.destroy', $user->id) }}" method="post">
+                                  <form action="{{ route('users.destroy', $user->id) }}" method="post">
                                       @csrf
                                       @method('delete')
-                                      <a href="{{ route('user.edit', $user) }}" class="btn btn-xs btn-primary"><span class="fa fa-edit"></span></a> &nbsp;
+                                      <a href="{{ route('users.edit', $user) }}" class="btn btn-xs btn-primary"><span class="fa fa-edit"></span></a> &nbsp;
                                       @if($user->is_active == false)
-                                          <a href="{{ route('user.status', ['user'=>$user, 'value'=>'1']) }}" title="activate" class="btn btn-xs btn-success"><span class="fa fa-key"></span></a> &nbsp;
+                                          <a href="{{ route('users.status', ['user'=>$user, 'value'=>'1']) }}" title="activate" class="btn btn-xs btn-success"><span class="fa fa-key"></span></a> &nbsp;
                                       @else
-                                          <a href="{{ route('user.status', ['user'=>$user, 'value'=>'0']) }}" title="deactivate" class="btn btn-xs btn-warning"><span class="fa fa-ban"></span></a> &nbsp;
+                                          <a href="{{ route('users.status', ['user'=>$user, 'value'=>'0']) }}" title="deactivate" class="btn btn-xs btn-warning"><span class="fa fa-ban"></span></a> &nbsp;
                                       @endif
                                       <button type="submit" class="btn btn-xs btn-danger confirm_delete">
                                           <span class="fa fa-trash"></span>

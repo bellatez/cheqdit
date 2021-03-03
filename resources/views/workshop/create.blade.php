@@ -4,7 +4,7 @@ New Workshop
 @extends('layouts.main')
 @section('style')
 @section('header-btn')
-  <a href="{{route('workshop.index')}}" class="btn btn-info-rgba"><i class="feather icon-plus mr-2"></i>View List</a>
+  <a href="{{route('workshops.index')}}" class="btn btn-info-rgba"><i class="feather icon-plus mr-2"></i>View List</a>
 @endsection
 
 @endsection
@@ -32,48 +32,49 @@ New Workshop
                   </ul>
                   @endif
                     @if($workshop->exists)
-                        <form method="post" action="{{ route('workshop.update', $workshop) }}" autocomplete="off"  files="true" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('workshops.update', $workshop) }}" autocomplete="off"  files="true" enctype="multipart/form-data">
                         @method('PUT')
                     @else
-                      <form method="POST" action="{{ route('workshop.store') }}">
+                      <form method="POST" action="{{ route('workshops.store') }}">
                     @endif
                       @csrf
                       <div class="form-row">
-                        <div class="col-md-12 form-group">
-                          <input type="text" class="form-control" placeholder="Workshop's Name" name="name" value="{{ old('name', $workshop->name) }}">
-                          @error('name')
-                          <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                          </span>
-                         @enderror
+                        <div class="col form-group">
+                          <input type="text" class="form-control" placeholder="Owner First Name" name="first_name" value="{{ old('first_name', $workshop->user->first_name ?? '') }}">
+                          @error('first_name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                           @enderror
+                        </div>
+                        <div class="col form-group">
+                            <input type="text" class="form-control" placeholder="Owner Last Name" name="last_name" value="{{ old('last_name', $workshop->user->last_name ?? '') }}">
+                            @error('last_name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                           @enderror
                         </div>
                       </div>
                       <div class="form-row">
-                          <div class="col-md-4 form-group">
-                              <input type="text" class="form-control" placeholder="Owner First Name" name="fname" value="{{ old('fname', $workshop->website) }}">
-                              @error('fname')
+                        <div class="col form-group">
+                          <input type="text" class="form-control" placeholder="Workshop's Name" name="name" value="{{ old('name', $workshop->name) }}">
+                            @error('name')
                               <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
                               </span>
-                             @enderror
-                            </div>
-                            <div class="col-md-4 form-group">
-                                <input type="text" class="form-control" placeholder="Owner Last Name" name="lname" value="{{ old('lname', $workshop->website) }}">
-                                @error('lname')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                               @enderror
-                            </div>
-                            <div class="col-md-4 form-group">
-                              <input type="text" class="form-control" placeholder="Workshop's Website" name="website" value="{{ old('website', $workshop->website) }}">
-                              @error('website')
-                              <span class="invalid-feedback" role="alert">
-                                  <strong>{{ $message }}</strong>
-                              </span>
-                             @enderror
-                            </div>
-                      </div><div class="form-row">
+                            @enderror
+                        </div>
+                        <div class="col form-group">
+                           <input type="email" class="form-control" placeholder="Workshop Email" name="email" value="{{ old('email', $workshop->user->email ?? '') }}">
+                           @error('email')
+                           <span class="invalid-feedback" role="alert">
+                               <strong>{{ $message }}</strong>
+                           </span>
+                          @enderror
+                        </div>
+                      </div>
+                      <div class="form-row">
                         <div class="col-md-4 form-group">
                           <input type="text" class="form-control" placeholder="Workshop Address line 1" v-model="address1" name="address1" value="{{ old('address1', $workshop->address1) }}">
                           @error('address1')
@@ -111,20 +112,20 @@ New Workshop
                          @enderror
                         </div>
                         <div class="col-md-4 form-group">
-                          <input type="text" class="form-control" placeholder="Workshop Phone Number" name="tel" value="{{ old('tel', $workshop->tel) }}">
-                          @error('tel')
+                          <input type="text" class="form-control" placeholder="Workshop Phone Number" name="telephone" value="{{ old('tel', $workshop->user->telephone ?? '') }}">
+                          @error('telephone')
                           <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
                           </span>
                          @enderror
                         </div>
                         <div class="col-md-4 form-group">
-                          <input type="email" class="form-control" placeholder="Workshop Email" name="email" value="{{ old('email', $workshop->email) }}">
-                          @error('email')
-                          <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                          </span>
-                         @enderror
+                           <input type="text" class="form-control" placeholder="Workshop's Website" name="website" value="{{ old('website', $workshop->website) }}">
+                           @error('website')
+                           <span class="invalid-feedback" role="alert">
+                               <strong>{{ $message }}</strong>
+                           </span>
+                          @enderror
                         </div>
                       </div>
                       <button type="submit" class="btn btn-primary text-white">Submit</button>

@@ -87,4 +87,9 @@ class User extends Authenticatable
 
         \Mail::to($this->email)->send(new \App\Mail\PasswordMail($details));
     }
+
+    public function fullName()
+    {
+        return $this->first_name.' '.$this->last_name;
+    }
 }
