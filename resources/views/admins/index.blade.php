@@ -4,7 +4,7 @@ User
 @extends('layouts.main')
 
 @section('header-btn')
-  <a href="{{route('user.create')}}" class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i>New User</a>
+  <a href="{{route('users.create')}}" class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i>New User</a>
 @endsection
 
 @section('rightbar-content')
@@ -25,29 +25,29 @@ User
                             <tr>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>Type</th>
                                 <th>Contact</th>
                                 <th>Organisation</th>
+                                <th>Is Active?</th>
                                 <th></th>
                             </tr>
                             </thead>
                             <tbody>
-                              @foreach($users as $user)
+                              @foreach($admins as $admin)
                               <tr>
-                                <td>{{$user->first_name.' '.$user->last_name}}</td>
-                                <td>{{$user->email}}</td>
-                                <td>{{$user->type}}</td>
-                                <td>{{$user->organisation_id}}</td>
-                                <td>{{$user->is_active}}</td>
+                                <td>{{$admin->user->full_name ?? ''}}</td>
+                                <td>{{$admin->user->email ?? ''}}</td>
+                                <td>{{$admin->user->telephone ?? ''}}</td>
+                                <td>{{$admin->user->organisation->name ?? ''}}</td>
+                                <td>{{$admin->user->is_active ? 'Yes' : 'No' ?? ''}}</td>
                                 <td class="text-right">
                                   <div class="dropdown">
                                     <a class="btn btn-sm btn-icon-only" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                       <i class="fas fa-ellipsis-v"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                      <a class="dropdown-item" href="{{Route('user.show', $user->id)
+                                      <a class="dropdown-item" href="{{Route('administrators.show', $admin->id)
                                       }}">View</a>
-                                      <a class="dropdown-item" href="{{Route('user.edit', $user->id)}}">Edit</a>
+                                      <a class="dropdown-item" href="{{Route('administrators.edit', $admin->id)}}">Edit</a>
                                     </div>
                                   </div>
                                 </td>

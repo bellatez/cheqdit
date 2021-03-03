@@ -24,11 +24,11 @@ class Organisation extends Model
 
     public function industryType()
     {
-    	return $this->belongsTo(IndustryType::class, 'industry_type');
+    	return $this->belongsTo(IndustryType::class, 'industry_type')->withDefault();
     }
 
     public function companySize()
     {
-    	return $this->belongsTo(CompanySize::class, 'company_size');
+    	return $this->belongsTo(CompanySize::class, 'company_size')->withDefault();
     }
 }

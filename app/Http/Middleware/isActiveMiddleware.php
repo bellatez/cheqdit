@@ -15,7 +15,7 @@ class isActiveMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->check() && auth()->user()->isVerified() && !auth()->user()->is_active) {
+        if (auth()->user()->isVerified() && !auth()->user()->is_active) {
             auth()->logout();
             $message = 'Your account has been blocked. Please contact administrator.';
             return redirect()->route('login')->withMessage($message);

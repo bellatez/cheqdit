@@ -24,9 +24,8 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        // return $workshops;
 
-        return view('users.index', compact('users'));
+        return view('admins.index', compact('users'));
     }
 
     public function requestList()
@@ -49,7 +48,7 @@ class UserController extends Controller
         $users = new User();
         $organisations=Organisation::all();
         $roles=Role::all();
-          return view('users.create',compact('users','organisations','roles'));
+          return view('admins.create',compact('users','organisations','roles'));
     }
 
     /**
@@ -70,7 +69,7 @@ class UserController extends Controller
 
         //send password to workshop
         $user->sendPasswordMail();
-        return redirect()->route('user.index')->with('success', 'User Created Successfully');
+        return redirect()->route('admins.index')->with('success', 'User Created Successfully');
 
     }
 
@@ -82,7 +81,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('users.show',compact('user'));
+        return view('admins.show',compact('user'));
     }
 
     /**
@@ -93,7 +92,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('users.create',compact('user'));
+        return view('admins.create',compact('user'));
 
 
     }
@@ -109,7 +108,7 @@ class UserController extends Controller
     {
         $user->update($request->validated());
 
-        return redirect()->route('user.index')->with('success', 'User\'s information updated successfully');;
+        return redirect()->route('admins.index')->with('success', 'User\'s information updated successfully');;
     }
 
     /**

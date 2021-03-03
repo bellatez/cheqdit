@@ -20,6 +20,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('users/request', 'Users\UserController@requestList')->name('users.request');
     Route::post('userStatus', 'Users\UserController@userStatus')->name('users.status');
     Route::resource('users', 'Users\UserController');
+    Route::resource('administrators', 'Users\AdminController');
    
     Route::get('workshops/request', 'Users\WorkshopController@requestList')->name('workshops.request');
     Route::resource('workshops', 'Users\WorkshopController');

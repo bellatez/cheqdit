@@ -1,8 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Users;
 
+use App\Helpers\Generator;
+use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\Organisation;
+use App\Models\Role;
+use App\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -14,7 +19,10 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        $admins = Admin::all();
+
+        // return $admins;
+        return view('admins.index', compact('admins'));
     }
 
     /**
@@ -24,7 +32,10 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        $user = new Admin();
+        $organisations=Organisation::all();
+        $roles=Role::all();
+          return view('admins.create',compact('user','organisations','roles'));
     }
 
     /**
@@ -33,52 +44,67 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        //
+        // create a password for the workshop
+        $password = Generator::password();
+
+        $user = User::create(array_merge($request->validated(), ['password' => $password]));
+        $user->syncRoles([$request->role_id]);
+
+        $user->admin()->create();
+
+        //send password to workshop
+        $user->sendPasswordMail();
+        return redirect()->route('admins.index')->with('success', 'User Created Successfully');
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Admin  $admin
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Admin $admin)
+    public function show(User $user)
     {
-        //
+        return view('admins.show',compact('user'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Admin  $admin
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Admin $admin)
+    public function edit(User $user)
     {
-        //
+        return view('admins.create',compact('user'));
+
+
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Admin  $admin
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Admin $admin)
+    public function update(UserRequest $request, User $user)
     {
-        //
+        $user->update($request->validated());
+
+        return redirect()->route('admins.index')->with('success', 'User\'s information updated successfully');;
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Admin  $admin
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Admin $admin)
+    public function destroy($id)
     {
         //
     }

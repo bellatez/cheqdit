@@ -63,7 +63,7 @@ class User extends Authenticatable
 
     public function organisation()
     {
-        return $this->belongsTo(Organisation::class);
+        return $this->belongsTo(Organisation::class)->withDefault();
     }
 
     public function isAdmin()
@@ -88,7 +88,7 @@ class User extends Authenticatable
         \Mail::to($this->email)->send(new \App\Mail\PasswordMail($details));
     }
 
-    public function fullName()
+    public function getFullNameAttribute()
     {
         return $this->first_name.' '.$this->last_name;
     }
