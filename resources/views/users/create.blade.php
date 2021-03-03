@@ -17,7 +17,7 @@ New User
         <div class="col-lg-12">
             <div class="card m-b-30">
                 <div class="card-header">
-                  @if($users->exists)
+                  @if($user->exists)
                     <h5 class="card-title">Edit User's details</h5>
                   @else
                     <h5 class="card-title">Fill in the User's details</h5>
@@ -31,8 +31,8 @@ New User
                       @endforeach
                   </ul>
                   @endif
-                    @if($users->exists)
-                        <form method="post" action="{{ route('users.update', $users) }}" autocomplete="off"  files="true" enctype="multipart/form-data">
+                    @if($user->exists)
+                        <form method="post" action="{{ route('users.update', $user) }}" autocomplete="off"  files="true" enctype="multipart/form-data">
                         @method('PUT')
                     @else
                       <form method="POST" action="{{ route('users.store') }}">

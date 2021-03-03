@@ -49,8 +49,7 @@ class WorkshopController extends Controller
 
         $user = User::create(array_merge($request->validated(), ['password' => $password]));
 
-        Workshop::create(
-            array_merge($request->validated(), ['user_id' => $user->id])
+        $user->workshop()->create($request->validated())
         );
         //send password to workshop
         $user->sendPasswordMail();
@@ -93,8 +92,8 @@ class WorkshopController extends Controller
     {
         $user = User::findorFail($workshop->user_id);
 
-        $workshop->update($request->all());
-        $user->update($request->all());
+        $workshop->update($request->validated());
+        $user->update($request->validated());
 
         return redirect()->route('workshop.index')->with('success', 'Workshop\'s information updated successfully');;
     }

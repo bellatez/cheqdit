@@ -4,28 +4,34 @@
         <!-- Start Logobar -->
         <div class="logobar">
             <a href="{{url('/')}}" class="logo logo-large"><img src="{{asset('assets/images/logo.svg')}}" class="img-fluid" alt="logo"></a>
-            <a href="{{url('/')}}" class="logo logo-small"><img src="{{asset('assets/images/logo.svg')}}" class="img-fluid" alt="logo"></a>
+            <a href="{{url('/')}}" class="logo logo-small"><img src="{{asset('assets/images/small-logo.svg')}}" class="img-fluid" alt="logo"></a>
         </div>
         <!-- End Logobar -->
         <!-- Start Navigationbar -->
         <div class="navigationbar">
             <ul class="vertical-menu">
                 <h6 class="text-small leftbar-subs mt-3"><small>DASHBOARD</small></h6>
-                <li><a class="font-16" href="{{url('/')}}">My Dashboard</a></li>
+                <li><a class="font-16" href="{{url('/')}}"><i class="fa fa-dashboard"></i><span>My Dashboard</span></a></li>
                 @if(Auth::user()->hasRole('administrator|subadministrator'))
-                    <li><a class="font-16" href="{{url('/dashboard-ecommerce')}}">My Notifications</a></li>
-                    <li><a class="font-16" href="{{url('/dashboard-hospital')}}">My Credits</a></li>
+                    <li><a class="font-16" href="{{url('/dashboard-ecommerce')}}"><i class="fa fa-nofitication"></i><span>My Notifications</span></a></li>
+                    <li><a class="font-16" href="{{url('/dashboard-hospital')}}"><img src="assets/images/svg-icon/basic.svg" class="img-fluid" alt="basic"><span>My Credits</span></a></li>
                 @endif
                 @if(Auth::user()->hasRole('superadministrator'))
-                    <h6 class="text-small leftbar-subs mt-3"><small>ORGANISATIONS</small></h6>
-                    <li><a class="font-16" href="{{route('organisation.index')}}">View All</a></li>
-                    <li><a class="font-16" href="{{route('organisation.create')}}">Add Organisation</a></li>
+                    <li>
+                        <a href="javaScript:void();" class="font-16"><i class="fas fa-institution"></i>
+                          <span>Organisations</span><i class="feather icon-chevron-right pull-right"></i>
+                        </a>
+                        <ul class="vertical-submenu">
+                            <li><a class="font-16" href="{{route('organisation.index')}}">View All</a></li>
+                            <li><a class="font-16" href="{{route('organisation.create')}}">Add Organisation</a></li>
+                        </ul>
+                    </li>
                 @endif
                 @if(Auth::user()->hasRole('administrator|subadministrator'))
                     <h6 class="text-small leftbar-subs mt-3"><small>VEHICLE MANAGEMENT</small></h6>
                     <li>
                         <a href="javaScript:void();" class="font-16">
-                          My Vehicles<i class="feather icon-chevron-right pull-right"></i>
+                          <span>My Vehicles</span><i class="feather icon-chevron-right pull-right"></i>
                         </a>
                         <ul class="vertical-submenu">
                             <li><a class="font-16" href="{{url('/')}}">All Vehicles</a></li>
@@ -34,7 +40,7 @@
                     </li>
                      <li>
                         <a href="javaScript:void();" class="font-16">
-                          <span>Workshop<i class="feather icon-chevron-right pull-right"></i>
+                          <span>Workshop</span><i class="feather icon-chevron-right pull-right"></i>
                         </a>
                         <ul class="vertical-submenu">
                             <li><a class="font-16" href="{{url('/workshop')}}">All Workshops</a></li>
@@ -43,7 +49,7 @@
                     </li>
                      <li>
                         <a href="javaScript:void();" class="font-16">
-                          DVLA Search<i class="feather icon-chevron-right pull-right"></i>
+                          <span>DVLA Search</span><i class="feather icon-chevron-right pull-right"></i>
                         </a>
                         <ul class="vertical-submenu">
                             <li><a class="font-16" href="{{url('/')}}">Vehicle search</a></li>
@@ -57,7 +63,7 @@
                     </li>
                     <li>
                         <a href="javaScript:void();" class="font-16">
-                            My Drivers<i class="feather icon-chevron-right pull-right"></i>
+                            <span>My Drivers</span><i class="feather icon-chevron-right pull-right"></i>
                         </a>
                         <ul class="vertical-submenu">
                             <li><a class="font-16" href="{{url('/basic-ui-kits-alerts')}}">View All</a></li>
@@ -66,7 +72,7 @@
                     </li>
                     <li>
                         <a href="javaScript:void();" class="font-16">
-                            My Mechanics<i class="feather icon-chevron-right pull-right"></i>
+                            <span>My Mechanics</span><i class="feather icon-chevron-right pull-right"></i>
                         </a>
                         <ul class="vertical-submenu">
                             <li><a class="font-16" href="{{url('/advanced-ui-kits-image-crop')}}">View all</a></li>
@@ -75,7 +81,7 @@
                     </li>
                     <li>
                         <a href="javaScript:void();" class="font-16">
-                            Admin Team<i class="feather icon-chevron-right pull-right"></i>
+                            <span>Admin Team</span><i class="feather icon-chevron-right pull-right"></i>
                         </a>
                         <ul class="vertical-submenu">
                             <li><a class="font-16" href="{{url('/basic-ui-kits-alerts')}}">View All</a></li>
@@ -87,7 +93,7 @@
                     <h6 class="text-small leftbar-subs mt-3"><small>CHECKS AND FORMS</small></h6>
                     <li>
                         <a href="javaScript:void();" class="font-16">
-                          Vehicle Inspection<i class="feather icon-chevron-right pull-right"></i>
+                          <span>Vehicle Inspection</span><i class="feather icon-chevron-right pull-right"></i>
                         </a>
                         <ul class="vertical-submenu">
                             <li><a class="font-16" href="{{url('/apps-chat')}}">View All</a></li>
@@ -99,7 +105,7 @@
                     </li>
                     <li>
                         <a href="javaScript:void();" class="font-16">
-                          MOT/Service<i class="feather icon-chevron-right pull-right"></i>
+                          <span>MOT/Service</span><i class="feather icon-chevron-right pull-right"></i>
                         </a>
                         <ul class="vertical-submenu">
                             <li><a class="font-16" href="{{url('/apps-calender')}}">View Upcoming</a></li>
@@ -113,7 +119,7 @@
                     <h6 class="text-small leftbar-subs mt-3"><small>REPORTING & REFERENCES</small></h6>
                     <li>
                         <a href="javaScript:void();" class="font-16">
-                          Analysis<i class="feather icon-chevron-right pull-right"></i>
+                          <span>Analysis</span><i class="feather icon-chevron-right pull-right"></i>
                         </a>
                         <ul class="vertical-submenu">
                             <li><a class="font-16" href="{{url('/apps-calender')}}">All</a></li>
@@ -124,7 +130,7 @@
                 @if(Auth::user()->hasRole('mechanic') || Auth::user()->type == 2)
                     <li>
                         <a href="javaScript:void();" class="font-16">
-                          Damage/Faults<i class="feather icon-chevron-right pull-right"></i>
+                          <span>Damage/Faults</span><i class="feather icon-chevron-right pull-right"></i>
                         </a>
                         <ul class="vertical-submenu">
                             <li><a class="font-16" href="{{url('/apps-calender')}}">View All</a></li>
@@ -136,7 +142,8 @@
                     <h6 class="text-small leftbar-subs mt-3"><small>CHECKS AND FORMS</small></h6>
                     <li>
                         <a href="javaScript:void();" class="font-16">
-                          Submit Form<i class="feather icon-chevron-right pull-right"></i>
+                            <img src="assets/images/svg-icon/form_elements.svg" class="img-fluid" alt="form_elements">
+                          <span>Submit Form</span><i class="feather icon-chevron-right pull-right"></i>
                         </a>
                         <ul class="vertical-submenu">
                             <li><a class="font-16" href="{{url('/apps-calender')}}">All Vehicles</a></li>
@@ -148,19 +155,19 @@
                 @endif
                 <h6 class="text-small leftbar-subs mt-3"><small>SUPPORT</small></h6>
                 @if(Auth::user()->hasRole('driver'))
-                    <li><a class="font-16" href="{{url('/apps-onboarding-screens')}}">Help Guides</a></li>
-                    <li><a class="font-16" href="{{url('/apps-onboarding-screens')}}">My Weather</a></li>
-                    <li><a class="font-16" href="{{url('/apps-onboarding-screens')}}">Videos</a></li>
-                    <li><a class="font-16" href="{{url('/apps-onboarding-screens')}}">Best Practice</a></li>
+                    <li><a class="font-16" href="{{url('/apps-onboarding-screens')}}"><span>Help Guides</span></a></li>
+                    <li><a class="font-16" href="{{url('/apps-onboarding-screens')}}"><span>My Weather</span></a></li>
+                    <li><a class="font-16" href="{{url('/apps-onboarding-screens')}}"><span>Videos</span></a></li>
+                    <li><a class="font-16" href="{{url('/apps-onboarding-screens')}}"><span>Best Practice</span></a></li>
                 @endif
                 <li>
                     <a href="javaScript:void();" class="font-16">
-                      Flag Issue
+                      <span>Flag Issue</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{url('/page-faq')}}">
-                        FAQ
+                        <span>FAQ</span>
                     </a>
                 </li>
             </ul>

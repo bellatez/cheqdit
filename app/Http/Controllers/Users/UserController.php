@@ -63,10 +63,10 @@ class UserController extends Controller
         // create a password for the workshop
         $password = Generator::password();
 
-        $user = User::create(array_merge($request->validated(), ['password' => $password]);
+        $user = User::create(array_merge($request->validated(), ['password' => $password]));
         $user->syncRoles([$request->role_id]);
 
-        Admin::create(['user_id' => $user->id]);
+        $user->admin()->create();
 
         //send password to workshop
         $user->sendPasswordMail();
@@ -80,10 +80,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        $users = User::find($id)->get();
-        return view('users.show',compact('users'));
+        return view('users.show',compact('user'));
     }
 
     /**
@@ -92,10 +91,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user )
+    public function edit(User $user)
     {
-        $users = User::find($user->id)->get();
-        return view('users.create',compact('users'));
+        return view('users.create',compact('user'));
 
 
     }
@@ -109,7 +107,7 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, User $user)
     {
-        $user->update($request->all());
+        $user->update($request->validated());
 
         return redirect()->route('user.index')->with('success', 'User\'s information updated successfully');;
     }

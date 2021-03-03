@@ -39,8 +39,8 @@ Organisations
                                 <td>{{$org->address1}}</td>
                                 <td>{{$org->postcode}}</td>
                                 <td>{{$org->telephone}}</td>
-                                <td>{{$org->industryType->name}}</td>
-                                <td>{{$org->companySize->size}}</td>
+                                <td>{{$org->industryType->name ?? ''}}</td>
+                                <td>{{$org->companySize->size ?? ''}}</td>
                                 <td class="text-right">
                                   <div class="dropdown">
                                     <a class="btn btn-sm btn-icon-only" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
