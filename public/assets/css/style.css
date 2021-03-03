@@ -60,7 +60,7 @@
 55. Custom Responsive
 ----------------------------
 */
-@import url("https://fonts.googleapis.com/css?family=Muli:400,600,700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500&display=swap');
 /* 
 --------------------------------
     : Custom - General css :
@@ -72,7 +72,7 @@ html {
 }
 
 body {
-  font-family: "Muli", sans-serif;
+  font-family: "Barlow", sans-serif;
   margin: 0;
   background: #f2f5fa;
   font-size: 15px;
@@ -29506,7 +29506,7 @@ mark {
   padding: 3px 12px;
   background: #263a5b;
   color: #ffffff;
-  font-family: "Muli", sans-serif;
+  font-family: "Barlow", sans-serif;
   font-weight: 400;
   text-align: center;
   border-radius: 3px;
@@ -29549,7 +29549,7 @@ canvas {
 
 /* -- C3 chart -- */
 .c3 svg {
-  font-family: "Muli", sans-serif;
+  font-family: "Barlow", sans-serif;
   font-size: 14px;
 }
 
@@ -29665,7 +29665,7 @@ canvas {
   height: 320px;
 }
 .morris-chart tspan {
-  font-family: "Muli", sans-serif;
+  font-family: "Barlow", sans-serif;
   color: #8A98AC;
   font-size: 14px;
   font-weight: 400;
@@ -29677,7 +29677,7 @@ canvas {
   color: #ffffff;
   background: #263a5b;
   border: none;
-  font-family: "Muli", sans-serif;
+  font-family: "Barlow", sans-serif;
   font-size: 14px;
   text-align: center;
 }
@@ -29697,7 +29697,7 @@ canvas {
 
 /* -- jQuery Knob Chart -- */
 .knob {
-  font: 600 30px "Muli", sans-serif !important;
+  font: 600 30px "Barlow", sans-serif !important;
 }
 
 .knob-superpose {
@@ -29737,14 +29737,14 @@ canvas {
 /* -- Apex Chart -- */
 .apexcharts-xaxis text,
 .apexcharts-yaxis text {
-  font-family: "Muli", sans-serif !important;
+  font-family: "Barlow", sans-serif !important;
   fill: #f2542d;
 }
 
 .apexcharts-legend-text {
   position: relative;
   font-size: 14px;
-  font-family: "Muli", sans-serif !important;
+  font-family: "Barlow", sans-serif !important;
 }
 
 /* 
@@ -30579,7 +30579,7 @@ canvas {
 -----------------------------------------
 */
 .datepicker {
-  font-family: "Muli", sans-serif;
+  font-family: "Barlow", sans-serif;
   background: #ffffff;
   color: #8A98AC;
   border: none;
@@ -30677,11 +30677,11 @@ canvas {
 }
 
 .datepicker--time-current-hours {
-  font-family: "Muli", sans-serif;
+  font-family: "Barlow", sans-serif;
 }
 
 .datepicker--time-current-minutes {
-  font-family: "Muli", sans-serif;
+  font-family: "Barlow", sans-serif;
 }
 
 .datepicker--buttons {
@@ -32269,7 +32269,7 @@ input[type=range]:focus {
   color: #f2542d;
 }
 .onboard-screen .slick-arrow {
-  font-family: "Muli", sans-serif;
+  font-family: "Barlow", sans-serif;
   width: auto;
   height: auto;
   top: auto;
@@ -32385,7 +32385,7 @@ input[type=range]:focus {
 */
 /* -- Popovers -- */
 .popover {
-  font-family: "Muli", sans-serif;
+  font-family: "Barlow", sans-serif;
   border-radius: 3px;
   border: none;
   box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
@@ -33517,7 +33517,7 @@ input[type=range]:focus {
 ------------------------------------
 */
 .swal2-modal {
-  font-family: "Muli", sans-serif;
+  font-family: "Barlow", sans-serif;
   border-radius: 3px;
   border: none;
 }
@@ -34356,7 +34356,7 @@ table.focus-on tfoot tr.focused td {
 }
 
 .cd-single-step .cd-more-info {
-  font-family: "Muli", sans-serif !important;
+  font-family: "Barlow", sans-serif !important;
   border-radius: 3px;
   border: none;
   box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
@@ -34376,7 +34376,7 @@ table.focus-on tfoot tr.focused td {
   font-size: 16px;
   line-height: 1.6;
   margin-bottom: 1.4em;
-  font-family: "Muli", sans-serif !important;
+  font-family: "Barlow", sans-serif !important;
   color: #8A98AC;
 }
 .cd-single-step .cd-more-info img {
@@ -34388,7 +34388,7 @@ table.focus-on tfoot tr.focused td {
   float: left;
   padding-top: 0.1em;
   font-size: 14px;
-  font-family: "Muli", sans-serif !important;
+  font-family: "Barlow", sans-serif !important;
 }
 .cd-single-step .cd-more-info .cd-close:before {
   background-color: #8A98AC;
@@ -34420,7 +34420,7 @@ table.focus-on tfoot tr.focused td {
 
 @media only screen and (min-width: 768px) {
   .cd-single-step .cd-more-info {
-    font-family: "Muli", sans-serif !important;
+    font-family: "Barlow", sans-serif !important;
     border-radius: 3px;
     border: none;
     box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
@@ -34440,14 +34440,14 @@ table.focus-on tfoot tr.focused td {
     font-size: 16px;
     line-height: 1.6;
     margin-bottom: 1.4em;
-    font-family: "Muli", sans-serif !important;
+    font-family: "Barlow", sans-serif !important;
     color: #8A98AC;
   }
   .cd-single-step .cd-more-info span {
     float: left;
     padding-top: 0.1em;
     font-size: 14px;
-    font-family: "Muli", sans-serif !important;
+    font-family: "Barlow", sans-serif !important;
   }
   .cd-single-step .cd-more-info .cd-close:before {
     background-color: #8A98AC;
