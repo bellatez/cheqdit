@@ -13,8 +13,8 @@
                 <h6 class="text-small leftbar-subs mt-3"><small>DASHBOARD</small></h6>
                 <li><a class="font-16" href="{{url('/')}}"><i class="fa fa-dashboard"></i><span>My Dashboard</span></a></li>
                 @if(Auth::user()->hasRole('administrator|subadministrator'))
-                    <li><a class="font-16" href="{{url('/dashboard-ecommerce')}}"><i class="fas fa-notification"></i><span>My Notifications</span></a></li>
-                    <li><a class="font-16" href="{{url('/dashboard-hospital')}}"><img src="assets/images/svg-icon/basic.svg" class="img-fluid" alt="basic"><span>My Credits</span></a></li>
+                    <li><a class="font-16" href="{{url('/dashboard-ecommerce')}}"><i class="fas fa-bell"></i><span>My Notifications</span></a></li>
+                    <li><a class="font-16" href="{{url('/dashboard-hospital')}}"><i class="fas fa-cc"></i><span>My Credits</span></a></li>
                 @endif
                 @if(Auth::user()->hasRole('superadministrator'))
                     <li>
@@ -31,7 +31,7 @@
                     <h6 class="text-small leftbar-subs mt-3"><small>VEHICLE MANAGEMENT</small></h6>
                     <li>
                         <a href="javaScript:void();" class="font-16">
-                          <span>My Vehicles</span><i class="feather icon-chevron-right pull-right"></i>
+                          <i class="fas fa-car"></i><span>My Vehicles</span><i class="feather icon-chevron-right pull-right"></i>
                         </a>
                         <ul class="vertical-submenu">
                             <li><a class="font-16" href="{{url('/')}}">All Vehicles</a></li>
@@ -40,7 +40,7 @@
                     </li>
                      <li>
                         <a href="javaScript:void();" class="font-16">
-                          <span>Workshop</span><i class="feather icon-chevron-right pull-right"></i>
+                          <i class="fa fa-simplybuilt"></i><span>Workshop</span><i class="feather icon-chevron-right pull-right"></i>
                         </a>
                         <ul class="vertical-submenu">
                             <li><a class="font-16" href="{{Route('workshops.request')}}">Pending Request</a></li>
@@ -50,7 +50,7 @@
                     </li>
                      <li>
                         <a href="javaScript:void();" class="font-16">
-                          <span>DVLA Search</span><i class="feather icon-chevron-right pull-right"></i>
+                          <i class="fas fa-bus"></i><span>DVLA Search</span><i class="feather icon-chevron-right pull-right"></i>
                         </a>
                         <ul class="vertical-submenu">
                             <li><a class="font-16" href="{{url('/')}}">Vehicle search</a></li>
@@ -60,11 +60,11 @@
                 @if(Auth::user()->hasRole('administrator|superadministrator'))
                     <h6 class="ml-4 leftbar-subs mt-3"><small>USER MANAGEMENT</small></h6>
                     <li>
-                        <a href="{{Route('users.request')}}">Pending Request</a>
+                        <a href="{{Route('users.request')}}"><i class="feather icon-user-plus"></i><span>Pending Request</span></a>
                     </li>
                     <li>
                         <a href="javaScript:void();" class="font-16">
-                            <span>My Drivers</span><i class="feather icon-chevron-right pull-right"></i>
+                            <i class="fas fa-truck"></i><span>My Drivers</span><i class="feather icon-chevron-right pull-right"></i>
                         </a>
                         <ul class="vertical-submenu">
                             <li><a class="font-16" href="{{url('/basic-ui-kits-alerts')}}">View All</a></li>
@@ -73,7 +73,7 @@
                     </li>
                     <li>
                         <a href="javaScript:void();" class="font-16">
-                            <span>My Mechanics</span><i class="feather icon-chevron-right pull-right"></i>
+                            <i class="fa fa-male"></i><span>My Mechanics</span><i class="feather icon-chevron-right pull-right"></i>
                         </a>
                         <ul class="vertical-submenu">
                             <li><a class="font-16" href="{{url('/advanced-ui-kits-image-crop')}}">View all</a></li>
@@ -82,7 +82,7 @@
                     </li>
                     <li>
                         <a href="javaScript:void();" class="font-16">
-                            <span>Admin Team</span><i class="feather icon-chevron-right pull-right"></i>
+                            <i class="fas fa-users"></i><span>Admin Team</span><i class="feather icon-chevron-right pull-right"></i>
                         </a>
                         <ul class="vertical-submenu">
                             <li><a class="font-16" href="{{Route('administrators.index')}}">View All</a></li>
@@ -94,7 +94,7 @@
                     <h6 class="text-small leftbar-subs mt-3"><small>CHECKS AND FORMS</small></h6>
                     <li>
                         <a href="javaScript:void();" class="font-16">
-                          <span>Vehicle Inspection</span><i class="feather icon-chevron-right pull-right"></i>
+                          <i class="fas fa-tasks"></i><span>Vehicle Inspection</span><i class="feather icon-chevron-right pull-right"></i>
                         </a>
                         <ul class="vertical-submenu">
                             <li><a class="font-16" href="{{url('/apps-chat')}}">View All</a></li>
@@ -106,7 +106,7 @@
                     </li>
                     <li>
                         <a href="javaScript:void();" class="font-16">
-                          <span>MOT/Service</span><i class="feather icon-chevron-right pull-right"></i>
+                          <i class="fas fa-qrcode"></i><span>MOT/Service</span><i class="feather icon-chevron-right pull-right"></i>
                         </a>
                         <ul class="vertical-submenu">
                             <li><a class="font-16" href="{{url('/apps-calender')}}">View Upcoming</a></li>
@@ -120,7 +120,7 @@
                     <h6 class="text-small leftbar-subs mt-3"><small>REPORTING & REFERENCES</small></h6>
                     <li>
                         <a href="javaScript:void();" class="font-16">
-                          <span>Analysis</span><i class="feather icon-chevron-right pull-right"></i>
+                          <i class="fas fa-hourglass-2"></i><span>Analysis</span><i class="feather icon-chevron-right pull-right"></i>
                         </a>
                         <ul class="vertical-submenu">
                             <li><a class="font-16" href="{{url('/apps-calender')}}">All</a></li>
@@ -131,7 +131,7 @@
                 @if(Auth::user()->hasRole('mechanic') || Auth::user()->type == 2)
                     <li>
                         <a href="javaScript:void();" class="font-16">
-                          <span>Damage/Faults</span><i class="feather icon-chevron-right pull-right"></i>
+                          <i class="fas fa-legal"></i><span>Damage/Faults</span><i class="feather icon-chevron-right pull-right"></i>
                         </a>
                         <ul class="vertical-submenu">
                             <li><a class="font-16" href="{{url('/apps-calender')}}">View All</a></li>
@@ -163,12 +163,12 @@
                 @endif
                 <li>
                     <a href="javaScript:void();" class="font-16">
-                      <span>Flag Issue</span>
+                      <i class="fa fa-flag-o"></i><span>Flag Issue</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{url('/page-faq')}}">
-                        <span>FAQ</span>
+                        <i class="fas fa-question"></i><span>FAQ</span>
                     </a>
                 </li>
             </ul>
