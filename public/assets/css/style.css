@@ -735,6 +735,10 @@ code {
 }
 
 /* -- Font Weight -- */
+.f-w-1 {
+  font-weight: 100;
+}
+
 .f-w-3 {
   font-weight: 300;
 }

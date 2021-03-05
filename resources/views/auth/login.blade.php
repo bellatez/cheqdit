@@ -15,7 +15,7 @@
                                 <div class="form-head">
                                     <a href="{{url('/')}}" class="logo"><img src="assets/images/logo.svg" class="img-fluid" alt="logo"></a>
                                 </div>                                        
-                                <h4 class="text-primary my-4">Log in !</h4>
+                                <h4 class="text-primary my-4">Welcome</h4>
                                 <div class="form-group">
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Enter email address">
 
@@ -38,7 +38,7 @@
                                     <div class="col-sm-6">
                                         <div class="custom-control custom-checkbox text-left">
                                           <input class="custom-control-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                          <label class="custom-control-label font-14" for="rememberme">Remember Me</label>
+                                          <label class="custom-control-label f-w-1" for="rememberme">Remember Me</label>
                                         </div>                                
                                     </div>
                                     <div class="col-sm-6">
@@ -51,9 +51,9 @@
                                       </div>
                                     </div>
                                 </div>                          
-                              <button type="submit" class="btn btn-primary-rgba btn-lg btn-block font-18">Log in</button>
+                              <button type="submit" class="btn btn-primary-rgba py-3 px-5 dash-btn">LOG IN</button>
                             </form>
-                            <p class="mb-0 mt-3">Don't have a account? <a href="{{Route('register')}}">Sign up</a></p>
+                            <label class="mb-0 mt-3 f-w-1">Don't have a account? <a href="{{Route('register')}}">Sign up</a></label>
                         </div>
                     </div>
                 </div>

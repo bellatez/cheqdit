@@ -140,7 +140,7 @@
                                             <div class="form-check text-left">
                                                 <input type="checkbox" name="terms" id="terms" value="agreed"
                                                     class="form-check-input">
-                                                <label class="font-14" for="terms">I Agree to Terms & Conditions of
+                                                <label class="font-14 f-w-1" for="terms">I Agree to Terms & Conditions of
                                                     {{config('app.name')}}</label>
                                             </div>
                                             @if ($errors->has('terms'))
@@ -151,7 +151,7 @@
                                         </div>
                                     </div>
                                     <button type="submit"
-                                        class="btn btn-primary-rgba btn-lg btn-block font-18">Register</button>
+                                        class="btn btn-primary-rgba py-3 px-5 dash-btn">Register</button>
                                 </form>
                             </div>
                             <div class="tab-pane fade" id="workshop" role="tabpanel" aria-labelledby="workshop">
@@ -295,7 +295,7 @@
                                             <div class="form-check text-left">
                                                 <input type="checkbox" name="terms" id="terms" value="agreed"
                                                     class="form-check-input">
-                                                <label class="font-14" for="terms">I Agree to Terms & Conditions of
+                                                <label class="font-14 f-w-1" for="terms">I Agree to Terms & Conditions of
                                                     {{config('app.name')}}</label>
                                             </div>
                                             @if ($errors->has('terms'))
@@ -306,7 +306,7 @@
                                         </div>
                                     </div>
                                     <button type="submit"
-                                        class="btn btn-primary-rgba btn-lg btn-block font-18">Register</button>
+                                        class="btn btn-primary-rgba py-3 px-5 dash-btn">Register</button>
                                 </form>
                             </div>
                         </div>

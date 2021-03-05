@@ -91,7 +91,7 @@ New Organisation
                           </select>
                         </div>
                       </div>                      
-                      <button type="submit" class="btn btn-primary-rgba btn-lg btn-block font-18">Submit</button>
+                      <button type="submit" class="btn btn-primary-rgba py-3 px-5 dash-btn">Submit</button>
                     </form>
                 </div>
             </div>
