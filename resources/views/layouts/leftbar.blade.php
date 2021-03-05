@@ -143,7 +143,7 @@
                     <h6 class="text-small leftbar-subs mt-3"><small>CHECKS AND FORMS</small></h6>
                     <li>
                         <a href="javaScript:void();" class="font-16">
-                            <img src="assets/images/svg-icon/form_elements.svg" class="img-fluid" alt="form_elements">
+                            <i class="fas fa-newspaper-o"></i>
                           <span>Submit Form</span><i class="feather icon-chevron-right pull-right"></i>
                         </a>
                         <ul class="vertical-submenu">
@@ -156,10 +156,14 @@
                 @endif
                 <h6 class="text-small leftbar-subs mt-3"><small>SUPPORT</small></h6>
                 @if(Auth::user()->hasRole('driver'))
-                    <li><a class="font-16" href="{{url('/apps-onboarding-screens')}}"><span>Help Guides</span></a></li>
-                    <li><a class="font-16" href="{{url('/apps-onboarding-screens')}}"><span>My Weather</span></a></li>
-                    <li><a class="font-16" href="{{url('/apps-onboarding-screens')}}"><span>Videos</span></a></li>
-                    <li><a class="font-16" href="{{url('/apps-onboarding-screens')}}"><span>Best Practice</span></a></li>
+                    <li><a class="font-16" href="{{url('/apps-onboarding-screens')}}">
+                        <i class="fas fa-support"></i><span>Help Guides</span></a></li>
+                    <li><a class="font-16" href="{{url('/apps-onboarding-screens')}}">
+                        <i class="fas fa-cloud"></i><span>My Weather</span></a></li>
+                    <li><a class="font-16" href="{{url('/apps-onboarding-screens')}}">
+                        <i class="fas fa-video-camera"></i><span>Videos</span></a></li>
+                    <li><a class="font-16" href="{{url('/apps-onboarding-screens')}}">
+                        <i class="fas fa-thumbs-up"></i><span>Best Practice</span></a></li>
                 @endif
                 <li>
                     <a href="javaScript:void();" class="font-16">
