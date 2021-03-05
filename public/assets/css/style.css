@@ -135,17 +135,17 @@ a {
   color: #f2542d;
 }
 a:hover {
-  color: #0073e6;
+  color: #1a181a;
   outline: 0;
   text-decoration: none;
 }
 a:active {
-  color: #0073e6;
+  color: #1a181a;
   outline: 0;
   text-decoration: none;
 }
 a:focus {
-  color: #0073e6;
+  color: #1a181a;
   outline: 0;
   text-decoration: none;
 }

@@ -151,7 +151,7 @@
                                         </div>
                                     </div>
                                     <button type="submit"
-                                        class="btn btn-primary-rgba py-3 px-5 dash-btn">Register</button>
+                                        class="btn btn-primary-rgba py-3 px-5 dash-btn">REGISTER</button>
                                 </form>
                             </div>
                             <div class="tab-pane fade" id="workshop" role="tabpanel" aria-labelledby="workshop">
@@ -306,7 +306,7 @@
                                         </div>
                                     </div>
                                     <button type="submit"
-                                        class="btn btn-primary-rgba py-3 px-5 dash-btn">Register</button>
+                                        class="btn btn-primary-rgba py-3 px-5 dash-btn">REGISTER</button>
                                 </form>
                             </div>
                         </div>
