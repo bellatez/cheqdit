@@ -52,7 +52,7 @@
                         <li class="list-inline-item">
                             <div class="notifybar">
                                 <div class="dropdown">
-                                    <a class="dropdown-toggle infobar-icon" href="#" role="button" id="notoficationlink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{asset('assets/images/svg-icon/notifications.svg')}}" class="img-fluid" alt="notifications">
+                                    <a class="dropdown-toggle infobar-icon" href="#" role="button" id="notoficationlink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/images/svg-icon/notifications.svg" class="img-fluid" alt="notifications">
                                     <span class="live-icon"></span></a>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notoficationlink">
                                         <div class="notification-dropdown-title">
@@ -84,13 +84,13 @@
                                         <div class="userbox">
                                             <ul class="list-unstyled mb-0">
                                                 <li class="media dropdown-item">
-                                                    <a href="#" class="profile-icon"><img src="{{asset('assets/images/svg-icon/user.svg')}}" class="img-fluid" alt="user">My Profile</a>
+                                                    <a href="#" class="profile-icon"><i class="fa fa-user"> </i> My Profile</a>
                                                 </li>
                                                 <li class="media dropdown-item">
                                                     <a class="profile-icon" href="{{ route('logout') }}"
                                                        onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
-                                                        <i class="fas fa-logout"></i>Logout</a>
+                                                        <i class="fa fa-sign-out"></i> Logout</a>
                                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                         @csrf
                                                     </form>
