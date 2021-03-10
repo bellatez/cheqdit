@@ -54,7 +54,7 @@
                                 <div class="dropdown">
                                     <a class="dropdown-toggle infobar-icon" href="#" role="button" id="notoficationlink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/images/svg-icon/notifications.svg" class="img-fluid" alt="notifications">
                                     <span class="live-icon"></span></a>
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notoficationlink">
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notificationlink">
                                         <div class="notification-dropdown-title">
                                             <h4>Notifications</h4>                            
                                         </div>
