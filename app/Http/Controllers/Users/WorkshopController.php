@@ -22,7 +22,7 @@ class WorkshopController extends Controller
      */
     public function index()
     {
-        $workshops = Workshop::all();
+        $workshops = Workshop::with(['user.organisation'])->get();
         // return $workshops;
         return view('workshop.index', compact('workshops'));
     }
@@ -115,7 +115,30 @@ class WorkshopController extends Controller
         $workshop->update($request->validated());
         $user->update($request->validated());
 
-        return redirect()->route('workshop.index')->with('success', 'Workshop\'s information updated successfully');;
+        return redirect()->route('workshop.index')->with('success', 'Workshop\'s information updated successfully');
+    }
+
+    public function approveWorkshop(Workshop $workshop)
+    {
+        $workshop->user->update(['is_active' => 1]);
+        return back()->with('success', 'Workshop approved successfully');
+    }
+
+    public function rejectWorkshop(Workshop $workshop)
+    {
+       // $record->update([
+       //     'status_id' => 2
+       // ]);
+
+       // $details = [
+       //     'title' => $request->title,
+       //     'name' => $record->createdUser->first_name,
+       //     'text' => 'Record for <b>'.$record->first_name.' '.$record->surname.'</b> has been <b>REJECTED</b> for the following reason(s)<br /><br />'.$request->message
+       // ];
+
+       // \Mail::to($record->createdUser->email)->send(new \App\Mail\StatusUpdateMail($details));
+       
+        return back()->with('success', 'Workshop rejected and creator notified successfully');
     }
 
     /**

@@ -40,23 +40,15 @@ User Requests
                                   <td>{{$workshop->address1}}</td>
                                   <td><a target="_blank" href="{{$workshop->website}}">Visit</a></td>
                                   <td>
-                                    <a title="Modify" href="{{ route('workshops.edit', $workshop) }}" class="btn btn-xs btn-info"><span class="fa fa-edit"></span></a>
-                                    <form action="" method="post">
+                                      <form action="{{Route('workshops.approve', $workshop)}}" method="post">
                                         @csrf
-                                        @method('put')
-                                        <button type="submit" class="btn btn-xs btn-success confirm_archive">
-                                            <i class="fa fa-check"></i>
-                                        </button>
-                                    </form>  
-                                    <form action="" method="post">
-                                        @csrf
-                                        @method('put')
-                                        <button type="submit" class="btn btn-xs btn-danger confirm_archive">
-                                            <i class="fa fa-close"></i>
-                                        </button>
-                                    </form>  
-                                    {{-- <a title="approve" href="#" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
-                                    <a title="Reject" href="#" class="btn btn-xs btn-danger"><i class="fa fa-close"></i></a> --}}
+                                        @method('PUT')
+                                        <a title="Modify" href="{{ route('workshops.edit', $workshop) }}" class="btn btn-xs btn-info"><span class="fa fa-edit"></span></a>
+                                        <span class="sweet-alert">
+                                          <button type="submit" title="approve" class="btn btn-xs btn-success sa-warning"><i class="fa fa-check"></i></button>
+                                        </span>
+                                        <a title="Reject" href="#" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#reject"><i class="fa fa-close"></i></a>
+                                      </form>
                                   </td>
                                 </tr>
                               @endforeach
@@ -69,6 +61,12 @@ User Requests
         <!-- End col -->
     </div>
     <!-- End row -->
+
+    <!-- rejection modal -->
+    @include('partials.reject-modal', [
+        'route' => Route('workshops.index')
+    ])
+    <!-- end rejection modal -->
 </div>
 <!-- End Contentbar -->
 @endsection 

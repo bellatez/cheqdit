@@ -25,6 +25,16 @@ class AdminController extends Controller
         return view('admins.index', compact('admins'));
     }
 
+    public function requestList()
+    {
+        $users = User::with('roles')->where('is_active',0)
+                        ->where('type', 1)
+                        ->where('email_verified_at', null)
+                        ->where('organisation_id', Auth::user()->organisation_id)
+                        ->get();
+        return view('admins.request_list', compact('users'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -96,6 +106,12 @@ class AdminController extends Controller
         $user->update($request->validated());
 
         return redirect()->route('admins.index')->with('success', 'User\'s information updated successfully');;
+    }
+
+    public function approveAdmin(User $user)
+    {
+        $user->update(['is_active' => 1]);
+        return back()->with('success', 'Admin approved successfully');
     }
 
     /**
