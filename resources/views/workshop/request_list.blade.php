@@ -33,17 +33,32 @@ User Requests
                             </thead>
                             <tbody>
                               @foreach($workshops as $workshop)
-                              <tr>
-                                <td>{{$workshop->name}}</td>
-                                <td>{{$workshop->user->telephone ?? ''}}</td>
-                                <td>{{$workshop->postcode}}</td>
-                                <td>{{$workshop->address1}}</td>
-                                <td><a target="_blank" href="{{$workshop->website}}">Visit</a></td>
-                                <td>
-                                  <a title="Modify" href="{{ route('workshops.edit', $workshop) }}" class="btn btn-xs btn-primary"><span class="fa fa-edit"></span></a>
-                                  <a href="#" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
-                                </td>
-                              </tr>
+                                <tr>
+                                  <td>{{$workshop->name}}</td>
+                                  <td>{{$workshop->user->telephone ?? ''}}</td>
+                                  <td>{{$workshop->postcode}}</td>
+                                  <td>{{$workshop->address1}}</td>
+                                  <td><a target="_blank" href="{{$workshop->website}}">Visit</a></td>
+                                  <td>
+                                    <a title="Modify" href="{{ route('workshops.edit', $workshop) }}" class="btn btn-xs btn-info"><span class="fa fa-edit"></span></a>
+                                    <form action="" method="post">
+                                        @csrf
+                                        @method('put')
+                                        <button type="submit" class="btn btn-xs btn-success confirm_archive">
+                                            <i class="fa fa-check"></i>
+                                        </button>
+                                    </form>  
+                                    <form action="" method="post">
+                                        @csrf
+                                        @method('put')
+                                        <button type="submit" class="btn btn-xs btn-danger confirm_archive">
+                                            <i class="fa fa-close"></i>
+                                        </button>
+                                    </form>  
+                                    {{-- <a title="approve" href="#" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
+                                    <a title="Reject" href="#" class="btn btn-xs btn-danger"><i class="fa fa-close"></i></a> --}}
+                                  </td>
+                                </tr>
                               @endforeach
                             </tbody>
                         </table>
