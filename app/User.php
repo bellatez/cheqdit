@@ -84,7 +84,7 @@ class User extends Authenticatable
             'email' => $this->email,
             'name' => $this->first_name,
             'password' => $password,
-            'role' =>$this->roles[0]->display_name
+            'role' =>$this->roles[0]->display_name ?? 'workshop'
         ];
 
         \Mail::to($this->email)->send(new \App\Mail\PasswordMail($details));
@@ -93,5 +93,12 @@ class User extends Authenticatable
     public function getFullNameAttribute()
     {
         return $this->first_name.' '.$this->last_name;
+    }
+
+    public function fetchUsersBaseQuery()
+    {
+        return $this->where('type', 1)
+                ->where('is_active', 1)
+                ->where('organisation_id', auth()->user()->organisation_id);
     }
 }

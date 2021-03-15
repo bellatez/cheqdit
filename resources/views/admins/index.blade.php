@@ -1,10 +1,10 @@
 @section('title')
-User
+{{ ucwords(request()->type ?? 'administrators') }} 
 @endsection
 @extends('layouts.main')
 
 @section('header-btn')
-  <a href="{{route('users.create')}}" class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i>New User</a>
+  <a href="{{route('users.create')}}" class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i>New admin</a>
 @endsection
 
 @section('rightbar-content')
@@ -16,7 +16,7 @@ User
         <div class="col-lg-12">
             <div class="card m-b-30">
                 <div class="card-header">
-                    <h5 class="card-title">User List</h5>
+                    <h5 class="card-title">{{ ucwords(request()->type ?? 'administrators') }}  List</h5>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -34,11 +34,11 @@ User
                             <tbody>
                               @foreach($admins as $admin)
                               <tr>
-                                <td>{{$admin->user->full_name ?? ''}}</td>
-                                <td>{{$admin->user->email ?? ''}}</td>
-                                <td>{{$admin->user->telephone ?? ''}}</td>
-                                <td>{{$admin->user->organisation->name ?? ''}}</td>
-                                <td>{{$admin->user->is_active ? 'Yes' : 'No' ?? ''}}</td>
+                                <td>{{$admin->full_name ?? ''}}</td>
+                                <td>{{$admin->email ?? ''}}</td>
+                                <td>{{$admin->telephone ?? ''}}</td>
+                                <td>{{$admin->organisation->name ?? ''}}</td>
+                                <td>{{$admin->is_active ? 'Yes' : 'No' ?? ''}}</td>
                                 <td class="text-right">
                                   <div class="dropdown">
                                     <a class="btn btn-sm btn-icon-only" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

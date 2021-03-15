@@ -68,9 +68,9 @@ class WorkshopController extends Controller
 
         $user->workshop()->create($request->validated());
         //send password to workshop
-        $user->sendPasswordMail();
+        $user->sendPasswordMail($password);
         
-        return redirect()->route('workshop.index')->with('success', 'New workshop created successfully and mail sent to workshop with Details');
+        return redirect()->route('workshops.index')->with('success', 'New workshop created successfully and mail sent to workshop with Details');
     }
 
     /**
@@ -92,8 +92,6 @@ class WorkshopController extends Controller
      */
     public function edit(Workshop $workshop)
     {
-        // $types = IndustryType::orderBy('name', 'asc')->get();
-        // $sizes = CompanySize::orderBy('size', 'asc')->get();
         return view('workshop.create', compact('workshop'));
     }
 
@@ -111,12 +109,12 @@ class WorkshopController extends Controller
         $workshop->update($request->validated());
         $user->update($request->validated());
 
-        return redirect()->route('workshop.index')->with('success', 'Workshop\'s information updated successfully');
+        return redirect()->route('workshops.index')->with('success', 'Workshop\'s information updated successfully');
     }
 
     public function approveWorkshop(Workshop $workshop)
     {
-        $workshop->user->update(['is_active' => 1, 'email_verified_at' = now()]);
+        $workshop->user->update(['is_active' => 1, 'email_verified_at' => now()]);
         $details = [
             'title' => 'New Workshop Approval Notice',
             'name' => $workshop->name,

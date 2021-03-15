@@ -19,13 +19,28 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($type = null)
     {
-        $admins = Admin::all();
+        $user = new User();
+        switch ($type) {
+            case 'drivers':
+                $admins = $user->fetchUsersBaseQuery()->whereRoleIs('driver')->get();
+                break;
+            case 'mechanics':
+                $admins = $user->fetchUsersBaseQuery()->whereRoleIs('mechanic')->get();
+                break;
+            default:
+                $admins = $user->fetchUsersBaseQuery()
+                        ->where(function($query){
+                            $query->orWhereRoleIs('administrator');
+                            $query->orWhereRoleIs('subadministrator');
+                        })->get();
+                break;
+        }
 
-        // return $admins;
         return view('admins.index', compact('admins'));
     }
+
 
     public function requestList()
     {
@@ -42,11 +57,21 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($type = null)
     {
         $user = new Admin();
         $organisations=Organisation::all();
-        $roles=Role::all();
+        switch ($type) {
+            case 'driver':
+                $roles=Role::where('display_name','driver')->get();
+                break;
+            case 'mechanic':
+                $roles=Role::where('display_name','mechanic')->get();
+                break;
+            default:
+                $roles=Role::where('display_name','<>','superadministrator')->get();
+                break;
+        }
           return view('admins.create',compact('user','organisations','roles'));
     }
 
