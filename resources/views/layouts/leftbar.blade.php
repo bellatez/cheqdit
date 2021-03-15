@@ -67,8 +67,8 @@
                             <i class="fas fa-truck"></i><span>My Drivers</span><i class="feather icon-chevron-right pull-right"></i>
                         </a>
                         <ul class="vertical-submenu">
-                            <li><a class="font-16" href="{{url('/basic-ui-kits-alerts')}}">View All</a></li>
-                            <li><a class="font-16" href="{{url('/basic-ui-kits-badges')}}">Add Driver</a></li>
+                            <li><a class="font-16" href="{{Route('users.index', ['type' => 'drivers'])}}">View All</a></li>
+                            <li><a class="font-16" href="{{Route('users.create', ['type' => 'driver'])}}">Add Driver</a></li>
                         </ul>
                     </li>
                     <li>
@@ -76,8 +76,8 @@
                             <i class="fa fa-male"></i><span>My Mechanics</span><i class="feather icon-chevron-right pull-right"></i>
                         </a>
                         <ul class="vertical-submenu">
-                            <li><a class="font-16" href="{{url('/advanced-ui-kits-image-crop')}}">View all</a></li>
-                            <li><a class="font-16" href="{{url('/advanced-ui-kits-jquery-confirm')}}">Add Mechanic</a></li>
+                            <li><a class="font-16" href="{{Route('users.index',['type' => 'mechanics'])}}">View all</a></li>
+                            <li><a class="font-16" href="{{Route('users.create', ['type' => 'mechanic'])}}">Add Mechanic</a></li>
                         </ul>
                     </li>
                     <li>
@@ -85,8 +85,8 @@
                             <i class="fas fa-users"></i><span>Admin Team</span><i class="feather icon-chevron-right pull-right"></i>
                         </a>
                         <ul class="vertical-submenu">
-                            <li><a class="font-16" href="{{Route('administrators.index')}}">View All</a></li>
-                            <li><a class="font-16" href="{{Route('administrators.create')}}">Add Admin</a></li>
+                            <li><a class="font-16" href="{{Route('users.index')}}">View All</a></li>
+                            <li><a class="font-16" href="{{Route('users.create')}}">Add Admin</a></li>
                         </ul>
                     </li>
                 @endif

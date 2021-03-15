@@ -31,6 +31,7 @@ class User extends Authenticatable
         'type',
         'last_login_at', 
         'last_login_ip',
+        'email_verified_at'
     ];
 
     /**
@@ -76,13 +77,14 @@ class User extends Authenticatable
         return $this->type === 2;
     }
 
-    public function sendPasswordMail()
+    public function sendPasswordMail(String $password)
     {
         $details = [
             'title' => 'New Account verification and activation',
             'email' => $this->email,
             'name' => $this->first_name,
-            'password' => $this->password,
+            'password' => $password,
+            'role' =>$this->roles[0]->display_name ?? 'workshop'
         ];
 
         \Mail::to($this->email)->send(new \App\Mail\PasswordMail($details));
@@ -91,5 +93,12 @@ class User extends Authenticatable
     public function getFullNameAttribute()
     {
         return $this->first_name.' '.$this->last_name;
+    }
+
+    public function fetchUsersBaseQuery()
+    {
+        return $this->where('type', 1)
+                ->where('is_active', 1)
+                ->where('organisation_id', auth()->user()->organisation_id);
     }
 }

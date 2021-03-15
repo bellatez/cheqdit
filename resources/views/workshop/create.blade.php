@@ -1,5 +1,9 @@
 @section('title')
-New Workshop
+  @if($workshop->exists)
+    Edit Workshop
+  @else
+    New Workshop
+  @endif
 @endsection
 @extends('layouts.main')
 @section('style')

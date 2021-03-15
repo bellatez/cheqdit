@@ -33,17 +33,24 @@ User Requests
                             </thead>
                             <tbody>
                               @foreach($workshops as $workshop)
-                              <tr>
-                                <td>{{$workshop->name}}</td>
-                                <td>{{$workshop->user->telephone ?? ''}}</td>
-                                <td>{{$workshop->postcode}}</td>
-                                <td>{{$workshop->address1}}</td>
-                                <td><a target="_blank" href="{{$workshop->website}}">Visit</a></td>
-                                <td>
-                                  <a title="Modify" href="{{ route('workshops.edit', $workshop) }}" class="btn btn-xs btn-primary"><span class="fa fa-edit"></span></a>
-                                  <a href="#" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
-                                </td>
-                              </tr>
+                                <tr>
+                                  <td>{{$workshop->name}}</td>
+                                  <td>{{$workshop->user->telephone ?? ''}}</td>
+                                  <td>{{$workshop->postcode}}</td>
+                                  <td>{{$workshop->address1}}</td>
+                                  <td><a target="_blank" href="{{$workshop->website}}">Visit</a></td>
+                                  <td>
+                                      <form action="{{Route('workshops.approve', $workshop)}}" method="post">
+                                        @csrf
+                                        @method('PUT')
+                                        <a title="Modify" href="{{ route('workshops.edit', $workshop) }}" class="btn btn-xs btn-info"><span class="fa fa-edit"></span></a>
+                                        <span class="sweet-alert">
+                                          <button type="submit" title="approve" class="btn btn-xs btn-success sa-warning"><i class="fa fa-check"></i></button>
+                                        </span>
+                                        <a title="Reject" href="#" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#reject"><i class="fa fa-close"></i></a>
+                                      </form>
+                                  </td>
+                                </tr>
                               @endforeach
                             </tbody>
                         </table>
@@ -54,6 +61,12 @@ User Requests
         <!-- End col -->
     </div>
     <!-- End row -->
+
+    <!-- rejection modal -->
+    @include('partials.reject-modal', [
+        'route' => Route('workshops.index')
+    ])
+    <!-- end rejection modal -->
 </div>
 <!-- End Contentbar -->
 @endsection 

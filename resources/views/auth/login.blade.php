@@ -13,7 +13,7 @@
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
                                 <div class="form-head">
-                                    <a href="{{url('/')}}" class="logo"><img src="assets/images/logo.svg" class="img-fluid" alt="logo"></a>
+                                    <a href="{{url('/')}}" class="logo"><img src="{{asset('assets/images/logo.svg')}}" class="img-fluid" alt="logo"></a>
                                 </div>                                        
                                 <h4 class="text-primary my-4">Welcome</h4>
                                 <div class="form-group">

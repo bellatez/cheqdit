@@ -36,23 +36,21 @@ User Requests
                                 <td>{{$user->first_name}}</td>
                                 <td>{{$user->last_name}}</td>
                                 <td>{{$user->telephone}}</td>
-                                @foreach($user->roles as $role)
+                                @forelse($user->roles as $role)
                                   <td>{{$role->display_name}}</td>
-                                @endforeach
+                                @empty
+                                <td>No role assigned</td>
+                                @endforelse
                                 <td>
-                                  <form action="{{ route('users.destroy', $user->id) }}" method="post">
-                                      @csrf
-                                      @method('delete')
-                                      <a href="{{ route('users.edit', $user) }}" class="btn btn-xs btn-primary"><span class="fa fa-edit"></span></a> &nbsp;
-                                      @if($user->is_active == false)
-                                          <a href="{{ route('users.status', ['user'=>$user, 'value'=>'1']) }}" title="activate" class="btn btn-xs btn-success"><span class="fa fa-key"></span></a> &nbsp;
-                                      @else
-                                          <a href="{{ route('users.status', ['user'=>$user, 'value'=>'0']) }}" title="deactivate" class="btn btn-xs btn-warning"><span class="fa fa-ban"></span></a> &nbsp;
-                                      @endif
-                                      <button type="submit" class="btn btn-xs btn-danger confirm_delete">
-                                          <span class="fa fa-trash"></span>
-                                      </button>
-                                  </form>    
+                                  <form action="{{Route('users.approve', $user)}}" method="post">
+                                    @csrf
+                                    @method('PUT')
+                                    <a title="Modify" href="{{ route('users.edit', $user) }}" class="btn btn-xs btn-info"><span class="fa fa-edit"></span></a>
+                                    <span class="sweet-alert">
+                                      <button type="submit" title="approve" class="btn btn-xs btn-success sa-warning"><i class="fa fa-check"></i></button>
+                                    </span>
+                                    <a title="Reject" href="#" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#reject"><i class="fa fa-close"></i></a>
+                                  </form> 
                                 </td>
                               </tr>
                               @endforeach
@@ -65,6 +63,12 @@ User Requests
         <!-- End col -->
     </div>
     <!-- End row -->
+
+    <!-- rejection modal -->
+    @include('partials.reject-modal', [
+        'route' => Route('workshops.index')
+    ])
+    <!-- end rejection modal -->
 </div>
 <!-- End Contentbar -->
 @endsection 

@@ -48,8 +48,10 @@ Workshops
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                       <a class="dropdown-item" href="{{Route('workshops.show', $workshop)
-                                      }}">View</a>
+                                      }}">Deactivate</a>
                                       <a class="dropdown-item" href="{{Route('workshops.edit', $workshop)}}">Edit</a>
+                                    </div>
+                                    <a class="dropdown-item" href="{{Route('workshops.destroy', $workshop)}}">Delete</a>
                                     </div>
                                   </div>
                                 </td>

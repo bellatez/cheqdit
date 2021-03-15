@@ -21,6 +21,7 @@
         <link href="{{ asset('assets/css/icons.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('assets/css/flag-icon.min.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('assets/plugins/sweet-alert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
         <!-- End CSS -->
     </head>
     <body class="vertical-layout">
@@ -67,6 +68,9 @@
         @yield('script')
         <!-- Core JS -->
         <script src="{{ asset('assets/js/core.js') }}"></script>
+
+        <script src="{{ asset('assets/plugins/sweet-alert2/sweetalert2.min.js') }}"></script>
+        <script src="{{ asset('assets/js/custom/custom-sweet-alert.js') }}"></script>
         <!-- End JS -->
     </body>
 </html>
