@@ -45,9 +45,9 @@ User
                                       <i class="fas fa-ellipsis-v"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                      <a class="dropdown-item" href="{{Route('administrators.show', $admin->id)
+                                      <a class="dropdown-item" href="{{Route('users.show', $admin->id)
                                       }}">View</a>
-                                      <a class="dropdown-item" href="{{Route('administrators.edit', $admin->id)}}">Edit</a>
+                                      <a class="dropdown-item" href="{{Route('users.edit', $admin->id)}}">Edit</a>
                                     </div>
                                   </div>
                                 </td>

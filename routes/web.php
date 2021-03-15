@@ -11,11 +11,12 @@
 |
 */
 
-Auth::routes(['verify' => true]);
+Auth::routes();
 
 Route::redirect('', 'home');
 
 Route::group(['middleware' => ['auth', 'verified', 'role:superadministrator']], function () {});
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/advanced-ui-kits-image-crop', function () {
     return view('helpers.advanced-ui-kits-image-crop');
@@ -350,9 +351,6 @@ Route::get('/user-register', function () {
 Route::get('/widgets', function () {
     return view('helpers.widgets');
 });
-
-Route::get('/home', 'HomeController@index')->name('home');
-
 
 Route::fallback(function() {
  return 'Hm, why did you land here somehow?';

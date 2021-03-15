@@ -4,7 +4,7 @@ New Administrator
 @extends('layouts.main')
 @section('style')
 @section('header-btn')
-  <a href="{{route('administrators.index')}}" class="btn btn-info-rgba"><i class="feather icon-plus mr-2"></i>View List</a>
+  <a href="{{route('users.index')}}" class="btn btn-info-rgba"><i class="feather icon-plus mr-2"></i>View List</a>
 @endsection
 
 @endsection
@@ -32,10 +32,10 @@ New Administrator
                   </ul>
                   @endif
                     @if($user->exists)
-                        <form method="post" action="{{ route('administrators.update', $user) }}" autocomplete="off"  files="true" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('users.update', $user) }}" autocomplete="off"  files="true" enctype="multipart/form-data">
                         @method('PUT')
                     @else
-                      <form method="POST" action="{{ route('administrators.store') }}">
+                      <form method="POST" action="{{ route('users.store') }}">
                     @endif
                       @csrf
 
@@ -100,7 +100,7 @@ New Administrator
                             </div>
                         </div>
                     </div>
-                      <button type="submit" class="btn btn-primary-rgba btn-lg btn-block font-18">Submit</button>
+                      <button type="submit" class="btn btn-primary-rgba py-3 px-5 dash-btn">SUBMIT</button>
                     </form>
                 </div>
             </div>

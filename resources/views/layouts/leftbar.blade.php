@@ -85,8 +85,8 @@
                             <i class="fas fa-users"></i><span>Admin Team</span><i class="feather icon-chevron-right pull-right"></i>
                         </a>
                         <ul class="vertical-submenu">
-                            <li><a class="font-16" href="{{Route('administrators.index')}}">View All</a></li>
-                            <li><a class="font-16" href="{{Route('administrators.create')}}">Add Admin</a></li>
+                            <li><a class="font-16" href="{{Route('users.index')}}">View All</a></li>
+                            <li><a class="font-16" href="{{Route('users.create')}}">Add Admin</a></li>
                         </ul>
                     </li>
                 @endif

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Users;
 
 use App\Helpers\Generator;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRequest;
+use App\Mail\StatusUpdateMail;
 use App\Models\Admin;
 use App\Models\Organisation;
 use App\Models\Role;
@@ -30,7 +32,7 @@ class AdminController extends Controller
         $users = User::with('roles')->where('is_active',0)
                         ->where('type', 1)
                         ->where('email_verified_at', null)
-                        ->where('organisation_id', Auth::user()->organisation_id)
+                        ->where('organisation_id', auth()->user()->organisation_id)
                         ->get();
         return view('admins.request_list', compact('users'));
     }
@@ -59,14 +61,21 @@ class AdminController extends Controller
         // create a password for the workshop
         $password = Generator::password();
 
-        $user = User::create(array_merge($request->validated(), ['password' => $password]));
+        $user = User::create(array_merge($request->validated(), 
+            [
+                'password' => bcrypt($password), 
+                'type'=> 1, 
+                'organisation_id'=>auth()->user()->organisation_id,
+                'is_active'=> 1
+            ]
+        ));
         $user->syncRoles([$request->role_id]);
 
         $user->admin()->create();
 
-        //send password to workshop
-        $user->sendPasswordMail();
-        return redirect()->route('admins.index')->with('success', 'User Created Successfully');
+        //send password to admin
+        
+        return redirect()->route('users.index')->with('success', 'User Created Successfully');
 
     }
 
@@ -105,12 +114,21 @@ class AdminController extends Controller
     {
         $user->update($request->validated());
 
-        return redirect()->route('admins.index')->with('success', 'User\'s information updated successfully');;
+        return redirect()->route('users.index')->with('success', 'User\'s information updated successfully');;
     }
 
     public function approveAdmin(User $user)
     {
-        $user->update(['is_active' => 1]);
+        $user->update(['is_active' => 1, 'email_verified_at' => now()]);
+        //send email to user
+        $details = [
+            'title' => 'New Account Approval Notice',
+            'name' => $user->first_name,
+            'text' => 'Your account has been <b>APPROVED</b> by administrator. You can now login and access the portal'
+        ];
+
+        \Mail::to($user->email)->send(new \App\Mail\StatusUpdateMail($details));
+
         return back()->with('success', 'Admin approved successfully');
     }
 
