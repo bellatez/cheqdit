@@ -63,13 +63,13 @@ class AdminController extends Controller
         $organisations=Organisation::all();
         switch ($type) {
             case 'driver':
-                $roles=Role::where('display_name','driver')->get();
+                $roles=Role::where('name','driver')->get();
                 break;
             case 'mechanic':
-                $roles=Role::where('display_name','mechanic')->get();
+                $roles=Role::where('name','mechanic')->get();
                 break;
             default:
-                $roles=Role::where('display_name','<>','superadministrator')->get();
+                $roles=Role::where('name','<>','superadministrator')->get();
                 break;
         }
           return view('admins.create',compact('user','organisations','roles'));
