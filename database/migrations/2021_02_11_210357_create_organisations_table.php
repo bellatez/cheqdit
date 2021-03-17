@@ -27,7 +27,7 @@ class CreateOrganisationsTable extends Migration
             $table->foreignId('industry_type')
                     ->nullable()
                     ->constrained('industry_types')
-                    ->onDelete('null');
+                    ->onDelete('set null');
             $table->foreignId('company_size')
                     ->nullable()
                     ->constrained('company_size')

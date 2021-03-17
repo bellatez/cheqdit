@@ -73,6 +73,7 @@ class LaratrustSeeder extends Seeder
                     'password' => bcrypt('password')
                 ]);
                 $user->attachRole($role);
+                $user->admin()->create();
             }
 
         }

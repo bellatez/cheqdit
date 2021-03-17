@@ -56,25 +56,40 @@ $(document).ready(function() {
     };
     mediaSize();
     window.addEventListener('resize', mediaSize, false);
-    /* -- Switchery -- */
-    var setting_first = document.querySelector('.js-switch-setting-first');
-    var switchery = new Switchery(setting_first, { color: '#0080ff', size: 'small' });
-    var setting_second = document.querySelector('.js-switch-setting-second');
-    var switchery = new Switchery(setting_second, { color: '#0080ff', size: 'small' });
-    var setting_third = document.querySelector('.js-switch-setting-third');
-    var switchery = new Switchery(setting_third, { color: '#0080ff', size: 'small' });
-    var setting_fourth = document.querySelector('.js-switch-setting-fourth');
-    var switchery = new Switchery(setting_fourth, { color: '#0080ff', size: 'small' });
-    var setting_fifth = document.querySelector('.js-switch-setting-fifth');
-    var switchery = new Switchery(setting_fifth, { color: '#0080ff', size: 'small' });
-    var setting_sixth = document.querySelector('.js-switch-setting-sixth');
-    var switchery = new Switchery(setting_sixth, { color: '#0080ff', size: 'small' });
-    var setting_seventh = document.querySelector('.js-switch-setting-seventh');
-    var switchery = new Switchery(setting_seventh, { color: '#0080ff', size: 'small' });
-    var setting_eightth = document.querySelector('.js-switch-setting-eightth');
-    var switchery = new Switchery(setting_eightth, { color: '#0080ff', size: 'small' });
+
     /* -- Bootstrap Popover -- */
     $('[data-toggle="popover"]').popover();
     /* -- Bootstrap Tooltip -- */
     $('[data-toggle="tooltip"]').tooltip();
+
+    // toggleswitch
+    // 
+    $('.org-status-switch').change(function () {
+        let is_active = $(this).prop('checked') === true ? 1 : 0;
+        let orgId = $(this).data('id');
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: window.updateOrgStatusLink,
+            data: {'is_active': is_active, 'org_id': orgId},
+            success: function (data) {
+                console.log(data.message);
+            }
+        });
+    });
+    
+    $('.status-switch').change(function () {
+        let is_active = $(this).prop('checked') === true ? 1 : 0;
+        let userId = $(this).data('id');
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: window.updateStatusLink,
+            data: {'is_active': is_active, 'user_id': userId},
+            success: function (data) {
+                console.log(data.message);
+            }
+        });
+    });
+
 });

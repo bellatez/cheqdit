@@ -18,6 +18,8 @@
         <link href="{{ asset('assets/plugins/switchery/switchery.min.css') }}" rel="stylesheet" type="text/css">
         <!-- DataTables css -->
         <link href="{{ asset('assets/plugins/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/bootstrap-toggle/css/bootstrap-toggle.min.css')}}" rel="stylesheet" type="text/css" />
+
         <link href="{{ asset('assets/css/icons.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('assets/css/flag-icon.min.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" type="text/css">
@@ -50,7 +52,8 @@
         <script src="{{ asset('assets/js/detect.js') }}"></script>
         <script src="{{ asset('assets/js/jquery.slimscroll.js') }}"></script>
         <script src="{{ asset('assets/js/vertical-menu.js') }}"></script>
-        <script src="{{ asset('assets/plugins/switchery/switchery.min.js') }}"></script>
+        {{-- bootstrap toggle --}}
+        <script src="{{ asset('assets/bootstrap-toggle/js/bootstrap-toggle.min.js') }}"></script>
         <!-- Datatable js -->
         <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('assets/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
@@ -67,6 +70,10 @@
         <script src="{{ asset('assets/js/custom/custom-table-datatable.js') }}"></script>
         @yield('script')
         <!-- Core JS -->
+        <script type="text/javascript">
+            window.updateOrgStatusLink = "{{Route('organisations.update.status')}}";
+            window.updateStatusLink = "{{Route('users.update.status')}}";
+        </script>
         <script src="{{ asset('assets/js/core.js') }}"></script>
 
         <script src="{{ asset('assets/plugins/sweet-alert2/sweetalert2.min.js') }}"></script>

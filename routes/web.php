@@ -16,7 +16,7 @@ Auth::routes();
 Route::redirect('', 'home');
 
 Route::group(['middleware' => ['auth', 'verified', 'role:superadministrator']], function () {});
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->middleware('activated')->name('home');
 
 Route::fallback(function() {
  return view('errors.404');

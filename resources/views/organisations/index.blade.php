@@ -29,6 +29,7 @@ Organisations
                                 <th>Contact</th>
                                 <th>Type</th>
                                 <th>Size</th>
+                                <th>Status</th>
                                 <th></th>
                             </tr>
                             </thead>
@@ -41,6 +42,9 @@ Organisations
                                 <td>{{$org->telephone}}</td>
                                 <td>{{$org->industryType->name ?? ''}}</td>
                                 <td>{{$org->companySize->size ?? ''}}</td>
+                                <td>
+                                  <input type="checkbox" class="org-status-switch" data-id="{{ $org->id }}" {{ $org->is_active == 1 ? 'checked' : '' }} data-toggle="toggle"  data-size="mini" data-width="50" data-onstyle="success" data-offstyle="light">
+                                </td>
                                 <td class="text-right">
                                   <div class="dropdown">
                                     <a class="btn btn-sm btn-icon-only" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

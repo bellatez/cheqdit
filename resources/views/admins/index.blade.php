@@ -4,7 +4,13 @@
 @extends('layouts.main')
 
 @section('header-btn')
-  <a href="{{route('users.create')}}" class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i>New admin</a>
+  @if(request()->type == 'drivers')
+    <a href="{{route('users.create', ['type'=>'driver'])}}" class="btn btn-info-rgba"><i class="feather icon-plus mr-2"></i>New driver</a>
+  @elseif(request()->type == 'mechanics')
+    <a href="{{route('users.create', ['type'=>'mechanic']) }}" class="btn btn-info-rgba"><i class="feather icon-plus mr-2"></i>New mechanic</a>
+  @else
+    <a href="{{route('users.create') }}" class="btn btn-info-rgba"><i class="feather icon-plus mr-2"></i>New admin</a>
+  @endif
 @endsection
 
 @section('rightbar-content')
@@ -27,7 +33,7 @@
                                 <th>Email</th>
                                 <th>Contact</th>
                                 <th>Organisation</th>
-                                <th>Is Active?</th>
+                                <th>Status</th>
                                 <th></th>
                             </tr>
                             </thead>
@@ -38,18 +44,18 @@
                                 <td>{{$admin->email ?? ''}}</td>
                                 <td>{{$admin->telephone ?? ''}}</td>
                                 <td>{{$admin->organisation->name ?? ''}}</td>
-                                <td>{{$admin->is_active ? 'Yes' : 'No' ?? ''}}</td>
+                                <td>
+                                  <input type="checkbox" class="status-switch" data-id="{{ $admin->id }}" {{ $admin->is_active == 1 ? 'checked' : '' }} data-toggle="toggle"  data-size="mini" data-width="50" data-onstyle="success" data-offstyle="light">
+                                </td>
                                 <td class="text-right">
-                                  <div class="dropdown">
-                                    <a class="btn btn-sm btn-icon-only" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                      <i class="fas fa-ellipsis-v"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                      <a class="dropdown-item" href="{{Route('users.show', $admin->id)
-                                      }}">View</a>
-                                      <a class="dropdown-item" href="{{Route('users.edit', $admin->id)}}">Edit</a>
-                                    </div>
-                                  </div>
+                                  <form action="{{Route('users.destroy', $admin)}}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <a title="Modify" href="{{ route('users.edit', ['user' =>$admin, 'type'=>$admin->roles[0]->name]) }}" class="btn btn-xs btn-info"><span class="fa fa-edit"></span></a>
+                                    <span class="sweet-alert">
+                                      <button type="submit" title="delete" class="btn btn-xs btn-danger sa-warning"><i class="fa fa-trash"></i></button>
+                                    </span>
+                                  </form> 
                                 </td>
                               </tr>
                               @endforeach
@@ -65,8 +71,4 @@
 </div>
 <!-- End Contentbar -->
 @endsection
-@section('script')
-<!-- Tabledit js -->
-<script src="{{ asset('assets/plugins/tabledit/jquery.tabledit.js') }}"></script>
-<script src="{{ asset('assets/js/custom/custom-table-editable.js') }}"></script>
-@endsection
+

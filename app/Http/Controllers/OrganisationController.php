@@ -126,4 +126,14 @@ class OrganisationController extends Controller
         $organisation->delete();
         return redirect()->route('organisations.index')->with('success', 'Organisation\'s information deleted successfully');
     }
+
+    public function toggleStatus(Request $request)
+    {
+        $org = Organisation::findOrFail($request->org_id);
+        $org->update([
+            'is_active' => $request->is_active
+        ]); 
+
+        return response()->json(['message' => 'Organisation status updated successfully.']);  
+    }
 }

@@ -35,8 +35,8 @@
             e.preventDefault();
             var form = $(this).parents('form');   
             swal({
-                title: 'Approve',
-                text: "You are about to approve a new registration",
+                title: 'Warning',
+                text: "This action cannot be undone",
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonClass: 'btn btn-success',

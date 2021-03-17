@@ -27,8 +27,7 @@ Workshops
                                 <th>email</th>
                                 <th>Address</th>
                                 <th>Postcode</th>
-                                <th>Contact</th>
-                                <th>Organisation</th>
+                                <th>Status</th>
                                 <th></th>
                             </tr>
                             </thead>
@@ -39,21 +38,18 @@ Workshops
                                 <td>{{$workshop->user->email}}</td>
                                 <td>{{$workshop->address1}}</td>
                                 <td>{{$workshop->postcode}}</td>
-                                <td>{{$workshop->user->telephone}}</td>
-                                <td>{{$workshop->user->organisation->name}}</td>
+                                <td>
+                                  <input type="checkbox" class="status-switch" data-id="{{ $workshop->user->id }}" {{ $workshop->user->is_active == 1 ? 'checked' : '' }} data-toggle="toggle"  data-size="mini" data-width="50" data-onstyle="success" data-offstyle="light">
+                                </td>
                                 <td class="text-right">
-                                  <div class="dropdown">
-                                    <a class="btn btn-sm btn-icon-only" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                      <i class="fas fa-ellipsis-v"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                      <a class="dropdown-item" href="{{Route('workshops.show', $workshop)
-                                      }}">Deactivate</a>
-                                      <a class="dropdown-item" href="{{Route('workshops.edit', $workshop)}}">Edit</a>
-                                    </div>
-                                    <a class="dropdown-item" href="{{Route('workshops.destroy', $workshop)}}">Delete</a>
-                                    </div>
-                                  </div>
+                                    <form action="{{Route('workshops.destroy', $workshop)}}" method="post">
+                                      @csrf
+                                      @method('DELETE')
+                                      <a title="Modify" href="{{Route('workshops.edit', $workshop)}}" class="btn btn-xs btn-info"><span class="fa fa-edit"></span></a>
+                                      <span class="sweet-alert">
+                                        <button type="submit" title="delete" class="btn btn-xs btn-danger sa-warning"><i class="fa fa-trash"></i></button>
+                                      </span>
+                                    </form> 
                                 </td>
                               </tr>
                               @endforeach
