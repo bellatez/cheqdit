@@ -34,7 +34,7 @@ Workshops
                             <tbody>
                               @foreach($workshops as $workshop)
                               <tr>
-                                <td>{{$workshop->name}}</td>
+                                <td><a href="{{Route('workshops.edit', $workshop)}}">{{$workshop->name}}</a></td>
                                 <td>{{$workshop->user->email}}</td>
                                 <td>{{$workshop->address1}}</td>
                                 <td>{{$workshop->postcode}}</td>

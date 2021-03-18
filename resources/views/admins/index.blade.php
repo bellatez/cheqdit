@@ -40,7 +40,7 @@
                             <tbody>
                               @foreach($admins as $admin)
                               <tr>
-                                <td>{{$admin->full_name ?? ''}}</td>
+                                <td><a href="{{Route('users.edit', $admin)}}">{{$admin->full_name ?? ''}}</a></td>
                                 <td>{{$admin->email ?? ''}}</td>
                                 <td>{{$admin->telephone ?? ''}}</td>
                                 <td>{{$admin->organisation->name ?? ''}}</td>

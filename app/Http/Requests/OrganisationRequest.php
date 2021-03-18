@@ -26,6 +26,8 @@ class OrganisationRequest extends FormRequest
         return [
             'name' => 'required',
             'address1' => 'required',
+            'address2' => 'string',
+            'address3' => 'string',
             'postcode' => 'required',
             'email' => 'required|email|string',
             'telephone' => 'required',

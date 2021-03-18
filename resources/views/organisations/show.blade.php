@@ -130,9 +130,9 @@ Organisation Details
                                                       <i class="fas fa-ellipsis-v"></i>
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                      <a class="dropdown-item" href="{{Route('user.show', $admin)
+                                                      <a class="dropdown-item" href="{{Route('users.show', $admin)
                                                       }}">View</a>
-                                                      <a class="dropdown-item" href="{{Route('user.edit', $admin)}}">Edit</a>
+                                                      <a class="dropdown-item" href="{{Route('users.edit', $admin)}}">Edit</a>
                                                     </div>
                                                   </div>
                                                 </td>
@@ -159,15 +159,15 @@ Organisation Details
                                         <thead>
                                             <tr>
                                                 <th scope="col">Active</th>
-                                                <th scope="col">Pending</th>
+                                                {{-- <th scope="col">Pending</th> --}}
                                                 <th scope="col">Workshops</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>30</td>
-                                                <td>0</td>
-                                                <td>0</td>
+                                                <td>{{$user_count}}</td>
+                                                {{-- <td></td> --}}
+                                                <td>{{$wrkshop_count}}</td>
                                             </tr>
                                         </tbody>
                                     </table>

@@ -8,6 +8,7 @@ use App\Http\Requests\UserRequest;
 use App\Models\CompanySize;
 use App\Models\IndustryType;
 use App\Models\Organisation;
+use App\Models\Workshop;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -85,7 +86,13 @@ class OrganisationController extends Controller
     public function show(Organisation $organisation)
     {
         $admins = User::where('organisation_id', $organisation->id)->whereRoleIs(['administrator', 'subadministrator'])->get();
-        return view('organisations.show', compact('organisation', 'admins'));
+        $user_count = User::where('organisation_id', $organisation->id)
+                    ->where('is_active', 1)
+                    ->count();
+        $wrkshop_count = Workshop::whereHas('user', function($query) use($organisation) {
+            $query->where('organisation_id', $organisation->id);
+        })->count();
+        return view('organisations.show', compact('organisation', 'admins', 'wrkshop_count', 'user_count'));
     }
 
     /**

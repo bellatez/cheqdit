@@ -36,7 +36,7 @@ Organisations
                             <tbody>
                               @foreach($orgs as $org)
                               <tr>
-                                <td>{{$org->name}}</td>
+                                <td><a href="{{route('organisations.show', $org)}}">{{$org->name}}</a></td>
                                 <td>{{$org->address1}}</td>
                                 <td>{{$org->postcode}}</td>
                                 <td>{{$org->telephone}}</td>
