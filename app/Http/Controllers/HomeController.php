@@ -23,9 +23,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if(auth()->user()->is_active){
+        if(auth()->user()->is_active && auth()->user()->email_verified_at != null){
             return view('dashboard.index');
-        }else {
+        }
+        elseif (auth()->user()->email_verified_at == null) {
+            return view('users.password-reset');
+        }
+        else {
             return view('home');
         }
     }

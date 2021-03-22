@@ -1,10 +1,16 @@
 @section('title')
-New Administrator
+New {{ ucwords(request()->type ?? 'administrator') }}  
 @endsection
 @extends('layouts.main')
 @section('style')
 @section('header-btn')
-  <a href="{{route('administrators.index')}}" class="btn btn-info-rgba"><i class="feather icon-plus mr-2"></i>View List</a>
+  @if(request()->type == 'driver')
+    <a href="{{route('users.index', ['type'=>'drivers'])}}" class="btn btn-info-rgba"><i class="feather icon-plus mr-2"></i>View List</a>
+  @elseif(request()->type == 'mechanic')
+    <a href="{{route('users.index', ['type'=>'mechanics']) }}" class="btn btn-info-rgba"><i class="feather icon-plus mr-2"></i>View List</a>
+  @else
+    <a href="{{route('users.index') }}" class="btn btn-info-rgba"><i class="feather icon-plus mr-2"></i>View List</a>
+  @endif
 @endsection
 
 @endsection
@@ -18,9 +24,9 @@ New Administrator
             <div class="card m-b-30">
                 <div class="card-header">
                   @if($user->exists)
-                    <h5 class="card-title">Edit administrator's details</h5>
+                    <h5 class="card-title">Edit {{ request()->type ?? 'administrator' }}'s details</h5>
                   @else
-                    <h5 class="card-title">Fill in the administrator's details</h5>
+                    <h5 class="card-title">Fill in the {{ request()->type ?? 'administrator' }}'s details</h5>
                   @endif
                 </div>
                 <div class="card-body">
@@ -32,10 +38,10 @@ New Administrator
                   </ul>
                   @endif
                     @if($user->exists)
-                        <form method="post" action="{{ route('administrators.update', $user) }}" autocomplete="off"  files="true" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('users.update', $user) }}" autocomplete="off"  files="true" enctype="multipart/form-data">
                         @method('PUT')
                     @else
-                      <form method="POST" action="{{ route('administrators.store') }}">
+                      <form method="POST" action="{{ route('users.store') }}">
                     @endif
                       @csrf
 
@@ -118,7 +124,7 @@ New Administrator
                             </div>
                         </div>
                     </div>
-                      <button type="submit" class="btn btn-primary-rgba btn-lg btn-block font-18">Submit</button>
+                      <button type="submit" class="btn btn-primary-rgba py-3 px-5 dash-btn">SUBMIT</button>
                     </form>
                 </div>
             </div>

@@ -31,21 +31,21 @@
             )
         });
         /* -- Sweet Alert - Warning -- */
-        $("body").on("click", "#sa-warning", function() {      
+        $("body").on("click", ".sa-warning", function(e) {   
+            e.preventDefault();
+            var form = $(this).parents('form');   
             swal({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: 'Approve',
+                text: "You are about to approve a new registration",
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonClass: 'btn btn-success',
                 cancelButtonClass: 'btn btn-danger m-l-10',
-                confirmButtonText: 'Yes, delete it!'
-            }).then(function () {
-                swal(
-                    'Deleted!',
-                    'Your data has been deleted.',
-                    'success'
-                    )
+                confirmButtonText: 'Yes, approve!'
+            }).then(function (result) {
+                if (result) {
+                    form.trigger("submit")
+                } 
             })
         });
         /* -- Sweet Alert - Parameter -- */

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Users;
 
 use App\Helpers\Generator;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRequest;
+use App\Mail\StatusUpdateMail;
 use App\Models\Admin;
 use App\Models\Organisation;
 use App\Models\Role;
@@ -17,12 +19,37 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($type = null)
     {
-        $admins = Admin::all();
+        $user = new User();
+        switch ($type) {
+            case 'drivers':
+                $admins = $user->fetchUsersBaseQuery()->whereRoleIs('driver')->get();
+                break;
+            case 'mechanics':
+                $admins = $user->fetchUsersBaseQuery()->whereRoleIs('mechanic')->get();
+                break;
+            default:
+                $admins = $user->fetchUsersBaseQuery()
+                        ->where(function($query){
+                            $query->orWhereRoleIs('administrator');
+                            $query->orWhereRoleIs('subadministrator');
+                        })->get();
+                break;
+        }
 
-        // return $admins;
         return view('admins.index', compact('admins'));
+    }
+
+
+    public function requestList()
+    {
+        $users = User::with('roles')->where('is_active',0)
+                        ->where('type', 1)
+                        ->where('email_verified_at', null)
+                        ->where('organisation_id', auth()->user()->organisation_id)
+                        ->get();
+        return view('admins.request_list', compact('users'));
     }
 
     /**
@@ -30,11 +57,21 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($type = null)
     {
         $user = new Admin();
         $organisations=Organisation::all();
-        $roles=Role::all();
+        switch ($type) {
+            case 'driver':
+                $roles=Role::where('display_name','driver')->get();
+                break;
+            case 'mechanic':
+                $roles=Role::where('display_name','mechanic')->get();
+                break;
+            default:
+                $roles=Role::where('display_name','<>','superadministrator')->get();
+                break;
+        }
           return view('admins.create',compact('user','organisations','roles'));
     }
 
@@ -49,14 +86,21 @@ class AdminController extends Controller
         // create a password for the workshop
         $password = Generator::password();
 
-        $user = User::create(array_merge($request->validated(), ['password' => $password]));
+        $user = User::create(array_merge($request->validated(), 
+            [
+                'password' => bcrypt($password), 
+                'type'=> 1, 
+                'organisation_id'=>auth()->user()->organisation_id,
+                'is_active'=> 1
+            ]
+        ));
         $user->syncRoles([$request->role_id]);
 
         $user->admin()->create();
 
-        //send password to workshop
-        $user->sendPasswordMail();
-        return redirect()->route('admins.index')->with('success', 'User Created Successfully');
+        //send password to admin
+        
+        return redirect()->route('users.index')->with('success', 'User Created Successfully');
 
     }
 
@@ -95,7 +139,22 @@ class AdminController extends Controller
     {
         $user->update($request->validated());
 
-        return redirect()->route('admins.index')->with('success', 'User\'s information updated successfully');;
+        return redirect()->route('users.index')->with('success', 'User\'s information updated successfully');;
+    }
+
+    public function approveAdmin(User $user)
+    {
+        $user->update(['is_active' => 1, 'email_verified_at' => now()]);
+        //send email to user
+        $details = [
+            'title' => 'New Account Approval Notice',
+            'name' => $user->first_name,
+            'text' => 'Your account has been <b>APPROVED</b> by administrator. You can now login and access the portal'
+        ];
+
+        \Mail::to($user->email)->send(new \App\Mail\StatusUpdateMail($details));
+
+        return back()->with('success', 'Admin approved successfully');
     }
 
     /**
