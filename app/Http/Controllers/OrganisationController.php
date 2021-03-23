@@ -22,7 +22,7 @@ class OrganisationController extends Controller
      */
     public function index()
     {
-        $orgs = Organisation::all();
+        $orgs = Organisation::with(['companySize','industryType'])->get();
         return view('organisations.index', compact('orgs'));
     }
 

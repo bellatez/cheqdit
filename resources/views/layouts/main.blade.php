@@ -17,7 +17,10 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/plugins/switchery/switchery.min.css') }}" rel="stylesheet" type="text/css">
         <!-- DataTables css -->
-        <link href="{{ asset('assets/plugins/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+        <!-- Responsive Datatable css -->
+        <link href="{{ asset('assets/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/bootstrap-toggle/css/bootstrap-toggle.min.css')}}" rel="stylesheet" type="text/css" />
 
         <link href="{{ asset('assets/css/icons.css') }}" rel="stylesheet" type="text/css">

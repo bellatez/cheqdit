@@ -33296,7 +33296,7 @@ input[type=range]:focus {
 ---------------------------------------
 */
 .authenticate-bg {
-  background: url(../images/authentication/authentication-bg.svg);
+  background: url(../images/authentication/authentication-bg.jpg);
   background-size: cover;
   background-position: center;
   min-height: 100vh;
@@ -33721,7 +33721,7 @@ input[type=range]:focus {
 
 .table-hover tbody tr:hover {
   color: #282828;
-  background-color: #d4d8de;
+  background-color: #f2f2f2;
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
