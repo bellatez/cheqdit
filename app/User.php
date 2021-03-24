@@ -55,7 +55,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function getTelephoneAttribute()
+    public function getTelephone()
     {
         return '+44 (0)'.$this->telephone;
     } 
