@@ -108,7 +108,10 @@
                                 </span>
                                 @endif
                             </div>
-                            <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">+44 (0)</span>
+                                </div>
                                 <input type="tel" class="form-control" name="telephone"
                                 value="{{old('telephone', $user->telephone)}}" placeholder="Enter Phone Number"
                                 required>

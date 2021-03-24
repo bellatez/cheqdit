@@ -29,6 +29,7 @@ Organisations
                                 <th>Contact</th>
                                 <th>Type</th>
                                 <th>Size</th>
+                                <th>Created</th>
                                 <th>Status</th>
                                 <th></th>
                             </tr>
@@ -42,6 +43,7 @@ Organisations
                                 <td>{{$org->telephone}}</td>
                                 <td>{{$org->industryType->name ?? ''}}</td>
                                 <td>{{$org->companySize->size ?? ''}}</td>
+                                <td>{{$org->created_at->format('d-M-Y H:m:s')}}</td>
                                 <td>
                                   <input type="checkbox" class="org-status-switch" data-id="{{ $org->id }}" {{ $org->is_active == 1 ? 'checked' : '' }} data-toggle="toggle"  data-size="mini" data-width="50" data-onstyle="success" data-offstyle="light">
                                 </td>
@@ -55,6 +57,27 @@ Organisations
                                       }}">View</a>
                                       <a class="dropdown-item" href="{{Route('organisations.edit', $org)}}">Edit</a>
                                       <a class="dropdown-item" href="{{Route('organisations.user', $org)}}">Add Admin</a>
+                                      <a class="dropdown-item" href="{{Route('organisations.destroy', $org)}}"
+                                         onclick="event.preventDefault();
+                                         swal({
+                                             title: 'Are you sure?',
+                                             text: 'You won\'t be able to revert this!',
+                                             type: 'warning',
+                                             showCancelButton: true,
+                                             confirmButtonText: 'Yes, delete it!',
+                                             cancelButtonText: 'No, cancel!',
+                                             confirmButtonClass: 'btn btn-success',
+                                             cancelButtonClass: 'btn btn-danger m-l-10',
+                                             buttonsStyling: false
+                                         }).then(function (result) {
+                                            if (result) {
+                                                document.getElementById({{$org->id}}).submit();
+                                            } 
+                                          })">Delete</a>
+                                        <form id="{{$org->id}}" action="{{ Route('organisations.destroy', $org)}}}}" method="POST" style="display: none;">
+                                            @csrf
+                                            @method('delete')
+                                        </form>
                                     </div>
                                   </div>
                                 </td>

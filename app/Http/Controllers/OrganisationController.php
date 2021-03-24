@@ -130,12 +130,15 @@ class OrganisationController extends Controller
      */
     public function destroy(Organisation $organisation)
     {
+        $users = User::where('organisation_id', $organisation->id)->update(['is_active'=> 0]);
         $organisation->delete();
-        return redirect()->route('organisations.index')->with('success', 'Organisation\'s information deleted successfully');
+
+        return redirect()->route('organisations.index')->with('success', 'Organisation deleted successfully');
     }
 
     public function toggleStatus(Request $request)
     {
+        $users = User::where('organisation_id', $request->org_id)->update(['is_active'=> $request->is_active]);
         $org = Organisation::findOrFail($request->org_id);
         $org->update([
             'is_active' => $request->is_active
