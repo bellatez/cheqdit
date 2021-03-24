@@ -55,6 +55,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function getTelephoneAttribute()
+    {
+        return '+44 (0)'.$this->attributes['telephone'];
+    } 
+    
     public function workshop()
     {
         return $this->hasOne(Workshop::class);
