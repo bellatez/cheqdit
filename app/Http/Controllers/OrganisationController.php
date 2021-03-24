@@ -10,6 +10,7 @@ use App\Models\IndustryType;
 use App\Models\Organisation;
 use App\Models\Workshop;
 use App\User;
+use App\sendPasswordMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -53,6 +54,16 @@ class OrganisationController extends Controller
     public function store(OrganisationRequest $request)
     {
         $org = Organisation::create($request->validated());
+
+        //send email to user
+        $details = [
+            'title' => 'New Organisation Creation',
+            'name' => $organisation->name,
+            'text' => 'Your organisation has been added to the cheqd-it portal. You can now manage your activities through this portal'
+        ];
+
+        \Mail::to($org->email)->send(new \App\Mail\StatusUpdateMail($details));
+
         return redirect()->route('organisations.user', $org)->with('success', 'Organisation added successfully');
     }
     /**
@@ -74,6 +85,10 @@ class OrganisationController extends Controller
                 'organisation_id' => $org
             ]));
         $user->syncRoles([2]);
+        $user->admin()->create();
+
+        //send password to admin
+        $user->sendPasswordMail($password);
 
         return redirect()->route('organisations.index')->with('success', 'Admin Successfully created');
     }
