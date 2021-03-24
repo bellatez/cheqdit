@@ -58,7 +58,7 @@ class OrganisationController extends Controller
         //send email to user
         $details = [
             'title' => 'New Organisation Creation',
-            'name' => $organisation->name,
+            'name' => $org->name,
             'text' => 'Your organisation has been added to the cheqd-it portal. You can now manage your activities through this portal'
         ];
 

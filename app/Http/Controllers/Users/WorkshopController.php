@@ -73,7 +73,7 @@ class WorkshopController extends Controller
         //send password to workshop
         $user->sendPasswordMail($password);
         
-        return redirect()->route('workshops.index')->with('success', 'New workshop created successfully and mail sent to workshop with Details');
+        return redirect()->route('workshops.index')->with('success', 'New workshop created successfully and mail sent to workshop with Details <br> When workshop accesses the portal the registration will be complete');
     }
 
     /**
