@@ -33,8 +33,8 @@ class Organisation extends Model
     	return $this->belongsTo(CompanySize::class, 'company_size')->withDefault();
     }
 
-    public function getTelephoneAttribute()
+    public function getTelephone()
     {
-    	return '+44 (0)'.$this->attributes['telephone'];
+    	return '+44 (0)'.$this->telephone;
     }
 }

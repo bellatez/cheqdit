@@ -57,9 +57,9 @@ class User extends Authenticatable
 
     public function getTelephoneAttribute()
     {
-        return '+44 (0)'.$this->attributes['telephone'];
+        return '+44 (0)'.$this->telephone;
     } 
-    
+
     public function workshop()
     {
         return $this->hasOne(Workshop::class);

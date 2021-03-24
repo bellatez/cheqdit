@@ -66,7 +66,7 @@ Organisation Details
                                                 <tbody>
                                                     <tr>
                                                         <th scope="row">Telephone</th>
-                                                        <td>{{$organisation->telephone}}</td>
+                                                        <td>{{$organisation->getTelephone()}}</td>
                                                     </tr>
                                                     <tr>
                                                         <th scope="row">Website</th>

@@ -42,7 +42,7 @@
                               <tr>
                                 <td><a href="{{Route('users.edit', $admin)}}">{{$admin->full_name ?? ''}}</a></td>
                                 <td>{{$admin->email ?? ''}}</td>
-                                <td>{{$admin->telephone ?? ''}}</td>
+                                <td>{{$admin->getTelephone() ?? ''}}</td>
                                 <td>{{$admin->organisation->name ?? ''}}</td>
                                 <td>
                                   <input type="checkbox" class="status-switch" data-id="{{ $admin->id }}" {{ $admin->is_active == 1 ? 'checked' : '' }} data-toggle="toggle"  data-size="mini" data-width="50" data-onstyle="success" data-offstyle="light">

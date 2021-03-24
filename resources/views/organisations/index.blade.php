@@ -40,7 +40,7 @@ Organisations
                                 <td><a href="{{route('organisations.show', $org)}}">{{$org->name}}</a></td>
                                 <td>{{$org->address1}}</td>
                                 <td>{{$org->postcode}}</td>
-                                <td>{{$org->telephone}}</td>
+                                <td>{{$org->getTelephone()}}</td>
                                 <td>{{$org->industryType->name ?? ''}}</td>
                                 <td>{{$org->companySize->size ?? ''}}</td>
                                 <td>{{$org->created_at->format('d-M-Y H:m:s')}}</td>
