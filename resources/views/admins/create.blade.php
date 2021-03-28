@@ -55,11 +55,12 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+
                                 <input type="text" class="form-control" name="last_name"
                                     value="{{old('last_name', $user->last_name)}}" placeholder="Enter Last Name" required>
                                     @if ($errors->has('last_name'))
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('last_name') }}</strong>
+                                    <strong>{{ $errors->first('role_id') }}</strong>
                                 </span>
                                 @endif
                             </div>
@@ -98,13 +99,13 @@
                                     @foreach($roles as $role)
                                     <option value="{{$role->id}}" {{old('role_id', $user->roles!=null ? $user->roles[0]->id : '') == $role->id ?
                                         'selected': ''}}>
-                                        {{$role->display_name}}
+                                        {{$organistation->name}}
                                     </option>
                                     @endforeach
                                 </select>
-                                @if ($errors->has('role_id'))
+                                @if ($errors->has('organisation_id'))
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('role_id') }}</strong>
+                                    <strong>{{ $errors->first('organisation_id') }}</strong>
                                 </span>
                                 @endif
                             </div>

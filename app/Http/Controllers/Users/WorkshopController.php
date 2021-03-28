@@ -35,7 +35,7 @@ class WorkshopController extends Controller
             ->where('reject', 0)
             ->where('organisation_id', auth()->user()->organisation_id);
         })->get();
-        return view('workshop.request_list', compact('workshops'));       
+        return view('workshop.request_list', compact('workshops'));
     }
 
     /**
@@ -60,12 +60,13 @@ class WorkshopController extends Controller
         // create a password for the workshop
         $password = Generator::password();
 
-        $user = User::create(array_merge($request->validated(), 
+        $user = User::create(array_merge($request->validated(),
             [
-                'password' => bcrypt($password), 
-                'is_active' => 1, 
-                'type' => 2, 
-                'organisation_id' => auth()->user()->organisation_id
+                'password' => Hash::make($password),
+                'is_active' => 1,
+                'type' => 2,
+                'email_verified_at' => now(),
+                'organisation_id' => auth()->user()->organisation->id
             ]
         ));
 
