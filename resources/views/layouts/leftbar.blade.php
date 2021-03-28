@@ -10,8 +10,8 @@
         <!-- Start Navigationbar -->
         <div class="navigationbar">
             <ul class="vertical-menu">
-                <h6 class="text-small leftbar-subs mt-3"><small>DASHBOARD</small></h6>
-                <li><a class="font-16" href="{{url('/')}}"><i class="fa fa-dashboard"></i><span>My Dashboard</span></a></li>
+                <h6 class="text-small leftbar-subs mt-3">  <a href="javaScript:void();" class="font-16"><small>DASHBOARD</small></a></h6>
+                <li><a href="{{url('/')}}"><i class="fa fa-dashboard"></i><span>My Dashboard</span></a></li>
                 @if(Auth::user()->hasRole('administrator|subadministrator'))
                     <li><a class="font-16" href="{{url('/dashboard-ecommerce')}}"><i class="fas fa-bell"></i><span>My Notifications</span></a></li>
                     <li><a class="font-16" href="{{url('/dashboard-hospital')}}"><i class="fas fa-cc"></i><span>My Credits</span></a></li>

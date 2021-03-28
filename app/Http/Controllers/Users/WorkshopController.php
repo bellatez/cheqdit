@@ -9,6 +9,10 @@ use App\Http\Requests\WorkshopRequest;
 use App\Models\Workshop;
 use App\User;
 use Illuminate\Http\Request;
+<<<<<<< HEAD
+use Illuminate\Support\Facades\Hash;
+=======
+>>>>>>> 31e9bb435c9317adb9d2e3098946761c4d7576ae
 
 class WorkshopController extends Controller
 {
@@ -32,7 +36,7 @@ class WorkshopController extends Controller
             ->where('email_verified_at', null)
             ->where('organisation_id', auth()->user()->organisation_id);
         })->get();
-        return view('workshop.request_list', compact('workshops'));       
+        return view('workshop.request_list', compact('workshops'));
     }
 
     /**
@@ -57,20 +61,34 @@ class WorkshopController extends Controller
         // create a password for the workshop
         $password = Generator::password();
 
-        $user = User::create(array_merge($request->validated(), 
+        $user = User::create(array_merge($request->validated(),
             [
+<<<<<<< HEAD
+                'password' => Hash::make($password),
+                'is_active' => 1,
+                'type' => 2,
+                'email_verified_at' => now(),
+                'organisation_id' => auth()->user()->organisation->id
+=======
                 'password' => bcrypt($password), 
                 'is_active' => 1, 
                 'type' => 2, 
                 'organisation_id' => auth()->user()->organisation_id
+>>>>>>> 31e9bb435c9317adb9d2e3098946761c4d7576ae
             ]
         ));
 
         $user->workshop()->create($request->validated());
         //send password to workshop
+<<<<<<< HEAD
+        // $user->sendPasswordMail();
+
+        return redirect()->route('workshop.index')->with('success', 'New workshop created successfully and mail sent to workshop with Details');
+=======
         $user->sendPasswordMail($password);
         
         return redirect()->route('workshops.index')->with('success', 'New workshop created successfully and mail sent to workshop with Details');
+>>>>>>> 31e9bb435c9317adb9d2e3098946761c4d7576ae
     }
 
     /**

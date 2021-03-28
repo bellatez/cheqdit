@@ -59,26 +59,6 @@ New {{ ucwords(request()->type ?? 'administrator') }}
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="last_name"
-                                    value="{{old('last_name')}}" placeholder="Enter Last Name" required>
-                                    @if ($errors->has('last_name'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('last_name') }}</strong>
-                                </span>
-                                @endif
-                            </div>
-                            <div class="form-group">
-                                <input type="email" class="form-control" name="email"
-                                    value="{{old('email')}}" placeholder="Enter Email" required>
-                                @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
                                 <select class="form-control" name="role_id">
                                     <option selected disabled>Select Role</option>
                                     @foreach($roles as $role)
@@ -94,6 +74,44 @@ New {{ ucwords(request()->type ?? 'administrator') }}
                                 </span>
                                 @endif
                             </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" name="email"
+                                    value="{{old('email')}}" placeholder="Enter Email" required>
+                                @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="last_name"
+                                    value="{{old('last_name')}}" placeholder="Enter Last Name" required>
+                                    @if ($errors->has('last_name'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('last_name') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+
+                            <div class="form-group">
+                                <select class="form-control" name="organisation_id">
+                                    <option selected disabled>Select Your Organisation</option>
+                                    @foreach($organisations as $organisation)
+                                    <option value="{{$organisation->id}}" {{old('organisation_id')==$organisation->id ?
+                                        'selected': ''}}>
+                                        {{$organistation->name}}
+                                    </option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('organisation_id'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('organisation_id') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+
                             <div class="form-group">
                                 <input type="tel" class="form-control" name="telephone"
                                 value="{{old('telephone')}}" placeholder="Enter Phone Number"
