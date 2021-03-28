@@ -16,6 +16,13 @@
                                     <a href="{{url('/')}}" class="logo"><img src="{{asset('assets/images/logo.svg')}}" class="img-fluid" alt="logo"></a>
                                 </div>                                        
                                 <h4 class="text-primary my-4">Welcome</h4>
+                                @if(session()->has('warning'))
+                                    <h5 class="alert alert-danger alert-dismissible fade show">{{session()->get('warning')}}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </h5>
+                                @endif
                                 <div class="form-group">
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Enter email address">
 

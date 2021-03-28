@@ -8,7 +8,9 @@ use App\Http\Requests\UserRequest;
 use App\Models\CompanySize;
 use App\Models\IndustryType;
 use App\Models\Organisation;
+use App\Models\Workshop;
 use App\User;
+use App\sendPasswordMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -21,7 +23,7 @@ class OrganisationController extends Controller
      */
     public function index()
     {
-        $orgs = Organisation::all();
+        $orgs = Organisation::with(['companySize','industryType'])->get();
         return view('organisations.index', compact('orgs'));
     }
 
@@ -52,6 +54,16 @@ class OrganisationController extends Controller
     public function store(OrganisationRequest $request)
     {
         $org = Organisation::create($request->validated());
+
+        //send email to user
+        $details = [
+            'title' => 'New Organisation Creation',
+            'name' => $org->name,
+            'text' => 'Your organisation has been added to the cheqd-it portal. You can now manage your activities through this portal'
+        ];
+
+        \Mail::to($org->email)->send(new \App\Mail\StatusUpdateMail($details));
+
         return redirect()->route('organisations.user', $org)->with('success', 'Organisation added successfully');
     }
     /**
@@ -73,6 +85,10 @@ class OrganisationController extends Controller
                 'organisation_id' => $org
             ]));
         $user->syncRoles([2]);
+        $user->admin()->create();
+
+        //send password to admin
+        $user->sendPasswordMail($password);
 
         return redirect()->route('organisations.index')->with('success', 'Admin Successfully created');
     }
@@ -85,7 +101,13 @@ class OrganisationController extends Controller
     public function show(Organisation $organisation)
     {
         $admins = User::where('organisation_id', $organisation->id)->whereRoleIs(['administrator', 'subadministrator'])->get();
-        return view('organisations.show', compact('organisation', 'admins'));
+        $user_count = User::where('organisation_id', $organisation->id)
+                    ->where('is_active', 1)
+                    ->count();
+        $wrkshop_count = Workshop::whereHas('user', function($query) use($organisation) {
+            $query->where('organisation_id', $organisation->id);
+        })->count();
+        return view('organisations.show', compact('organisation', 'admins', 'wrkshop_count', 'user_count'));
     }
 
     /**
@@ -123,7 +145,20 @@ class OrganisationController extends Controller
      */
     public function destroy(Organisation $organisation)
     {
+        $users = User::where('organisation_id', $organisation->id)->update(['is_active'=> 0]);
         $organisation->delete();
-        return redirect()->route('organisations.index')->with('success', 'Organisation\'s information deleted successfully');
+
+        return redirect()->route('organisations.index')->with('success', 'Organisation deleted successfully');
+    }
+
+    public function toggleStatus(Request $request)
+    {
+        $users = User::where('organisation_id', $request->org_id)->update(['is_active'=> $request->is_active]);
+        $org = Organisation::findOrFail($request->org_id);
+        $org->update([
+            'is_active' => $request->is_active
+        ]); 
+
+        return response()->json(['message' => 'Organisation status updated successfully.']);  
     }
 }

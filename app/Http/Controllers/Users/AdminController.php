@@ -46,6 +46,7 @@ class AdminController extends Controller
     {
         $users = User::with('roles')->where('is_active',0)
                         ->where('type', 1)
+                        ->where('reject', 0)
                         ->where('email_verified_at', null)
                         ->where('organisation_id', auth()->user()->organisation_id)
                         ->get();
@@ -63,13 +64,13 @@ class AdminController extends Controller
         $organisations=Organisation::all();
         switch ($type) {
             case 'driver':
-                $roles=Role::where('display_name','driver')->get();
+                $roles=Role::where('name','driver')->get();
                 break;
             case 'mechanic':
-                $roles=Role::where('display_name','mechanic')->get();
+                $roles=Role::where('name','mechanic')->get();
                 break;
             default:
-                $roles=Role::where('display_name','<>','superadministrator')->get();
+                $roles=Role::where('name','<>','superadministrator')->get();
                 break;
         }
           return view('admins.create',compact('user','organisations','roles'));
@@ -90,7 +91,7 @@ class AdminController extends Controller
             [
                 'password' => bcrypt($password), 
                 'type'=> 1, 
-                'organisation_id'=>auth()->user()->organisation_id,
+                'organisation_id'=>$request->organisation_id ?? auth()->user()->organisation_id,
                 'is_active'=> 1
             ]
         ));
@@ -99,8 +100,8 @@ class AdminController extends Controller
         $user->admin()->create();
 
         //send password to admin
-        
-        return redirect()->route('users.index')->with('success', 'User Created Successfully');
+        $user->sendPasswordMail($password);
+        return redirect()->route('users.index', $user->roles[0]->name.'s')->with('success', $user->roles[0]->display_name.' Created Successfully');
 
     }
 
@@ -121,11 +122,22 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(User $user, $type = null)
     {
-        return view('admins.create',compact('user'));
-
-
+        $organisations=Organisation::all();
+        switch ($type) {
+            case 'driver':
+                $roles=Role::where('name','driver')->get();
+                break;
+            case 'mechanic':
+                $roles=Role::where('name','mechanic')->get();
+                break;
+            default:
+                $roles=Role::where('name','<>','superadministrator')->get();
+                break;
+        }
+        // return $user;
+        return view('admins.create',compact('user', 'roles', 'organisations'));
     }
 
     /**
@@ -139,22 +151,7 @@ class AdminController extends Controller
     {
         $user->update($request->validated());
 
-        return redirect()->route('users.index')->with('success', 'User\'s information updated successfully');;
-    }
-
-    public function approveAdmin(User $user)
-    {
-        $user->update(['is_active' => 1, 'email_verified_at' => now()]);
-        //send email to user
-        $details = [
-            'title' => 'New Account Approval Notice',
-            'name' => $user->first_name,
-            'text' => 'Your account has been <b>APPROVED</b> by administrator. You can now login and access the portal'
-        ];
-
-        \Mail::to($user->email)->send(new \App\Mail\StatusUpdateMail($details));
-
-        return back()->with('success', 'Admin approved successfully');
+        return redirect()->route('users.index', $user->roles[0]->name.'s')->with('success', $user->roles[0]->display_name.'\'s information updated successfully');;
     }
 
     /**
@@ -163,8 +160,22 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->admin()->delete();
+        $user->delete();
+        return back()->with('success', 'Deleted successfully');   
+    }
+
+    public function approveAdmin(User $user)
+    {
+        $user->approveUser();
+        return back()->with('success', 'Admin approved successfully');
+    }
+
+    public function rejectAdmin(User $user, Request $request)
+    {
+        $user->rejectUser($request);
+        return back()->with('success', 'User rejected and creator notified successfully');
     }
 }

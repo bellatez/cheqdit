@@ -19,7 +19,8 @@ class Organisation extends Model
 		'website',
 		'industry_type',
 		'company_size',
-		'billing_email'   	
+		'billing_email',
+		'is_active'	
     ];
 
     public function industryType()
@@ -30,5 +31,10 @@ class Organisation extends Model
     public function companySize()
     {
     	return $this->belongsTo(CompanySize::class, 'company_size')->withDefault();
+    }
+
+    public function getTelephone()
+    {
+    	return '+44 (0)'.$this->telephone;
     }
 }

@@ -8,8 +8,9 @@
             </button>
         </div>
         <div class="modal-body">
-            <form method="post" action="{{$route}}">
+            <form method='post' action="{{$route}}">
                 @csrf
+                @method('put')
                 <div class="form-group">
                     <label for="recipient-name" class="col-form-label">Title:</label>
                     <input type="text" class="form-control" name="title" required>
@@ -18,8 +19,7 @@
                     <label for="message-text" class="col-form-label">Reason for Rejection:</label>
                     <textarea class="form-control" name="message" required></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">Send message</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary-rgba py-3 px-5 dash-btn">Send message</button>
             </form>
         </div>
         </div>

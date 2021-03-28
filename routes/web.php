@@ -16,7 +16,11 @@ Auth::routes();
 Route::redirect('', 'home');
 
 Route::group(['middleware' => ['auth', 'verified', 'role:superadministrator']], function () {});
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->middleware('activated')->name('home');
+
+Route::get('/table-datatable', function () {
+    return view('helpers/table-datatable');
+});
 
 Route::fallback(function() {
  return view('errors.404');

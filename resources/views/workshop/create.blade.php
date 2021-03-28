@@ -115,13 +115,18 @@
                           </span>
                          @enderror
                         </div>
-                        <div class="col-md-4 form-group">
-                          <input type="text" class="form-control" placeholder="Workshop Phone Number" name="telephone" value="{{ old('tel', $workshop->user->telephone ?? '') }}">
-                          @error('telephone')
-                          <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                          </span>
-                         @enderror
+                        <div class="col-md-4">
+                          <div class="input-group">
+                            <div class="input-group-prepend p-0">
+                                <span class="input-group-text">+44 (0)</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Workshop Phone Number" name="telephone" value="{{ old('tel', $workshop->user->telephone ?? '') }}">
+                            @error('telephone')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                           @enderror
+                          </div>
                         </div>
                         <div class="col-md-4 form-group">
                            <input type="text" class="form-control" placeholder="Workshop's Website" name="website" value="{{ old('website', $workshop->website) }}">

@@ -8,6 +8,7 @@ use App\Models\Organisation;
 use App\Models\Role;
 use App\Models\Workshop;
 use App\Providers\RouteServiceProvider;
+use App\Rules\IsValidPassword;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -53,8 +54,8 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        $roles = Role::where('display_name', '!=', 'superadministrator')->where('display_name', '!=', 'administrator')->get();
-        $organisations = Organisation::all();
+        $roles = Role::where('name','<>','superadministrator')->get();
+        $organisations = Organisation::select('name')->get();
         return view('auth.register', compact('roles', 'organisations'));
     }
 
@@ -74,7 +75,7 @@ class RegisterController extends Controller
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                 'telephone' => ['required', 'string', 'max:255'],
                 'organisation_id' => ['required'],
-                'password' => ['required', 'string', 'min:8', 'confirmed'],
+                'password' => ['required', 'confirmed', new IsValidPassword()],
                 'terms' => 'required'
             ], 
             ['terms.required' => 'You must agree to the terms and conditions of the site']
@@ -88,7 +89,7 @@ class RegisterController extends Controller
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                 'telephone' => ['required', 'string', 'max:255'],
                 'organisation_id' => ['required'],
-                'password' => ['required', 'string', 'min:8', 'confirmed'],
+                'password' => ['required', 'confirmed', new IsValidPassword()],
                 'terms' => 'required',
                 'website' => 'required',
                 'name' => 'required',

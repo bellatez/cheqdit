@@ -30,7 +30,11 @@
 													<p style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Barlow',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';box-sizing:border-box;color:#3d4852;font-size:16px;line-height:1.5em;margin-top:0;text-align:left;">You have been registered into the <strong>{{config('app.name')}} Portal as {{$details['role']}}</strong>                                                                                 
 												</td>
 											</tr>
-                                            <h4 style="margin: 0;">Your Login details are:</h4>
+											<tr>
+												<td>
+                                            		<h4 style="margin: 0;">Your Login details are:</h4>
+												</td>
+											</tr>
                                             <tr>
                                                 <td bgcolor="#ffffff" align="left" style="padding: 20px 30px 20px 30px; color: #666666; font-family: 'Lato', 'Barlow', Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
                                                     <p style="margin: 0;">email: <strong>{{$details['email']}}</strong></p>

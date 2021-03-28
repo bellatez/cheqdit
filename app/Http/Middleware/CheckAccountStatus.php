@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class CheckBanned
+class CheckAccountStatus
 {
     /**
      * Handle an incoming request.
@@ -15,12 +15,11 @@ class CheckBanned
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->user()->is_blocked) {
+        if (!auth()->user()->is_active && auth()->user()->email_verified_at != null) {
             auth()->logout();
-            $message = 'Your account has been blocked. Please contact administrator.';
-            return redirect()->route('login')->withMessage($message);
+            $message = 'Your account has been Deactivated. Please contact your administrator.';
+            return redirect()->route('login')->with('warning', $message);
         }
-
         return $next($request);
     }
 }

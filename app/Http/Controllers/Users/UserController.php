@@ -28,4 +28,27 @@ class UserController extends Controller
         return redirect('home');
     }
 
+    public function toggleStatus(Request $request)
+    {
+        $user = User::findOrFail($request->user_id);
+        $user->update([
+            'is_active' => $request->is_active
+        ]); 
+
+        return response()->json(['message' => 'User status updated successfully.']);  
+    }
+
+    public function approveUser(User $user)
+    {
+        $user->update(['is_active' => 1, 'email_verified_at' => now()]);
+        //send email to user
+        $details = [
+            'title' => 'New Account Approval Notice',
+            'name' => $user->first_name,
+            'text' => 'Your account has been <b>APPROVED</b> by administrator. You can now login and access the portal'
+        ];
+
+        \Mail::to($user->email)->send(new \App\Mail\StatusUpdateMail($details));
+    }
+
 }

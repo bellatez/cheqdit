@@ -1,5 +1,5 @@
 @section('title')
-New {{ ucwords(request()->type ?? 'administrator') }}  
+{{$user->exists ? 'Edit ' : 'New '}}{{ ucwords(request()->type ?? 'administrator') }} 
 @endsection
 @extends('layouts.main')
 @section('style')
@@ -23,11 +23,7 @@ New {{ ucwords(request()->type ?? 'administrator') }}
         <div class="col-lg-12">
             <div class="card m-b-30">
                 <div class="card-header">
-                  @if($user->exists)
-                    <h5 class="card-title">Edit {{ request()->type ?? 'administrator' }}'s details</h5>
-                  @else
-                    <h5 class="card-title">Fill in the {{ request()->type ?? 'administrator' }}'s details</h5>
-                  @endif
+                    <h5 class="card-title">{{$user->exists? 'Edit ':'Fill in the '}}{{ request()->type ?? 'administrator' }}'s details</h5>
                 </div>
                 <div class="card-body">
                   @if($errors->any())
@@ -50,7 +46,7 @@ New {{ ucwords(request()->type ?? 'administrator') }}
                         <div class="col">
                             <div class="form-group">
                                 <input type="text" class="form-control" name="first_name"
-                                    value="{{old('first_name')}}" placeholder="Enter First Name"
+                                    value="{{old('first_name', $user->first_name)}}" placeholder="Enter First Name"
                                     required>
                                 @error('first_name')
                                 <span class="invalid-feedback" role="alert">
@@ -59,16 +55,10 @@ New {{ ucwords(request()->type ?? 'administrator') }}
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <select class="form-control" name="role_id">
-                                    <option selected disabled>Select Role</option>
-                                    @foreach($roles as $role)
-                                    <option value="{{$role->id}}" {{old('role_id')==$role->id ?
-                                        'selected': ''}}>
-                                        {{$role->display_name}}
-                                    </option>
-                                    @endforeach
-                                </select>
-                                @if ($errors->has('role_id'))
+
+                                <input type="text" class="form-control" name="last_name"
+                                    value="{{old('last_name', $user->last_name)}}" placeholder="Enter Last Name" required>
+                                    @if ($errors->has('last_name'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('role_id') }}</strong>
                                 </span>
@@ -76,7 +66,7 @@ New {{ ucwords(request()->type ?? 'administrator') }}
                             </div>
                             <div class="form-group">
                                 <input type="email" class="form-control" name="email"
-                                    value="{{old('email')}}" placeholder="Enter Email" required>
+                                    value="{{old('email', $user->email)}}" placeholder="Enter Email" required>
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -85,21 +75,29 @@ New {{ ucwords(request()->type ?? 'administrator') }}
                             </div>
                         </div>
                         <div class="col">
+                            @if(auth()->user()->hasRole('superadministrator'))
+                                <div class="form-group">
+                                    <select class="form-control" name="organisation_id">
+                                        <option selected disabled>Select Organisation</option>
+                                        @foreach($organisations as $org)
+                                        <option value="{{$org->id}}" {{old('organisation_id', $user->organisation_id) == $org->id ?
+                                            'selected': ''}}>
+                                            {{$org->name}}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                    @if ($errors->has('role_id'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('role_id') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            @endif
                             <div class="form-group">
-                                <input type="text" class="form-control" name="last_name"
-                                    value="{{old('last_name')}}" placeholder="Enter Last Name" required>
-                                    @if ($errors->has('last_name'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('last_name') }}</strong>
-                                </span>
-                                @endif
-                            </div>
-
-                            <div class="form-group">
-                                <select class="form-control" name="organisation_id">
-                                    <option selected disabled>Select Your Organisation</option>
-                                    @foreach($organisations as $organisation)
-                                    <option value="{{$organisation->id}}" {{old('organisation_id')==$organisation->id ?
+                                <select class="form-control" name="role_id">
+                                    <option selected disabled>Select Role</option>
+                                    @foreach($roles as $role)
+                                    <option value="{{$role->id}}" {{old('role_id', $user->roles!=null ? $user->roles[0]->id : '') == $role->id ?
                                         'selected': ''}}>
                                         {{$organistation->name}}
                                     </option>
@@ -111,10 +109,12 @@ New {{ ucwords(request()->type ?? 'administrator') }}
                                 </span>
                                 @endif
                             </div>
-
-                            <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">+44 (0)</span>
+                                </div>
                                 <input type="tel" class="form-control" name="telephone"
-                                value="{{old('telephone')}}" placeholder="Enter Phone Number"
+                                value="{{old('telephone', $user->telephone)}}" placeholder="Enter Phone Number"
                                 required>
                                 @if ($errors->has('telephone'))
                                 <span class="invalid-feedback" role="alert">

@@ -47,8 +47,13 @@ New Organisation
                         <div class="col-md-4 form-group">
                           <input type="text" class="form-control" placeholder="Organisation's Website" name="website" value="{{ old('website', $org->website) }}">
                         </div>
-                        <div class="col-md-4 form-group">
-                          <input type="text" class="form-control" id="validationServer02" placeholder="Enter phone number" name="telephone" value="{{ old('telephone', $org->telephone) }}">
+                        <div class="col-md-4">
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">+44 (0)</span>
+                            </div>
+                            <input type="text" class="form-control" id="validationServer02" placeholder="Enter phone number" name="telephone" value="{{ old('telephone', $org->telephone) }}">
+                          </div>
                         </div>
                         <div class="col-md-4 form-group">
                           <input type="email" class="form-control" placeholder="Enter email" name="email" value="{{ old('email', $org->email) }}">

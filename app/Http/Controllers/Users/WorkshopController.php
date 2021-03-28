@@ -19,7 +19,10 @@ class WorkshopController extends Controller
      */
     public function index()
     {
-        $workshops = Workshop::with(['user.organisation'])->get();
+        $workshops = Workshop::whereHas('user', function($query){
+            $query->where('email_verified_at','<>', null)
+            ->where('organisation_id', auth()->user()->organisation_id);
+        })->get();
         // return $workshops;
         return view('workshop.index', compact('workshops'));
     }
@@ -28,8 +31,8 @@ class WorkshopController extends Controller
     {
         $workshops = Workshop::whereHas('user', function($query){
             $query->where('is_active',0)
-            ->where('type', 2)
             ->where('email_verified_at', null)
+            ->where('reject', 0)
             ->where('organisation_id', auth()->user()->organisation_id);
         })->get();
         return view('workshop.request_list', compact('workshops'));
@@ -71,7 +74,7 @@ class WorkshopController extends Controller
         //send password to workshop
         $user->sendPasswordMail($password);
         
-        return redirect()->route('workshops.index')->with('success', 'New workshop created successfully and mail sent to workshop with Details');
+        return redirect()->route('workshops.index')->with('success', 'New workshop created successfully and mail sent to workshop with Details <br> When workshop accesses the portal the registration will be complete');
     }
 
     /**
@@ -113,37 +116,6 @@ class WorkshopController extends Controller
         return redirect()->route('workshops.index')->with('success', 'Workshop\'s information updated successfully');
     }
 
-    public function approveWorkshop(Workshop $workshop)
-    {
-        $workshop->user->update(['is_active' => 1, 'email_verified_at' => now()]);
-        $details = [
-            'title' => 'New Workshop Approval Notice',
-            'name' => $workshop->name,
-            'text' => 'Your workshop has been <b>APPROVED</b> by administrator. You can now login and access the portal'
-        ];
-
-        \Mail::to($user->email)->send(new \App\Mail\StatusUpdateMail($details));
-        return back()->with('success', 'Workshop approved successfully');
-    }
-
-    public function rejectWorkshop(Workshop $workshop)
-    {
-       // $record->update([
-       //     'status_id' => 2
-       // ]);
-       // 
-       $details = [
-           'title' => $request->title,
-           'name' => $record->createdUser->first_name,
-           'text' => 'Record for <b>'.$record->first_name.' '.$record->surname.'</b> has been <b>REJECTED</b> for the following reason(s)<br /><br />'.$request->message
-       ];
-
-       // \Mail::to($record->createdUser->email)->send(new \App\Mail\StatusUpdateMail($details));
-
-       
-        return back()->with('success', 'Workshop rejected and creator notified successfully');
-    }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -153,5 +125,19 @@ class WorkshopController extends Controller
     public function destroy(Workshop $workshop)
     {
         $workshop->delete();
+        return back()->with('success', 'Workshop deleted successfully');
     }
+
+    public function approveWorkshop(Workshop $workshop)
+    {
+        $workshop->user->approveUser();
+        return back()->with('success', 'Workshop approved successfully');
+    }
+
+    public function rejectWorkshop(Workshop $workshop, Request $request)
+    {
+        $workshop->user->rejectUser($request);
+        return back()->with('success', 'Workshop rejected and creator notified successfully');
+    }
+
 }

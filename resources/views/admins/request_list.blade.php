@@ -53,6 +53,11 @@ User Requests
                                   </form> 
                                 </td>
                               </tr>
+                              <!-- rejection modal -->
+                              @include('partials.reject-modal', [
+                                  'route' => Route('users.reject', $user)
+                              ])
+                              <!-- end rejection modal -->
                               @endforeach
                             </tbody>
                         </table>
@@ -63,12 +68,6 @@ User Requests
         <!-- End col -->
     </div>
     <!-- End row -->
-
-    <!-- rejection modal -->
-    @include('partials.reject-modal', [
-        'route' => Route('workshops.index')
-    ])
-    <!-- end rejection modal -->
 </div>
 <!-- End Contentbar -->
 @endsection 

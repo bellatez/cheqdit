@@ -1,15 +1,17 @@
 <?php
 
 Route::group(['middleware' => ['auth']], function () {
-	Route::group(['middleware' => ['verified']], function () {
+	Route::group(['middleware' => ['verified','activated']], function () {
 		Route::prefix('users')->name('users.')->group(function() {
 			Route::put('approve/{user}', 'Users\AdminController@approveAdmin')->name('approve');
 			Route::put('reject/{user}', 'Users\AdminController@rejectAdmin')->name('reject');
 	    	Route::get('request', 'Users\AdminController@requestList')->name('request');
-    		Route::get('{type?}', 'Users\AdminController@index')->name('index');
+    		Route::get('{user}/edit/{type?}', 'Users\AdminController@edit')->name('edit');
     		Route::get('create/{type?}', 'Users\AdminController@create')->name('create');
+    		Route::get('update/status', 'Users\UserController@toggleStatus')->name('update.status');
+    		Route::get('{type?}', 'Users\AdminController@index')->name('index');
 		});
-    	Route::resource('users', 'Users\AdminController')->except(['create','index']);
+    	Route::resource('users', 'Users\AdminController')->except(['create','index', 'edit']);
 	    Route::post('userStatus', 'Users\UserController@userStatus')->name('users.status');
 	   
 	    Route::prefix('workshops')->name('workshops.')->group(function () {

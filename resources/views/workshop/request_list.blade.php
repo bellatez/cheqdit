@@ -34,7 +34,7 @@ User Requests
                             <tbody>
                               @foreach($workshops as $workshop)
                                 <tr>
-                                  <td>{{$workshop->name}}</td>
+                                  <td><a href="{{Route('workshops.edit', $workshop)}}">{{$workshop->name}}</a></td>
                                   <td>{{$workshop->user->telephone ?? ''}}</td>
                                   <td>{{$workshop->postcode}}</td>
                                   <td>{{$workshop->address1}}</td>

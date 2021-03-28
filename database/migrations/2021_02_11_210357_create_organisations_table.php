@@ -15,7 +15,7 @@ class CreateOrganisationsTable extends Migration
     {
         Schema::create('organisations', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('address1');
             $table->string('address2')->nullable();
             $table->string('address3')->nullable();
@@ -27,7 +27,7 @@ class CreateOrganisationsTable extends Migration
             $table->foreignId('industry_type')
                     ->nullable()
                     ->constrained('industry_types')
-                    ->onDelete('null');
+                    ->onDelete('set null');
             $table->foreignId('company_size')
                     ->nullable()
                     ->constrained('company_size')
