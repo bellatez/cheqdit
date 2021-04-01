@@ -34,7 +34,7 @@
                           <i class="fas fa-car"></i><span>My Vehicles</span><i class="feather icon-chevron-right pull-right"></i>
                         </a>
                         <ul class="vertical-submenu">
-                            <li><a class="font-16" href="{{url('/')}}">All Vehicles</a></li>
+                            <li><a class="font-16" href="{{route('vehicle.index')}}">All Vehicles</a></li>
                             <li><a class="font-16" href="{{url('/dashboard-hospital')}}">Add Vehicles</a></li>
                         </ul>
                     </li>
@@ -147,7 +147,7 @@
                           <span>Submit Form</span><i class="feather icon-chevron-right pull-right"></i>
                         </a>
                         <ul class="vertical-submenu">
-                            <li><a class="font-16" href="{{url('/apps-calender')}}">All Vehicles</a></li>
+                            <li><a class="font-16" href="{{route('vehicle.index')}}">All Vehicles</a></li>
                             <li><a class="font-16" href="{{url('/apps-chat')}}">Add Fault</a></li>
                             <li><a class="font-16" href="{{url('/apps-chat')}}">My History</a></li>
                             <li><a class="font-16" href="{{url('/apps-kanban-board')}}">Downloads</a></li>

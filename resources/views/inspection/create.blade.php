@@ -56,7 +56,7 @@ New Vehicle Inspection
                            @enderror
                         </div>
                         <div class="col form-group">
-                            <input type="text" class="form-control" placeholder="Owner Last Name" name="last_name" value="{{ old('last_name', $inspection->user->last_name ?? '') }}">
+                            <input type="text" class="form-control" placeholder="Vehicle Registration" name="vehicle_reg" value="{{ old('last_name', $inspection->vehicle_reg ?? '') }}">
                             @error('last_name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -66,7 +66,7 @@ New Vehicle Inspection
                       </div>
                       <div class="form-row">
                         <div class="col form-group">
-                          <input type="text" class="form-control" placeholder="Vehicle Inspection's Name" name="name" value="{{ old('name', $inspection->name) }}">
+                          <input type="text" class="form-control" placeholder="Fleet Number" name="fleet_num" value="{{ old('fleet_num', $inspection->fleet_num) }}">
                             @error('name')
                               <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
@@ -74,8 +74,8 @@ New Vehicle Inspection
                             @enderror
                         </div>
                         <div class="col form-group">
-                           <input type="email" class="form-control" placeholder="Vehicle Inspection Email" name="email" value="{{ old('email', $inspection->user->email ?? '') }}">
-                           @error('email')
+                           <input type="search" class="form-control" placeholder="Vehicle" name="vevhicle" value="{{ old('vehicle', $inspection->vehicle ?? '') }}">
+                           @error('vehicle')
                            <span class="invalid-feedback" role="alert">
                                <strong>{{ $message }}</strong>
                            </span>
@@ -84,56 +84,37 @@ New Vehicle Inspection
                       </div>
                       <div class="form-row">
                         <div class="col-md-4 form-group">
-                          <input type="text" class="form-control" placeholder="Vehicle Inspection Address line 1" v-model="address1" name="address1" value="{{ old('address1', $inspection->address1) }}">
-                          @error('address1')
+                          <input type="text" class="form-control" placeholder="Reading Start"  name="reading_start" value="{{ old('reading_start', $inspection->reading_start) }}">
+                          @error('reading_start')
                           <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
                           </span>
                          @enderror
                         </div>
                         <div class="col-md-4 form-group">
-                          <input type="text" name="address2" class="form-control" placeholder="Workshop Address line 2"
-                          value="{{ old('address2', $inspection->address2) }}">
-                          @error('address2')
-                          <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                          </span>
-                         @enderror
-                        </div>
-                        <div class="col-md-4 form-group">
-                          <input type="text" name="address3" class="form-control" placeholder="Workshop Address line 3" value="{{ old('address3', $inspection->address3) }}">
-                          @error('address3')
-                          <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                          </span>
-                         @enderror
-                        </div>
+                            <input type="text" class="form-control" placeholder="Reading End"  name="reading_end" value="{{ old('reading_end', $inspection->reading_end) }}">
+                            @error('reading_end')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                           @enderror
+                          </div>
+                       
                       </div>
 
                       <div class="form-row">
-                        <div class="col-md-4 form-group">
-                          <input type="text" class="form-control" placeholder="Workshop Postal code" name="postcode" value="{{ old('postcode', $inspection->postcode) }}">
-                          @error('postcode')
-                          <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                          </span>
-                         @enderror
+                        <label>List of Details</label>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="yes">
+                          <label class="form-check-label" for="inlineCheckbox1">Yes</label>
                         </div>
-                        <div class="col-md-4 form-group">
-                          <input type="text" class="form-control" placeholder="Workshop Phone Number" name="telephone" value="{{ old('tel', $inspection->user->telephone ?? '') }}">
-                          @error('telephone')
-                          <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                          </span>
-                         @enderror
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="no">
+                          <label class="form-check-label" for="inlineCheckbox2">No</label>
                         </div>
-                        <div class="col-md-4 form-group">
-                           <input type="text" class="form-control" placeholder="Workshop's Website" name="website" value="{{ old('website', $inspection->website) }}">
-                           @error('website')
-                           <span class="invalid-feedback" role="alert">
-                               <strong>{{ $message }}</strong>
-                           </span>
-                          @enderror
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="n/a">
+                          <label class="form-check-label" for="inlineCheckbox3">N/A</label>
                         </div>
                       </div>
                       <button type="submit" class="btn btn-primary-rgba py-3 px-5 dash-btn">Submit</button>

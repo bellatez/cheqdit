@@ -19,6 +19,7 @@ class Vehicle extends Model
     	'mot_date',
     	'mot_doc',
     	'mileage',
+    	'status',
     	'comments'
     ];
 

@@ -14,7 +14,9 @@ class VehicleController extends Controller
      */
     public function index()
     {
-        //
+
+        $vehicles = Vehicle::all();
+        return view('vehicle.index', compact('vehicles'));
     }
 
     /**
@@ -24,7 +26,9 @@ class VehicleController extends Controller
      */
     public function create()
     {
-        //
+
+        $vehicles = Vehicle::all();
+        return view('vehicle.create', compact('vehicles'));
     }
 
     /**
@@ -46,7 +50,8 @@ class VehicleController extends Controller
      */
     public function show(Vehicle $vehicle)
     {
-        //
+        $vehicles = $vehicle;
+        return view('vehicle.show', compact('vehicles'));
     }
 
     /**
@@ -57,7 +62,8 @@ class VehicleController extends Controller
      */
     public function edit(Vehicle $vehicle)
     {
-        //
+        $vehicles = $vehicle;
+        return view('vehicle.create', compact('vehicles'));
     }
 
     /**
@@ -80,6 +86,7 @@ class VehicleController extends Controller
      */
     public function destroy(Vehicle $vehicle)
     {
-        //
+        $vehicle->delete();
+        return redirect()->route('vehicle.index')->with('success', 'Organisation deleted successfully');
     }
 }

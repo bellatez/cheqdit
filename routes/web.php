@@ -21,7 +21,7 @@ Route::get('/home', 'HomeController@index')->middleware('activated')->name('home
 Route::get('/table-datatable', function () {
     return view('helpers/table-datatable');
 });
-
+Route::resource('vehicle', 'Vehicle\VehicleController');
 Route::fallback(function() {
  return view('errors.404');
 });
