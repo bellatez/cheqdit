@@ -10,6 +10,48 @@ Vehicle Inspections
 @section('rightbar-content')
 <!-- Start Contentbar -->
 <div class="contentbar">
+    {{--start  data bar --}}
+    <div class="card">
+        <div class="card-body">
+          <div class="row">
+              <div class="col-md">
+              <h5>New </h5>
+              <h1> 12 </h1>
+              <h6>More than Last Month</h6>
+              </div>
+              <div class="col-md">
+                  <h5>In Progress</h5>
+                  <h1> 1 </h1>
+                  <h6>Less than Last Month</h6>
+              </div>
+              <div class="col-md">
+                  <h5>Completed</h5>
+                  <h1> 10 </h1>
+                  <h6>Less than Last Month</h6>
+              </div>
+              <div class="col-md">
+                  <form action="" method="get" >
+                      <div class="form-inline">
+                          <div class="form-group">
+                              <select class="form-control" name="time">
+                              <option value="last_month" selected disabled>Select Time</option>
+                              <option value="last_month">Last Week</option>
+                              <option value="last_month">Last Month</option>
+                              <option value="last_month">Last Year</option>
+                          </select>
+                          </div>
+                          <br>
+                          <button class="btn btn-success" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                      </div>
+                  </form>
+              </div>
+
+          </div>
+          <br>
+        </div>
+      </div>
+   
+    {{-- end data bar --}}
     <!-- Start row -->
     <div class="row">
         <!-- Start col -->

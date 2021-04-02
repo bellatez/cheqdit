@@ -1,5 +1,5 @@
 @section('title')
-{{ ucwords(request()->type ?? 'administrators') }} 
+{{ ucwords(request()->type ?? 'administrators') }}
 @endsection
 @extends('layouts.main')
 
@@ -16,6 +16,46 @@
 @section('rightbar-content')
 <!-- Start Contentbar -->
 <div class="contentbar">
+    {{-- start data bar  --}}
+    <div class="card">
+        <div class="card-body">
+          <div class="row">
+              <div class="col-md">
+              <h5>Total User</h5>
+              <h1> 12 </h1>
+              <h6>More than Last Month</h6>
+              </div>
+              <div class="col-md">
+                  <h5>Total Drivers</h5>
+                  <h1> 1 </h1>
+                  <h6>Less than Last Month</h6>
+              </div>
+              <div class="col-md">
+                  <h5>Total Pending</h5>
+                  <h1> 10 </h1>
+                  <h6>Less than Last Month</h6>
+              </div>
+              <div class="col-md">
+                  <form action="" method="get" >
+                      <div class="form-inline">
+                          <div class="form-group">
+                              <select class="form-control" name="time">
+                              <option value="last_month" selected disabled>Select Time</option>
+                              <option value="last_month">Last Week</option>
+                              <option value="last_month">Last Month</option>
+                              <option value="last_month">Last Year</option>
+                          </select>
+                          </div>
+                          <button class="btn btn-success" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                      </div>
+                  </form>
+              </div>
+
+          </div>
+          <br>
+        </div>
+      </div>
+    {{-- end data bar  --}}
     <!-- Start row -->
     <div class="row">
         <!-- Start col -->
@@ -55,7 +95,7 @@
                                     <span class="sweet-alert">
                                       <button type="submit" title="delete" class="btn btn-xs btn-danger sa-warning"><i class="fa fa-trash"></i></button>
                                     </span>
-                                  </form> 
+                                  </form>
                                 </td>
                               </tr>
                               @endforeach

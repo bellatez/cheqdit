@@ -10,6 +10,46 @@ Vehicles
 @section('rightbar-content')
 <!-- Start Contentbar -->
 <div class="contentbar">
+    {{-- data bar start  --}}
+    <div class="card">
+        <div class="card-body">
+          <div class="row">
+              <div class="col-md">
+              <h5>Total Vehicles</h5>
+              <h1> 12 </h1>
+              <h6>More than Last Month</h6>
+              </div>
+              <div class="col-md">
+                  <h5>IPV</h5>
+                  <h1> 1 </h1>
+                  <h6>Less than Last Month</h6>
+              </div>
+              <div class="col-md">
+                  <h5>HGV</h5>
+                  <h1> 10 </h1>
+                  <h6>Less than Last Month</h6>
+              </div>
+              <div class="col-md">
+                  <form action="" method="get" >
+                      <div class="form-inline">
+                          <div class="form-group">
+                              <select class="form-control" name="time">
+                              <option value="last_month" selected disabled>Select Time</option>
+                              <option value="last_month">Last Week</option>
+                              <option value="last_month">Last Month</option>
+                              <option value="last_month">Last Year</option>
+                          </select>
+                          </div>
+                          <button class="btn btn-success" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                      </div>
+                  </form>
+              </div>
+
+          </div>
+          <br>
+        </div>
+      </div>
+    {{-- databar end --}}
     <!-- Start row -->
     <div class="row">
         <!-- Start col -->

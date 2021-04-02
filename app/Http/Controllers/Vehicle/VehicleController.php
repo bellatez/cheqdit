@@ -19,16 +19,30 @@ class VehicleController extends Controller
         return view('vehicles.index', compact('vehicles'));
     }
 
+    public function service($state)
+    {
+        $type = $state;
+        $vehicles = Vehicle::all();
+        return view('service.index', compact('vehicles','type'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
+    public function screate($state)
+    {
+        $type = $state;
+        $vehicles = Vehicle::all();
+        return view('service.create', compact('vehicles','type'));
+    }
+
     public function create()
     {
 
         $vehicles = Vehicle::all();
-        return view('vehicles.create', compact('vehicles'));
+        return view('vehicle.create', compact('vehicles'));
     }
 
     /**

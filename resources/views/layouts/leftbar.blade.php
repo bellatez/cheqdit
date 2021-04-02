@@ -109,10 +109,10 @@
                           <i class="fas fa-qrcode"></i><span>MOT/Service</span><i class="feather icon-chevron-right pull-right"></i>
                         </a>
                         <ul class="vertical-submenu">
-                            <li><a class="font-16" href="{{url('/apps-calender')}}">View Upcoming</a></li>
-                            <li><a class="font-16" href="{{url('/apps-chat')}}">View all History</a></li>
-                            <li><a class="font-16" href="{{url('/apps-kanban-board')}}">Add MOT</a></li>
-                            <li><a class="font-16" href="{{url('/apps-onboarding-screens')}}">Add Service</a></li>
+                            <li><a class="font-16" href="{{route('service.index', 'Upcoming')}}">View Upcoming</a></li>
+                            <li><a class="font-16" href="{{route('service.index','History')}}">View all History</a></li>
+                            <li><a class="font-16" href="{{route('service.create','MOT')}}">Add MOT</a></li>
+                            <li><a class="font-16" href="{{route('service.create','Service')}}">Add Service</a></li>
                         </ul>
                     </li>
                 @endif
@@ -149,16 +149,16 @@
                         <ul class="vertical-submenu">
                             <li><a class="font-16" href="{{route('vehicle.index')}}">All Vehicles</a></li>
                             <li><a class="font-16" href="{{url('/apps-chat')}}">Add Fault</a></li>
-                            <li><a class="font-16" href="{{url('/apps-chat')}}">My History</a></li>
+                            <li><a class="font-16" href="{{route('service.index','History')}}">My History</a></li>
                             <li><a class="font-16" href="{{url('/apps-kanban-board')}}">Downloads</a></li>
                         </ul>
                     </li>
                 @endif
                 <h6 class="text-small leftbar-subs mt-3"><small>SUPPORT</small></h6>
                 @if(Auth::user()->hasRole('driver'))
-                    <li><a class="font-16" href="{{url('/apps-onboarding-screens')}}">
+                    <li><a class="font-16" href="{{route('others.help')}}">
                         <i class="fas fa-support"></i><span>Help Guides</span></a></li>
-                    <li><a class="font-16" href="{{url('/apps-onboarding-screens')}}">
+                    <li><a class="font-16" href="{{url('/apps-onboarding-scree')}}">
                         <i class="fas fa-cloud"></i><span>My Weather</span></a></li>
                     <li><a class="font-16" href="{{url('/apps-onboarding-screens')}}">
                         <i class="fas fa-video-camera"></i><span>Videos</span></a></li>
@@ -166,12 +166,12 @@
                         <i class="fas fa-thumbs-up"></i><span>Best Practice</span></a></li>
                 @endif
                 <li>
-                    <a href="javaScript:void();" class="font-16">
+                    <a href="{{route('others.flag')}}" class="font-16">
                       <i class="fa fa-flag-o"></i><span>Flag Issue</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{url('/page-faq')}}">
+                    <a href="{{route('others.faq')}}">
                         <i class="fas fa-question"></i><span>FAQ</span>
                     </a>
                 </li>
