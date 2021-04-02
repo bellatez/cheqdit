@@ -4,7 +4,7 @@ New Vehicle
 @extends('layouts.main')
 @section('style')
 @section('header-btn')
-  <a href="{{route('vehicles.index')}}" class="btn btn-info-rgba"><i class="feather icon-plus mr-2"></i>View List</a>
+  <a href="{{route('vehicle.index')}}" class="btn btn-info-rgba"><i class="feather icon-plus mr-2"></i>View List</a>
 @endsection
 
 @endsection
@@ -17,11 +17,8 @@ New Vehicle
         <div class="col-lg-12">
             <div class="card m-b-30">
                 <div class="card-header">
-                  @if($vehicle->exists)
-                    <h5 class="card-title">Edit Vehicle  details</h5>
-                  @else
+
                     <h5 class="card-title">Fill in the Vehicle  details</h5>
-                  @endif
                 </div>
                 <div class="card-body">
                   @if($errors->any())
@@ -31,17 +28,13 @@ New Vehicle
                       @endforeach
                   </ul>
                   @endif
-                    @if($vehicle->exists)
-                        <form method="post" action="{{ route('vehicle.update', $vehicle) }}" autocomplete="off"  files="true" enctype="multipart/form-data">
-                        @method('PUT')
-                    @else
+
                       <form method="POST" action="{{ route('vehicle.store') }}">
-                    @endif
                       @csrf
                       <div class="form-row">
 
                         <div class="col form-group">
-                            <input type="text" class="form-control" placeholder="Vehicle Registration" name="reg" value="{{ old('reg', $vehicle->reg ?? '') }}">
+                            <input type="text" class="form-control" placeholder="Vehicle Registration" name="reg" >
                             @error('reg')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -49,7 +42,7 @@ New Vehicle
                            @enderror
                         </div>
                         <div class="col form-group">
-                          <input type="text" class="form-control" placeholder="Fleet Number" name="name" value="{{ old('name', $vehicle->fleet_num) }}">
+                          <input type="text" class="form-control" placeholder="Fleet Number" name="name" >
                             @error('name')
                               <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
@@ -59,8 +52,8 @@ New Vehicle
                       </div>
                       <div class="form-row">
                         <div class="col form-group">
-                           <select class="form-control"  name="type" value="{{ old('type', $vehicle->type ?? '') }}">
-                            <option disabled >Choose Your Vehicle Type</option>
+                           <select class="form-control"  name="type">
+                            <option disabled selected >Choose Your Vehicle Type</option>
                             <option value="ipv">IPV</option>
                             <option value="hgv">HGV</option>
                             <option value="van">Van</option>
@@ -74,7 +67,7 @@ New Vehicle
                           @enderror
                         </div>
                         <div class="col-md-4 form-group">
-                          <input type="text" class="form-control" placeholder="Vehicle Make" name="make" value="{{ old('make', $vehicle->make) }}">
+                          <input type="text" class="form-control" placeholder="Vehicle Make" name="make" >
                           @error('make')
                           <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
@@ -85,7 +78,7 @@ New Vehicle
                       <div class="form-row">
                         <div class="col-md-4 form-group">
                           <input type="text" name="colour" class="form-control" placeholder="Vehicle Colour"
-                          value="{{ old('address2', $vehicle->colour) }}">
+                         >
                           @error('address2')
                           <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
@@ -93,8 +86,8 @@ New Vehicle
                          @enderror
                         </div>
                         <div class="col-md-4 form-group">
-                            <select class="form-control"  name="condition" value="{{ old('condition', $vehicle->type ?? '') }}">
-                                <option disabled >What is the Vehicle Condition</option>
+                            <select class="form-control"  name="condition" >
+                                <option disabled selected>What is the Vehicle Condition</option>
                                 <option value="excellent">Excellent</option>
                                 <option value="good">Good</option>
                                 <option value="average">Average</option>
@@ -107,8 +100,8 @@ New Vehicle
                               @enderror
                         </div>
                         <div class="col-md-4 form-group">
-                            <select class="form-control"  name="status" value="{{ old('condition', $vehicle->status ?? '') }}">
-                                <option disabled >Vehicle Staus</option>
+                            <select class="form-control"  name="status" >
+                                <option disabled  selected>Vehicle Staus</option>
                                 <option value="on_road">On Road</option>
                                 <option value="off_road">Off Road</option>
                                 <option value="on_roadw">On Road In Workshop</option>
@@ -122,16 +115,18 @@ New Vehicle
                       </div>
 
                       <div class="form-row">
-                        <div class="col-md-4 form-group">
-                            <input type="date" name="service_date" class="form-control"  value="{{ old('service_date', $vehicle->type ?? '') }}">
+                        <div class="col-md form-group">
+                            <label for="service_date">Service Date</label>
+                            <input type="date" name="service_date" class="form-control" >
                           @error('service_date')
                           <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
                           </span>
                          @enderror
                         </div>
-                        <div class="col-md-4 form-group">
-                            <input type="file" name="service_docc" class="form-control"  value="{{ old('service_docc', $vehicle->service_doc ?? '') }}">
+                        <div class="col-md form-group">
+                            <label for="service_doc">Service Documents</label>
+                            <input type="file" name="service_docc" class="form-control" >
                           @error('service_doc')
                           <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
@@ -140,16 +135,18 @@ New Vehicle
                         </div>
                       </div>
                       <div class="form-row">
-                        <div class="col-md-4 form-group">
-                            <input type="date" name="mot_date" class="form-control"  value="{{ old('mot_date', $vehicle->mot_date ?? '') }}">
+                        <div class="col-md form-group">
+                            <label for="mot_date">Mot Date</label>
+                            <input type="date" name="mot_date" class="form-control"  >
                           @error('mot_date')
                           <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
                           </span>
                          @enderror
                         </div>
-                        <div class="col-md-4 form-group">
-                            <input type="file" name="mot_docc" class="form-control"  value="{{ old('mot_doc', $vehicle->mot_doc ?? '') }}">
+                        <div class="col-md form-group">
+                            <label for="mot_doc">Mot Documents</label>
+                            <input type="file" name="mot_docc" class="form-control"  >
                           @error('mot_doc')
                           <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
@@ -159,7 +156,7 @@ New Vehicle
                       </div>
                       <div class="form-row">
                         <div class="col form-group">
-                            <input type="text" class="form-control" placeholder="Mileage" name="mileage" value="{{ old('mileage', $vehicle->mileage ?? '') }}">
+                            <input type="text" class="form-control" placeholder="Mileage" name="mileage" >
                             @error('mileage')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -167,7 +164,7 @@ New Vehicle
                            @enderror
                         </div>
                         <div class="col form-group">
-                          <input type="textarea" class="form-control" placeholder="Comment" name="comments" value="{{ old('comments', $vehicle->comments) }}">
+                          <input type="textarea" class="form-control" placeholder="Comment" name="comments" >
                             @error('comments')
                               <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>

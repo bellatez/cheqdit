@@ -32,7 +32,6 @@ class WorkshopController extends Controller
         $workshops = Workshop::whereHas('user', function($query){
             $query->where('is_active',0)
             ->where('email_verified_at', null)
-            ->where('reject', 0)
             ->where('organisation_id', auth()->user()->organisation_id);
         })->get();
         return view('workshop.request_list', compact('workshops'));
@@ -73,7 +72,7 @@ class WorkshopController extends Controller
         $user->workshop()->create($request->validated());
         //send password to workshop
         $user->sendPasswordMail($password);
-        
+
         return redirect()->route('workshops.index')->with('success', 'New workshop created successfully and mail sent to workshop with Details <br> When workshop accesses the portal the registration will be complete');
     }
 

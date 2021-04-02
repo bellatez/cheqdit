@@ -4,7 +4,7 @@ Vehicle Inspections
 @extends('layouts.main')
 
 @section('header-btn')
-  <a href="{{route('inspections.create')}}" class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i>New</a>
+  <a href="{{route('inspection.create')}}" class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i>New</a>
 @endsection
 
 @section('rightbar-content')

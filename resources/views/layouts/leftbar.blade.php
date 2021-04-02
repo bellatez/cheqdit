@@ -35,7 +35,7 @@
                         </a>
                         <ul class="vertical-submenu">
                             <li><a class="font-16" href="{{route('vehicle.index')}}">All Vehicles</a></li>
-                            <li><a class="font-16" href="{{url('/dashboard-hospital')}}">Add Vehicles</a></li>
+                            <li><a class="font-16" href="{{route('vehicle.create')}}">Add Vehicles</a></li>
                         </ul>
                     </li>
                      <li>
@@ -53,7 +53,7 @@
                           <i class="fas fa-bus"></i><span>DVLA Search</span><i class="feather icon-chevron-right pull-right"></i>
                         </a>
                         <ul class="vertical-submenu">
-                            <li><a class="font-16" href="{{url('/')}}">Vehicle search</a></li>
+                            <li><a class="font-16" href="{{Route('vehicle.search')}}">Vehicle search</a></li>
                         </ul>
                     </li>
                 @endif
@@ -97,11 +97,11 @@
                           <i class="fas fa-tasks"></i><span>Vehicle Inspection</span><i class="feather icon-chevron-right pull-right"></i>
                         </a>
                         <ul class="vertical-submenu">
-                            <li><a class="font-16" href="{{url('/apps-chat')}}">View All</a></li>
-                            <li><a class="font-16" href="{{url('/apps-calender')}}">Last 30 Days</a></li>
-                            <li><a class="font-16" href="{{url('/apps-calender')}}">Last 60 Days</a></li>
-                            <li><a class="font-16" href="{{url('/apps-calender')}}">Add Inspection</a></li>
-                            <li><a class="font-16" href="{{url('/apps-calender')}}">My Forms</a></li>
+                            <li><a class="font-16" href="{{Route('inspection.index')}}">View All</a></li>
+                            <li><a class="font-16" href="{{Route('inspection.day','30')}}">Last 30 Days</a></li>
+                            <li><a class="font-16" href="{{Route('inspection.day','60')}}">Last 60 Days</a></li>
+                            <li><a class="font-16" href="{{Route('inspection.create')}}">Add Inspection</a></li>
+                            <li><a class="font-16" href="{{Route('inspection.index')}}">My Forms</a></li>
                         </ul>
                     </li>
                     <li>
@@ -134,8 +134,8 @@
                           <i class="fas fa-legal"></i><span>Damage/Faults</span><i class="feather icon-chevron-right pull-right"></i>
                         </a>
                         <ul class="vertical-submenu">
-                            <li><a class="font-16" href="{{url('/apps-calender')}}">View All</a></li>
-                            <li><a class="font-16" href="{{url('/apps-chat')}}">My Forms</a></li>
+                            <li><a class="font-16" href="{{Route('inspection.form')}}">View All</a></li>
+                            <li><a class="font-16" href="{{Route('inspection.form')}}">My Forms</a></li>
                         </ul>
                     </li>
                 @endif

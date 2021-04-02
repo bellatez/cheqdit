@@ -1,5 +1,5 @@
 @section('title')
-{{$user->exists ? 'Edit ' : 'New '}}{{ ucwords(request()->type ?? 'administrator') }} 
+{{$user->exists ? 'Edit ' : 'New '}}{{ ucwords(request()->type ?? 'administrator') }}
 @endsection
 @extends('layouts.main')
 @section('style')
@@ -99,7 +99,7 @@
                                     @foreach($roles as $role)
                                     <option value="{{$role->id}}" {{old('role_id', $user->roles!=null ? $user->roles[0]->id : '') == $role->id ?
                                         'selected': ''}}>
-                                        {{$organistation->name}}
+                                        {{$role->name}}
                                     </option>
                                     @endforeach
                                 </select>

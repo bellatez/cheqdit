@@ -4,7 +4,7 @@ Vehicles
 @extends('layouts.main')
 
 @section('header-btn')
-  <a href="{{route('vehicles.create')}}" class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i>New</a>
+  <a href="{{route('vehicle.create')}}" class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i>New</a>
 @endsection
 
 @section('rightbar-content')
@@ -54,9 +54,9 @@ Vehicles
                                       <i class="fas fa-ellipsis-v"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                      <a class="dropdown-item" href="{{Route('inspections.show', $workshop)
+                                      <a class="dropdown-item" href="{{Route('vehicle.show', $workshop)
                                       }}">View</a>
-                                      <a class="dropdown-item" href="{{Route('inspections.edit', $workshop)}}">Edit</a>
+                                      <a class="dropdown-item" href="{{Route('vehicle.edit', $workshop)}}">Edit</a>
                                     </div>
                                   </div>
                                 </td>

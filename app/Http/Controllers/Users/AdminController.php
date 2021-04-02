@@ -46,7 +46,6 @@ class AdminController extends Controller
     {
         $users = User::with('roles')->where('is_active',0)
                         ->where('type', 1)
-                        ->where('reject', 0)
                         ->where('email_verified_at', null)
                         ->where('organisation_id', auth()->user()->organisation_id)
                         ->get();
@@ -87,10 +86,10 @@ class AdminController extends Controller
         // create a password for the workshop
         $password = Generator::password();
 
-        $user = User::create(array_merge($request->validated(), 
+        $user = User::create(array_merge($request->validated(),
             [
-                'password' => bcrypt($password), 
-                'type'=> 1, 
+                'password' => bcrypt($password),
+                'type'=> 1,
                 'organisation_id'=>$request->organisation_id ?? auth()->user()->organisation_id,
                 'is_active'=> 1
             ]
@@ -164,7 +163,7 @@ class AdminController extends Controller
     {
         $user->admin()->delete();
         $user->delete();
-        return back()->with('success', 'Deleted successfully');   
+        return back()->with('success', 'Deleted successfully');
     }
 
     public function approveAdmin(User $user)

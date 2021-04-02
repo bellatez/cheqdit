@@ -4,7 +4,7 @@ New Vehicle Inspection
 @extends('layouts.main')
 @section('style')
 @section('header-btn')
-  <a href="{{route('inspections.index')}}" class="btn btn-info-rgba"><i class="feather icon-plus mr-2"></i>View List</a>
+  <a href="{{route('inspection.index')}}" class="btn btn-info-rgba"><i class="feather icon-plus mr-2"></i>View List</a>
 @endsection
 
 @endsection
@@ -17,7 +17,7 @@ New Vehicle Inspection
         <div class="col-lg-12">
             <div class="card m-b-30">
                 <div class="card-header">
-                  @if($inspection->exists)
+                  @if($inspections)
                     <h5 class="card-title">Edit Vehicle Inspection's details</h5>
                   @else
                     <h5 class="card-title">Fill in the Vehicle Inspection's details</h5>
@@ -31,23 +31,19 @@ New Vehicle Inspection
                       @endforeach
                   </ul>
                   @endif
-                    @if($inspection->exists)
-                        <form method="post" action="{{ route('inspections.update', $inspection) }}" autocomplete="off"  files="true" enctype="multipart/form-data">
+                    @if($inspections)
+                        <form method="post" action="{{ route('inspection.update', $inspections) }}" autocomplete="off"  files="true" enctype="multipart/form-data">
                         @method('PUT')
                     @else
-                      <form method="POST" action="{{ route('inspections.store') }}">
+                      <form method="POST" action="{{ route('inspection.store') }}">
                     @endif
                       @csrf
                       <div class="form-row">
                         <div class="col form-group">
                             <select class="form-control" name="form_id">
                                 <option selected disabled>Select your Form</option>
-                                @foreach($organisations as $org)
-                                <option value="{{inspect$form->id}}" {{old('form_id')==$org->id ?
-                                    'selected': ''}}>
-                                    {{$for->name}}
+                                <option  >
                                 </option>
-                                @endforeach
                             </select>
                           @error('first_name')
                             <span class="invalid-feedback" role="alert">
@@ -56,7 +52,7 @@ New Vehicle Inspection
                            @enderror
                         </div>
                         <div class="col form-group">
-                            <input type="text" class="form-control" placeholder="Vehicle Registration" name="vehicle_reg" value="{{ old('last_name', $inspection->vehicle_reg ?? '') }}">
+                            <input type="text" class="form-control" placeholder="Vehicle Registration" name="vehicle_reg">
                             @error('last_name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -66,7 +62,7 @@ New Vehicle Inspection
                       </div>
                       <div class="form-row">
                         <div class="col form-group">
-                          <input type="text" class="form-control" placeholder="Fleet Number" name="fleet_num" value="{{ old('fleet_num', $inspection->fleet_num) }}">
+                          <input type="text" class="form-control" placeholder="Fleet Number" name="fleet_num">
                             @error('name')
                               <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
@@ -84,7 +80,7 @@ New Vehicle Inspection
                       </div>
                       <div class="form-row">
                         <div class="col-md-4 form-group">
-                          <input type="text" class="form-control" placeholder="Reading Start"  name="reading_start" value="{{ old('reading_start', $inspection->reading_start) }}">
+                          <input type="text" class="form-control" placeholder="Reading Start"  name="reading_start">
                           @error('reading_start')
                           <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
@@ -92,20 +88,19 @@ New Vehicle Inspection
                          @enderror
                         </div>
                         <div class="col-md-4 form-group">
-                            <input type="text" class="form-control" placeholder="Reading End"  name="reading_end" value="{{ old('reading_end', $inspection->reading_end) }}">
+                            <input type="text" class="form-control" placeholder="Reading End"  name="reading_end">
                             @error('reading_end')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                            @enderror
                           </div>
-                       
-                      </div>
 
-                      <div class="form-row">
-                        <label>List of Details</label>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="yes">
+
+                          <div class="form-group">
+                            <label>List of Details</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="yes">
                           <label class="form-check-label" for="inlineCheckbox1">Yes</label>
                         </div>
                         <div class="form-check form-check-inline">
@@ -116,7 +111,8 @@ New Vehicle Inspection
                           <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="n/a">
                           <label class="form-check-label" for="inlineCheckbox3">N/A</label>
                         </div>
-                      </div>
+                    </div>
+                    </div>
                       <button type="submit" class="btn btn-primary-rgba py-3 px-5 dash-btn">Submit</button>
                     </form>
                 </div>

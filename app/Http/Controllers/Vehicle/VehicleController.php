@@ -1,7 +1,7 @@
 <?php
-
 namespace App\Http\Controllers\Vehicle;
 
+use App\Http\Controllers\Controller;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
 
@@ -16,7 +16,7 @@ class VehicleController extends Controller
     {
 
         $vehicles = Vehicle::all();
-        return view('vehicle.index', compact('vehicles'));
+        return view('vehicles.index', compact('vehicles'));
     }
 
     /**
@@ -28,7 +28,7 @@ class VehicleController extends Controller
     {
 
         $vehicles = Vehicle::all();
-        return view('vehicle.create', compact('vehicles'));
+        return view('vehicles.create', compact('vehicles'));
     }
 
     /**
@@ -42,6 +42,11 @@ class VehicleController extends Controller
         //
     }
 
+    public function search(Request $request)
+    {
+        return view('vehicles.search');
+    }
+
     /**
      * Display the specified resource.
      *
@@ -51,7 +56,7 @@ class VehicleController extends Controller
     public function show(Vehicle $vehicle)
     {
         $vehicles = $vehicle;
-        return view('vehicle.show', compact('vehicles'));
+        return view('vehicles.show', compact('vehicles'));
     }
 
     /**
@@ -63,7 +68,7 @@ class VehicleController extends Controller
     public function edit(Vehicle $vehicle)
     {
         $vehicles = $vehicle;
-        return view('vehicle.create', compact('vehicles'));
+        return view('vehicles.create', compact('vehicles'));
     }
 
     /**
@@ -87,6 +92,6 @@ class VehicleController extends Controller
     public function destroy(Vehicle $vehicle)
     {
         $vehicle->delete();
-        return redirect()->route('vehicle.index')->with('success', 'Organisation deleted successfully');
+        return redirect()->route('vehicles.index')->with('success', 'Organisation deleted successfully');
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Forms;
+use App\Http\Controllers\Controller;
 
 use App\Models\Inspection;
 use Illuminate\Http\Request;
@@ -14,7 +15,21 @@ class InspectionController extends Controller
      */
     public function index()
     {
-        //
+        $inspections = Inspection::all();
+        return view('inspection.index', compact('inspections'));
+    }
+
+    public function days($day)
+    {
+        $days = $day;
+        $inspections = Inspection::all();
+        return view('inspection.day', compact('inspections','days'));
+    }
+
+    public function form()
+    {
+        $inspections = Inspection::all();
+        return view('inspection.form', compact('inspections'));
     }
 
     /**
@@ -24,7 +39,8 @@ class InspectionController extends Controller
      */
     public function create()
     {
-        //
+        $inspections = Inspection::all();
+        return view('inspection.create', compact('inspections'));
     }
 
     /**
@@ -46,7 +62,8 @@ class InspectionController extends Controller
      */
     public function show(Inspection $inspection)
     {
-        //
+        $inspections = $inspection;
+        return view('inspection.index', compact('inspections'));
     }
 
     /**
@@ -57,7 +74,8 @@ class InspectionController extends Controller
      */
     public function edit(Inspection $inspection)
     {
-        //
+        $inspections = $inspection;
+        return view('inspection.index', compact('inspections'));
     }
 
     /**
